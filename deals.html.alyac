@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>할인 및 행사 | YH04 PRODUCTS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-mode">
+    <div class="custom-cursor" id="cursor"></div>
+    
+    <header id="header" class="scrolled">
+        <nav>
+            <div class="logo-norris hoverable" onclick="location.href='index.html'">
+                HWANG<br>YOUNGHO
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="hoverable">HOME</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="javascript:void(0)" class="hoverable">브랜드 소개</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about.html" class="hoverable">소개</a></li>
+                        <li><a href="news.html" class="hoverable">소식</a></li>
+                        <li><a href="partnership.html" class="hoverable">다가오는 파트너십</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item-dropdown">
+                    <a href="javascript:void(0)" class="hoverable active">제품 소식</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="series.html" class="hoverable">시리즈별 세트</a></li>
+                        <li><a href="age.html" class="hoverable">연령별</a></li>
+                        <li><a href="price.html" class="hoverable">가격별</a></li>
+                        <li><a href="new.html" class="hoverable">신제품</a></li>
+                        <li><a href="exclusive.html" class="hoverable">독점 제품</a></li>
+                        <li><a href="deals.html" class="hoverable active">할인 및 행사</a></li>
+                        <li><a href="coming-soon.html" class="hoverable">출시 예정</a></li>
+                        <li><a href="last-chance.html" class="hoverable">단종 예정</a></li>
+                    </ul>
+                </li>
+                <li><a href="companies.html" class="hoverable">장바구니</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="javascript:void(0)" class="hoverable">고객 지원</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="order.html" class="hoverable">주문 현황 확인</a></li>
+                        <li><a href="shipping.html" class="hoverable">배송 및 반품</a></li>
+                        <li><a href="assembly.html" class="hoverable">조립 설명서 검색</a></li>
+                        <li><a href="faq.html" class="hoverable">일반적인 질문</a></li>
+                        <li><a href="contact.html" class="hoverable">문의하기</a></li>
+                        <li><a href="bricks.html" class="hoverable">부속품 및 브릭</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="header-right">
+                <button class="login-btn hoverable" id="open-login">로그인</button>
+                <button class="burger-menu hoverable">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="section dark" style="padding-top: 180px; min-height: 100vh;">
+        <div class="section-container">
+            <h1 class="section-title reveal-text">OFFERS<br><span class="outline-text">& EVENTS</span></h1>
+            <div class="support-content fade-in-up" style="margin-top: 50px;">
+                <h2 style="color: var(--accent-color); margin-bottom: 20px;">할인 및 행사</h2>
+                <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; border: 1px dashed var(--accent-color); text-align: center;">
+                    <h3 style="color: var(--accent-color); font-size: 2rem;">SEASON OFF SALE</h3>
+                    <p style="font-size: 1.5rem; font-weight: 900; margin: 10px 0;">UP TO 50% OFF</p>
+                    <p style="opacity: 0.6;">한정 기간 동안 진행되는 특별한 혜택을 놓치지 마세요.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>

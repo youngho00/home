@@ -1,0 +1,634 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테크닉 컬렉션 | YH04 PRODUCTS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Breadcrumbs styles */
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #777777;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+        .breadcrumbs a {
+            color: #777777;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .breadcrumbs a:hover {
+            color: #0077ff;
+        }
+        .breadcrumbs i {
+            font-size: 0.7rem;
+        }
+
+        /* Shopping Grid styles */
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .landmark-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 680px) {
+            .landmark-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Product Card styles */
+        .landmark-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        }
+
+        .landmark-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        /* Tag styled exactly like screenshot */
+        .retiring-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ffdb00;
+            color: #000000;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 4px;
+            z-index: 2;
+            letter-spacing: -0.3px;
+        }
+
+        /* Image section with perfect centering */
+        .card-image-wrap {
+            width: 100%;
+            aspect-ratio: 1.15 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .card-image-wrap img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .landmark-card:hover .card-image-wrap img {
+            transform: scale(1.06);
+        }
+
+        /* Horizontal Divider */
+        .card-divider {
+            height: 4px;
+            background: #eaeaea;
+            width: 130px;
+            border-radius: 2px;
+            margin-bottom: 18px;
+        }
+
+        /* Stats Row */
+        .card-stats {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: #555555;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card-stats span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-stats i {
+            font-size: 0.9rem;
+        }
+
+        /* Name */
+        .card-name {
+            font-family: var(--font-heading), sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 8px;
+            line-height: 1.35;
+        }
+
+        /* Price */
+        .card-price {
+            font-family: var(--font-body), sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 24px;
+        }
+
+        /* Buttons Row */
+        .card-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* Add to Cart button matching warm orange capsule exactly */
+        .btn-cart-add {
+            flex-grow: 1;
+            height: 48px;
+            background: #e27022;
+            color: #ffffff;
+            border: none;
+            border-radius: 24px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 10px rgba(226, 112, 34, 0.15);
+        }
+
+        .btn-cart-add:hover {
+            background: #ca5f18;
+        }
+
+        .btn-cart-add:active {
+            transform: scale(0.98);
+        }
+
+        /* Sold Out button (Red outline) */
+        .btn-sold-out {
+            flex-grow: 1;
+            height: 48px;
+            background: transparent;
+            color: #d11a2a;
+            border: 1.5px solid #e2b0b5;
+            border-radius: 24px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: not-allowed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        /* Premium Toast Notification */
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1e293b;
+            color: #ffffff;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 9999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            color: #10b981;
+            font-size: 1.2rem;
+        }
+
+        /* Cart Badge */
+        .cart-badge {
+            background: #ef4444;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 10px;
+            margin-left: 6px;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1.2;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="promo-bar">
+        <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
+        <div class="promo-bar-content">
+            <button class="promo-arrow" id="promo-prev">&lt;</button>
+            <div class="promo-bar-inner">
+                <span class="promo-msg active">6만원 이상 주문시 무료 배송!</span>
+                <span class="promo-msg">할인 및 행사중 지금 구매해 보세요.</span>
+                <span class="promo-msg">신제품을 한번 둘러보세요.</span>
+                <span class="promo-msg">지금 당장 단종 예정 제품을 구매해 보세요.</span>
+            </div>
+            <button class="promo-arrow" id="promo-next">&gt;</button>
+        </div>
+        <button class="promo-login-btn hoverable" id="promo-open-login">로그인</button>
+    </div>
+    <header id="header">
+        <nav>
+            <div class="logo-norris hoverable" onclick="location.href='index.html'">
+                HWANG<br>YOUNGHO
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="hoverable">HOME</a></li>
+                <li class="nav-item-mega">
+                    <a href="javascript:void(0)" class="hoverable mega-trigger" data-category="brand">브랜드 소개</a>
+                </li>
+                <li class="nav-item-mega">
+                    <a href="javascript:void(0)" class="hoverable mega-trigger active" data-category="products">제품 소식</a>
+                </li>
+                <li><a href="companies.html" class="hoverable" id="cart-nav-link">장바구니</a></li>
+                <li class="nav-item-mega">
+                    <a href="javascript:void(0)" class="hoverable mega-trigger" data-category="support">고객 지원</a>
+                </li>
+            </ul>
+            <div class="header-right">
+            </div>
+        </nav>
+    </header>
+
+    <main class="section" style="padding-top: 30px; min-height: 100vh; background-color: #ffffff; padding-bottom: 120px;">
+        <div class="section-container" style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
+            
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs">
+                <a href="index.html">HOME</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="javascript:void(0)">제품 소식</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="series.html">시리즈별 세트</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span style="color: #111111; font-weight: 700;">테크닉</span>
+            </div>
+
+            <h1 style="font-size: 3rem; font-family: var(--font-heading); font-weight: 800; color: #111; margin-bottom: 10px; text-align: left; letter-spacing: -1.5px;">테크닉 컬렉션</h1>
+            <p style="font-size: 1.05rem; color: #555555; margin-bottom: 40px; text-align: left; font-weight: 500;">전 세계 가장 역사적이고 아름다운 테크닉들을 소장해보세요.</p>
+            
+            <!-- Grid -->
+            <div class="landmark-grid">
+                
+                <!-- Card 1 -->
+                <div class="landmark-card hoverable">
+                    <div class="card-image-wrap">
+                        <img src="5.png" alt="슈퍼카 4x4 버기">
+                    </div>
+                    <div class="card-divider"></div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 16+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 1812</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
+                    </div>
+                    <h3 class="card-name">슈퍼카 4x4 버기</h3>
+                    <div class="card-price">249,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('슈퍼카 4x4 버기')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="landmark-card hoverable">
+                    <div class="card-image-wrap">
+                        <img src="5.png" alt="헤비 듀티 기계식 크레인">
+                    </div>
+                    <div class="card-divider"></div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 2883</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
+                    </div>
+                    <h3 class="card-name">헤비 듀티 기계식 크레인</h3>
+                    <div class="card-price">329,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('헤비 듀티 기계식 크레인')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="landmark-card hoverable">
+                    <div class="card-image-wrap">
+                        <img src="5.png" alt="얼티밋 하이퍼카">
+                    </div>
+                    <div class="card-divider"></div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 3778</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
+                    </div>
+                    <h3 class="card-name">얼티밋 하이퍼카</h3>
+                    <div class="card-price">519,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('얼티밋 하이퍼카')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="landmark-card hoverable">
+                    <div class="card-image-wrap">
+                        <img src="5.png" alt="오프로드 랠리 카">
+                    </div>
+                    <div class="card-divider"></div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 12+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 1120</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
+                    </div>
+                    <h3 class="card-name">오프로드 랠리 카</h3>
+                    <div class="card-price">169,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('오프로드 랠리 카')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="landmark-card hoverable">
+                    <span class="retiring-tag">단종 예정</span>
+                    <div class="card-image-wrap">
+                        <img src="5.png" alt="수송용 헬리콥터">
+                    </div>
+                    <div class="card-divider"></div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 14+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 1450</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.6</span>
+                    </div>
+                    <h3 class="card-name">수송용 헬리콥터</h3>
+                    <div class="card-price">189,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-sold-out" disabled>일시품절</button>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="landmark-card hoverable">
+                    <span class="retiring-tag">단종 예정</span>
+                    <div class="card-image-wrap">
+                        <img src="5.png" alt="포뮬러 레이싱 드래프트">
+                    </div>
+                    <div class="card-divider"></div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 16+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 1580</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
+                    </div>
+                    <h3 class="card-name">포뮬러 레이싱 드래프트</h3>
+                    <div class="card-price">229,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-sold-out" disabled>일시품절</button>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="landmark-card hoverable">
+                    <div class="card-image-wrap">
+                        <img src="5.png" alt="소방 구조 트럭">
+                    </div>
+                    <div class="card-divider"></div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 10+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 820</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
+                    </div>
+                    <h3 class="card-name">소방 구조 트럭</h3>
+                    <div class="card-price">109,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('소방 구조 트럭')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="landmark-card hoverable">
+                    <div class="card-image-wrap">
+                        <img src="5.png" alt="오토바이 익스트림">
+                    </div>
+                    <div class="card-divider"></div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 10+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 640</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
+                    </div>
+                    <h3 class="card-name">오토바이 익스트림</h3>
+                    <div class="card-price">79,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('오토바이 익스트림')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="landmark-card hoverable">
+                    <div class="card-image-wrap">
+                        <img src="5.png" alt="트랙터 프론트 로더">
+                    </div>
+                    <div class="card-divider"></div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 8+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 520</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
+                    </div>
+                    <h3 class="card-name">트랙터 프론트 로더</h3>
+                    <div class="card-price">64,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('트랙터 프론트 로더')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-login">&times;</button>
+            <h2 class="modal-title">로그인</h2>
+            <form class="modal-form">
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" placeholder="이메일을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+                <button type="submit" class="modal-submit">로그인</button>
+            </form>
+            <div class="social-login">
+                <p class="social-divider">다른 계정으로 계속</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/login" target="_blank" class="social-icon facebook hoverable"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://accounts.google.com/signin" target="_blank" class="social-icon google hoverable"><i class="fab fa-google"></i></a>
+                    <a href="https://appleid.apple.com/" target="_blank" class="social-icon apple hoverable"><i class="fab fa-apple"></i></a>
+                    <a href="https://v3.account.samsung.com/" target="_blank" class="social-icon samsung hoverable"><i class="fa-solid fa-s"></i></a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                계정이 없으신가요? <span class="modal-link" id="go-to-signup">회원가입</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mega Menu -->
+    <div class="mega-menu-overlay" id="mega-menu">
+        <div class="mega-menu-container">
+            <div class="mega-menu-header">
+                <div class="mega-menu-logo">
+                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                </div>
+                <nav class="mega-menu-nav">
+                    <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
+                    <button class="mega-nav-btn" data-category="products">제품 소식</button>
+                    <button class="mega-nav-btn" data-category="support">고객 지원</button>
+                </nav>
+                <button class="mega-menu-close" id="close-mega-menu"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="mega-menu-content">
+                <div class="mega-category-pane" id="mega-pane-brand">
+                    <ul class="mega-links-list">
+                        <li><a href="about.html">소개</a></li>
+                        <li><a href="news.html">소식</a></li>
+                        <li><a href="partnership.html">다가오는 파트너십</a></li>
+                    </ul>
+                </div>
+                <div class="mega-category-pane" id="mega-pane-support">
+                    <ul class="mega-links-list">
+                        <li><a href="order.html">주문 현황 확인</a></li>
+                        <li><a href="shipping.html">배송 및 반품</a></li>
+                        <li><a href="assembly.html">조립 설명서 검색</a></li>
+                        <li><a href="faq.html">일반적인 질문</a></li>
+                        <li><a href="contact.html">문의하기</a></li>
+                        <li><a href="bricks.html">부속품 및 브릭</a></li>
+                    </ul>
+                </div>
+                <div class="mega-category-pane" id="mega-pane-products">
+                    <div class="mega-products-grid">
+                        <ul class="mega-links-list">
+                            <li><a href="series.html">시리즈별 세트</a></li>
+                            <li><a href="age.html">연령별</a></li>
+                            <li><a href="price.html">가격별</a></li>
+                            <li><a href="new.html">신제품</a></li>
+                        </ul>
+                        <ul class="mega-links-list">
+                            <li><a href="deals.html">할인 및 행사</a></li>
+                            <li><a href="coming-soon.html">출시 예정</a></li>
+                            <li><a href="last-chance.html">단종 예정</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close">&times;</button>
+            <img src="" alt="확대 이미지" id="lightbox-img">
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-notification" id="cart-toast">
+        <i class="fa-solid fa-circle-check toast-icon"></i>
+        <span id="toast-message">장바구니에 상품이 담겼습니다.</span>
+    </div>
+
+    <script src="main.js?v=1.1"></script>
+    <script>
+        let cartCount = 0;
+        function addToCart(productName) {
+            cartCount++;
+            const toast = document.getElementById('cart-toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = `🛒 "${productName}"이(가) 장바구니에 담겼습니다!`;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+
+            const cartLink = document.getElementById('cart-nav-link');
+            let badge = cartLink.querySelector('.cart-badge');
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = 'cart-badge';
+                cartLink.appendChild(badge);
+            }
+            badge.textContent = cartCount;
+        }
+
+        document.querySelectorAll('.card-image-wrap img').forEach(img => {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', function() {
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-img');
+                lightboxImg.src = this.src;
+                lightbox.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,558 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연락처 폼 | YH04 SUPPORT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: 'Inter', sans-serif;
+            color: #111;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #111;
+            text-decoration: none;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .back-btn i {
+            margin-right: 8px;
+        }
+        .back-btn:hover {
+            text-decoration: none;
+        }
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            font-family: var(--font-heading, 'Inter');
+        }
+        .form-section {
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .custom-select-wrapper {
+            position: relative;
+            user-select: none;
+            width: 100%;
+        }
+        .custom-select {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 16px 20px;
+            background-color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #333;
+            transition: border-color 0.2s;
+        }
+        .custom-select:hover {
+            border-color: #999;
+        }
+        .custom-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 5px;
+            z-index: 10;
+            display: none;
+            overflow: hidden;
+        }
+        .custom-options.open {
+            display: block;
+        }
+        .custom-option {
+            padding: 14px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.1s;
+        }
+        .custom-option:hover, .custom-option.selected {
+            background-color: #5db4f3;
+            color: #fff;
+        }
+        
+        .contact-info-form {
+            display: none;
+            margin-top: 40px;
+            animation: fadeIn 0.4s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .info-desc {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ccc !important;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+            background-color: #fff !important;
+            color: #111 !important;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .form-control:focus {
+            border-color: #0057b7 !important;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05), 0 0 0 3px rgba(0, 87, 183, 0.1);
+        }
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background-color: #9aaee5;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 16px 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.2s, opacity 0.2s;
+            margin-top: 20px;
+        }
+        .submit-btn:hover {
+            background-color: #7b94db; /* 더 진한 파란색으로 변경 */
+        }
+
+        .footer-policy {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #eee;
+        }
+        .footer-policy h3 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+        .footer-policy p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .footer-policy a {
+            color: #111;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            border-bottom: 1px solid #111;
+            padding-bottom: 2px;
+        }
+        .footer-policy a i {
+            margin-left: 6px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body class="dark-mode" style="background-color: #fafafa; background-image: url('https://www.lego.com/cdn/cs/set-v2/assets/blt5c2dfccba2073d82/support-pattern.svg'); background-attachment: fixed;">
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="promo-bar">
+        <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
+        <div class="promo-bar-content">
+            <button class="promo-arrow" id="promo-prev">&lt;</button>
+            <div class="promo-bar-inner">
+                <span class="promo-msg active">6만원 이상 주문시 무료 배송!</span>
+                <span class="promo-msg">할인 및 행사중 지금 구매해 보세요.</span>
+                <span class="promo-msg">신제품을 한번 둘러보세요.</span>
+                <span class="promo-msg">지금 당장 단종 예정 제품을 구매해 보세요.</span>
+            </div>
+            <button class="promo-arrow" id="promo-next">&gt;</button>
+        </div>
+        <button class="promo-login-btn hoverable" id="promo-open-login">로그인</button>
+    </div>
+    <header id="header">
+        <nav>
+            <div class="logo-norris hoverable" onclick="location.href='index.html'">
+                HWANG<br>YOUNGHO
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="hoverable ">HOME</a></li>
+                <li class="nav-item-mega">
+                    <a href="javascript:void(0)" class="hoverable mega-trigger " data-category="brand">브랜드 소개</a>
+                </li>
+                <li class="nav-item-mega">
+                    <a href="javascript:void(0)" class="hoverable mega-trigger " data-category="products">제품 소식</a>
+                </li>
+                <li><a href="companies.html" class="hoverable">장바구니</a></li>
+                <li class="nav-item-mega">
+                    <a href="javascript:void(0)" class="hoverable mega-trigger active" data-category="support">고객 지원</a>
+                </li>
+            </ul>
+            <div class="header-right">
+            </div>
+        </nav>
+    </header>
+    
+    
+    
+    
+    
+    
+
+    
+
+    <main style="padding-top: 10px; min-height: 80vh;">
+        <div class="contact-container">
+            <a href="contact.html" class="back-btn"><i class="fas fa-chevron-left"></i> 되돌아가기</a>
+            
+            <h1 class="page-title">저희에게 연락해 주세요.</h1>
+
+            <!-- Step 1 -->
+            <div class="form-section">
+                <div class="section-title">어떤 도움이 필요하신가요?</div>
+                <div class="custom-select-wrapper" id="category1-wrapper">
+                    <div class="custom-select" id="category1-select">
+                        <span id="category1-text">주제를 선택해 주세요.</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="custom-options" id="category1-options">
+                        <div class="custom-option" data-value="">주제를 선택해 주세요.</div>
+                        <div class="custom-option" data-value="제품">제품 관련 질문 또는 문제</div>
+                        <div class="custom-option" data-value="주문">주문에 대한 도움이 필요해요.</div>
+                        <div class="custom-option" data-value="계정">내 계정, 멤버십 또는 구독에 대한 도움이 필요해요.</div>
+                        <div class="custom-option" data-value="기술">기술 제품이나 앱에 대한 도움이 필요합니다.</div>
+                        <div class="custom-option" data-value="기타">다른 도움이 필요해요.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="form-section" id="step2-section" style="display: none;">
+                <div class="section-title">좀 더 자세히 알려주세요.</div>
+                <div class="custom-select-wrapper" id="category2-wrapper">
+                    <div class="custom-select" id="category2-select">
+                        <span id="category2-text">주제를 선택해 주세요.</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="custom-options" id="category2-options">
+                        <!-- Options will be populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 (Form) -->
+            <div class="contact-info-form" id="contact-form">
+                <h2 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 10px;">연락처 정보</h2>
+                <div class="info-desc">성인이 아닌 경우 부모님 또는 보호자에게 이 양식을 작성하도록 요청해 주세요.</div>
+                
+                <div class="form-group">
+                    <label>이름</label>
+                    <input type="text" class="form-control" placeholder="">
+                </div>
+                
+                <div class="form-group">
+                    <label>이메일</label>
+                    <input type="email" class="form-control" placeholder="">
+                </div>
+
+                <h3 style="font-size: 1.1rem; font-weight: 700; margin-top: 30px; margin-bottom: 10px;">집 주소</h3>
+                <div class="info-desc" style="margin-bottom: 15px;">본인 확인을 위해 주소가 필요할 수도 있어요.</div>
+                
+                <div class="form-group">
+                    <label>국가 또는 지역: 대한민국</label>
+                    <select class="form-control" style="appearance: none; background: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22 viewBox=%220 0 12 8%22><path fill=%22%23333%22 d=%22M6 8L0 0h12z%22/></svg>') no-repeat right 15px center; background-size: 10px; background-color: #fff !important;">
+                        <option>대한민국</option>
+                        <option>미국</option>
+                        <option>일본</option>
+                        <option>중국</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>주소</label>
+                    <input type="text" class="form-control" placeholder="">
+                </div>
+                
+                <div class="form-group">
+                    <label>상세주소 (선택)</label>
+                    <input type="text" class="form-control" placeholder="">
+                </div>
+
+                <div class="form-group">
+                    <label>동/읍/면</label>
+                    <input type="text" class="form-control" placeholder="">
+                </div>
+
+                <div class="form-group">
+                    <label>우편번호</label>
+                    <input type="text" class="form-control" placeholder="">
+                </div>
+
+                <h2 style="font-size: 1.5rem; font-weight: 900; margin-top: 40px; margin-bottom: 10px;">어떻게 도와드릴까요?</h2>
+                <div class="form-group" style="position: relative;">
+                    <label style="font-weight: 400; color: #555;">문제를 입력하거나 질문을 해 주세요. <i class="fas fa-info-circle" style="float: right; color: #111;"></i></label>
+                    <textarea class="form-control"></textarea>
+                </div>
+
+                <button class="submit-btn" onclick="alert('메시지가 전송되었습니다.')">보내기</button>
+            </div>
+
+            <!-- Footer Policy -->
+            <div class="footer-policy">
+                <h3>저희가 고객님의 데이터를 안전하게<br>보관하는 방법</h3>
+                <p>당사는 귀하의 개인 정보를 주의, 신뢰 및 존중으로 취급하기 위해<br>최선을 다하고 있습니다. 우리는 관행과 정책에 투명성을 제공하기<br>위해 개인 정보 보호 정책을 만들었습니다.</p>
+                <a href="#">더 알아보기 <i class="fas fa-chevron-right"></i></a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Mega Menu & Login Modals (Same as contact.html) -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-login">&times;</button>
+            <h2 class="modal-title">로그인</h2>
+            <form class="modal-form">
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" placeholder="이메일을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+                <button type="submit" class="modal-submit">로그인</button>
+            </form>
+            <div class="social-login">
+                <p class="social-divider">다른 계정으로 계속</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/login" target="_blank" class="social-icon facebook hoverable"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://accounts.google.com/signin" target="_blank" class="social-icon google hoverable"><i class="fab fa-google"></i></a>
+                    <a href="https://appleid.apple.com/" target="_blank" class="social-icon apple hoverable"><i class="fab fa-apple"></i></a>
+                    <a href="https://v3.account.samsung.com/" target="_blank" class="social-icon samsung hoverable"><i class="fa-solid fa-s"></i></a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                계정이 없으신가요? <span class="modal-link" id="go-to-signup">회원가입</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mega-menu-overlay" id="mega-menu">
+        <div class="mega-menu-container">
+            <div class="mega-menu-header">
+                <div class="mega-menu-logo">
+                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                </div>
+                <nav class="mega-menu-nav">
+                    <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
+                    <button class="mega-nav-btn" data-category="products">제품 소식</button>
+                    <button class="mega-nav-btn" data-category="support">고객 지원</button>
+                </nav>
+                <button class="mega-menu-close" id="close-mega-menu"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="mega-menu-content">
+                <div class="mega-category-pane" id="mega-pane-brand">
+                    <ul class="mega-links-list">
+                        <li><a href="about.html">소개</a></li>
+                        <li><a href="news.html">소식</a></li>
+                        <li><a href="partnership.html">다가오는 파트너십</a></li>
+                    </ul>
+                </div>
+                <div class="mega-category-pane" id="mega-pane-support">
+                    <ul class="mega-links-list">
+                        <li><a href="order.html">주문 현황 확인</a></li>
+                        <li><a href="shipping.html">배송 및 반품</a></li>
+                        <li><a href="assembly.html">조립 설명서 검색</a></li>
+                        <li><a href="faq.html">일반적인 질문</a></li>
+                        <li><a href="contact.html">문의하기</a></li>
+                        <li><a href="bricks.html">부속품 및 브릭</a></li>
+                    </ul>
+                </div>
+                <div class="mega-category-pane" id="mega-pane-products">
+                    <div class="mega-products-grid">
+                        <ul class="mega-links-list">
+                            <li><a href="series.html">시리즈별 세트</a></li>
+                            <li><a href="age.html">연령별</a></li>
+                            <li><a href="price.html">가격별</a></li>
+                            <li><a href="new.html">신제품</a></li>
+                        </ul>
+                        <ul class="mega-links-list">
+                            <li><a href="deals.html">할인 및 행사</a></li>
+                            <li><a href="coming-soon.html">출시 예정</a></li>
+                            <li><a href="last-chance.html">단종 예정</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js?v=1.1"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cat1Select = document.getElementById('category1-select');
+            const cat1Options = document.getElementById('category1-options');
+            const cat1Text = document.getElementById('category1-text');
+            const cat1Icon = cat1Select.querySelector('i');
+            
+            const step2Section = document.getElementById('step2-section');
+            const cat2Select = document.getElementById('category2-select');
+            const cat2Options = document.getElementById('category2-options');
+            const cat2Text = document.getElementById('category2-text');
+            const cat2Icon = cat2Select.querySelector('i');
+            
+            const contactForm = document.getElementById('contact-form');
+
+            const orderOptions = [
+                { val: '', text: '주제를 선택해 주세요.' },
+                { val: '현황', text: '주문 현황을 알고 싶어요.' },
+                { val: '취소', text: '주문을 취소하고 싶어요.' },
+                { val: '이유', text: '주문이 취소된 이유는 무엇인가요?' },
+                { val: '파손', text: '파손된 세트 및 반품' },
+                { val: '누락', text: '주문에 누락된 항목이 있어요.' },
+                { val: '결제', text: '결제 관련 문제' },
+                { val: '환불', text: '환불을 원해요.' }
+            ];
+
+            const genericOptions = [
+                { val: '', text: '주제를 선택해 주세요.' },
+                { val: '질문1', text: '관련 도움이 필요합니다.' },
+                { val: '질문2', text: '기타 문의사항' }
+            ];
+
+            // Toggle category 1
+            cat1Select.addEventListener('click', (e) => {
+                e.stopPropagation();
+                cat1Options.classList.toggle('open');
+                cat2Options.classList.remove('open');
+                cat1Icon.className = cat1Options.classList.contains('open') ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+                cat2Icon.className = 'fas fa-chevron-down';
+            });
+
+            // Select category 1
+            cat1Options.addEventListener('click', (e) => {
+                const option = e.target.closest('.custom-option');
+                if (option) {
+                    const val = option.getAttribute('data-value');
+                    const text = option.textContent;
+                    cat1Text.textContent = text;
+                    cat1Options.classList.remove('open');
+                    cat1Icon.className = 'fas fa-chevron-down';
+                    
+                    // Update highlighting
+                    cat1Options.querySelectorAll('.custom-option').forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+
+                    // Reset step 2 and 3
+                    contactForm.style.display = 'none';
+                    cat2Text.textContent = '주제를 선택해 주세요.';
+
+                    if (val === '') {
+                        step2Section.style.display = 'none';
+                    } else {
+                        step2Section.style.display = 'block';
+                        populateCat2(val === '주문' ? orderOptions : genericOptions);
+                    }
+                }
+            });
+
+            // Toggle category 2
+            cat2Select.addEventListener('click', (e) => {
+                e.stopPropagation();
+                cat2Options.classList.toggle('open');
+                cat1Options.classList.remove('open');
+                cat2Icon.className = cat2Options.classList.contains('open') ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+                cat1Icon.className = 'fas fa-chevron-down';
+            });
+
+            // Select category 2
+            cat2Options.addEventListener('click', (e) => {
+                const option = e.target.closest('.custom-option');
+                if (option) {
+                    const val = option.getAttribute('data-value');
+                    const text = option.textContent;
+                    cat2Text.textContent = text;
+                    cat2Options.classList.remove('open');
+                    cat2Icon.className = 'fas fa-chevron-down';
+                    
+                    // Update highlighting
+                    cat2Options.querySelectorAll('.custom-option').forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+
+                    if (val === '') {
+                        contactForm.style.display = 'none';
+                    } else {
+                        contactForm.style.display = 'block';
+                        // smooth scroll to form
+                        setTimeout(() => {
+                            contactForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
+                    }
+                }
+            });
+
+            // Close dropdowns on outside click
+            document.addEventListener('click', () => {
+                cat1Options.classList.remove('open');
+                cat2Options.classList.remove('open');
+                cat1Icon.className = 'fas fa-chevron-down';
+                cat2Icon.className = 'fas fa-chevron-down';
+            });
+
+            function populateCat2(options) {
+                cat2Options.innerHTML = '';
+                options.forEach((opt, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'custom-option' + (index === 0 ? ' selected' : '');
+                    div.setAttribute('data-value', opt.val);
+                    div.textContent = opt.text;
+                    cat2Options.appendChild(div);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

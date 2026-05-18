@@ -1,0 +1,782 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGO | HOME</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="home-page dark-mode">
+    <div class='custom-cursor' id='cursor'></div>
+
+    <div class="promo-bar">
+        <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
+        <div class="promo-bar-content">
+            <button class="promo-arrow" id="promo-prev">&lt;</button>
+            <div class="promo-bar-inner">
+                <span class="promo-msg active">6만원 이상 주문시 무료 배송!</span>
+                <span class="promo-msg">할인 및 행사중 지금 구매해 보세요.</span>
+                <span class="promo-msg">신제품을 한번 둘러보세요.</span>
+                <span class="promo-msg">지금 당장 단종 예정 제품을 구매해 보세요.</span>
+            </div>
+            <button class="promo-arrow" id="promo-next">&gt;</button>
+        </div>
+        <button class="promo-login-btn hoverable" id="promo-open-login">로그인</button>
+    </div>
+
+    <header id="header">
+        <nav>
+            <div class="logo-norris hoverable" onclick="location.href='index.html'">
+                HWANG<br>YOUNGHO
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active hoverable">HOME</a></li>
+                <li class="nav-item-mega">
+                    <a href="javascript:void(0)" class="hoverable mega-trigger" data-category="brand">브랜드 소개</a>
+                </li>
+                <li class="nav-item-mega">
+                    <a href="javascript:void(0)" class="hoverable mega-trigger" data-category="products">제품 소식</a>
+                </li>
+                <li><a href="companies.html" class="hoverable">장바구니</a></li>
+                <li class="nav-item-mega">
+                    <a href="javascript:void(0)" class="hoverable mega-trigger" data-category="support">고객 지원</a>
+                </li>
+            </ul>
+            <div class="header-right">
+            </div>
+        </nav>
+    </header>
+
+
+        <!-- Premium Category Collection Section -->
+        <section id="collection-hero" class="collection-hero">
+            <!-- Floating 3D LEGO Bricks Background -->
+            <div class="floating-blocks-container">
+                <!-- Red 2x2 Brick -->
+                <svg class="floating-brick brick-1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <!-- Top Face -->
+                        <path d="M 50 20 L 90 40 L 50 60 L 10 40 Z" fill="#ff4d4d" />
+                        <!-- Left Face -->
+                        <path d="M 10 40 L 50 60 L 50 85 L 10 65 Z" fill="#b30000" />
+                        <!-- Right Face -->
+                        <path d="M 50 60 L 90 40 L 90 65 L 50 85 Z" fill="#e60000" />
+                        <!-- Studs -->
+                        <!-- Stud 1 (Top) -->
+                        <ellipse cx="50" cy="26" rx="8" ry="4" fill="#ff4d4d" />
+                        <path d="M 42 26 L 42 30 A 8 4 0 0 0 58 30 L 58 26 Z" fill="#e60000" />
+                        <!-- Stud 2 (Left) -->
+                        <ellipse cx="30" cy="36" rx="8" ry="4" fill="#ff4d4d" />
+                        <path d="M 22 36 L 22 40 A 8 4 0 0 0 38 40 L 38 36 Z" fill="#b30000" />
+                        <!-- Stud 3 (Right) -->
+                        <ellipse cx="70" cy="36" rx="8" ry="4" fill="#ff4d4d" />
+                        <path d="M 62 36 L 62 40 A 8 4 0 0 0 78 40 L 78 36 Z" fill="#e60000" />
+                        <!-- Stud 4 (Bottom) -->
+                        <ellipse cx="50" cy="46" rx="8" ry="4" fill="#ff4d4d" />
+                        <path d="M 42 46 L 42 50 A 8 4 0 0 0 58 50 L 58 46 Z" fill="#e60000" />
+                    </g>
+                </svg>
+
+                <!-- Blue 1x1 Brick -->
+                <svg class="floating-brick brick-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <!-- Top Face -->
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#4da6ff" />
+                        <!-- Left Face -->
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#0059b3" />
+                        <!-- Right Face -->
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#0080ff" />
+                        <!-- Stud -->
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#4da6ff" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#0080ff" />
+                    </g>
+                </svg>
+
+                <!-- Yellow 2x2 Brick -->
+                <svg class="floating-brick brick-3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <!-- Top Face -->
+                        <path d="M 50 20 L 90 40 L 50 60 L 10 40 Z" fill="#ffdb4d" />
+                        <!-- Left Face -->
+                        <path d="M 10 40 L 50 60 L 50 85 L 10 65 Z" fill="#cc9900" />
+                        <!-- Right Face -->
+                        <path d="M 50 60 L 90 40 L 90 65 L 50 85 Z" fill="#ffcc00" />
+                        <!-- Studs -->
+                        <ellipse cx="50" cy="26" rx="8" ry="4" fill="#ffdb4d" />
+                        <path d="M 42 26 L 42 30 A 8 4 0 0 0 58 30 L 58 26 Z" fill="#ffcc00" />
+                        <ellipse cx="30" cy="36" rx="8" ry="4" fill="#ffdb4d" />
+                        <path d="M 22 36 L 22 40 A 8 4 0 0 0 38 40 L 38 36 Z" fill="#cc9900" />
+                        <ellipse cx="70" cy="36" rx="8" ry="4" fill="#ffdb4d" />
+                        <path d="M 62 36 L 62 40 A 8 4 0 0 0 78 40 L 78 36 Z" fill="#ffcc00" />
+                        <ellipse cx="50" cy="46" rx="8" ry="4" fill="#ffdb4d" />
+                        <path d="M 42 46 L 42 50 A 8 4 0 0 0 58 50 L 58 46 Z" fill="#ffcc00" />
+                    </g>
+                </svg>
+
+                <!-- Orange 1x1 Brick -->
+                <svg class="floating-brick brick-4" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <!-- Top Face -->
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#ff944d" />
+                        <!-- Left Face -->
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#cc5200" />
+                        <!-- Right Face -->
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#ff6600" />
+                        <!-- Stud -->
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#ff944d" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#ff6600" />
+                    </g>
+                </svg>
+
+                <!-- Green 2x2 Brick -->
+                <svg class="floating-brick brick-5" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <!-- Top Face -->
+                        <path d="M 50 20 L 90 40 L 50 60 L 10 40 Z" fill="#5cd65c" />
+                        <!-- Left Face -->
+                        <path d="M 10 40 L 50 60 L 50 85 L 10 65 Z" fill="#208020" />
+                        <!-- Right Face -->
+                        <path d="M 50 60 L 90 40 L 90 65 L 50 85 Z" fill="#2eb82e" />
+                        <!-- Studs -->
+                        <ellipse cx="50" cy="26" rx="8" ry="4" fill="#5cd65c" />
+                        <path d="M 42 26 L 42 30 A 8 4 0 0 0 58 30 L 58 26 Z" fill="#2eb82e" />
+                        <ellipse cx="30" cy="36" rx="8" ry="4" fill="#5cd65c" />
+                        <path d="M 22 36 L 22 40 A 8 4 0 0 0 38 40 L 38 36 Z" fill="#208020" />
+                        <ellipse cx="70" cy="36" rx="8" ry="4" fill="#5cd65c" />
+                        <path d="M 62 36 L 62 40 A 8 4 0 0 0 78 40 L 78 36 Z" fill="#2eb82e" />
+                        <ellipse cx="50" cy="46" rx="8" ry="4" fill="#5cd65c" />
+                        <path d="M 42 46 L 42 50 A 8 4 0 0 0 58 50 L 58 46 Z" fill="#2eb82e" />
+                    </g>
+                </svg>
+
+                <!-- Purple 1x1 Brick -->
+                <svg class="floating-brick brick-6" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <!-- Top Face -->
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#c68cfc" />
+                        <!-- Left Face -->
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#7a1bfb" />
+                        <!-- Right Face -->
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#a34dfc" />
+                        <!-- Stud -->
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#c68cfc" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#a34dfc" />
+                    </g>
+                </svg>
+
+                <!-- Cyan 1x1 Brick -->
+                <svg class="floating-brick brick-7" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#00e5ff" />
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#006064" />
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#00b8d4" />
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#00e5ff" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#00b8d4" />
+                    </g>
+                </svg>
+
+                <!-- Magenta 2x2 Brick -->
+                <svg class="floating-brick brick-8" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 20 L 90 40 L 50 60 L 10 40 Z" fill="#ff4081" />
+                        <path d="M 10 40 L 50 60 L 50 85 L 10 65 Z" fill="#c51162" />
+                        <path d="M 50 60 L 90 40 L 90 65 L 50 85 Z" fill="#f50057" />
+                        <ellipse cx="50" cy="26" rx="8" ry="4" fill="#ff4081" />
+                        <path d="M 42 26 L 42 30 A 8 4 0 0 0 58 30 L 58 26 Z" fill="#f50057" />
+                        <ellipse cx="30" cy="36" rx="8" ry="4" fill="#ff4081" />
+                        <path d="M 22 36 L 22 40 A 8 4 0 0 0 38 40 L 38 36 Z" fill="#c51162" />
+                        <ellipse cx="70" cy="36" rx="8" ry="4" fill="#ff4081" />
+                        <path d="M 62 36 L 62 40 A 8 4 0 0 0 78 40 L 78 36 Z" fill="#f50057" />
+                        <ellipse cx="50" cy="46" rx="8" ry="4" fill="#ff4081" />
+                        <path d="M 42 46 L 42 50 A 8 4 0 0 0 58 50 L 58 46 Z" fill="#f50057" />
+                    </g>
+                </svg>
+
+                <!-- Lime 1x1 Brick -->
+                <svg class="floating-brick brick-9" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#aeea00" />
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#64dd17" />
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#76ff03" />
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#aeea00" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#76ff03" />
+                    </g>
+                </svg>
+
+                <!-- Teal 2x2 Brick -->
+                <svg class="floating-brick brick-10" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 20 L 90 40 L 50 60 L 10 40 Z" fill="#1de9b6" />
+                        <path d="M 10 40 L 50 60 L 50 85 L 10 65 Z" fill="#00796b" />
+                        <path d="M 50 60 L 90 40 L 90 65 L 50 85 Z" fill="#00bfa5" />
+                        <ellipse cx="50" cy="26" rx="8" ry="4" fill="#1de9b6" />
+                        <path d="M 42 26 L 42 30 A 8 4 0 0 0 58 30 L 58 26 Z" fill="#00bfa5" />
+                        <ellipse cx="30" cy="36" rx="8" ry="4" fill="#1de9b6" />
+                        <path d="M 22 36 L 22 40 A 8 4 0 0 0 38 40 L 38 36 Z" fill="#00796b" />
+                        <ellipse cx="70" cy="36" rx="8" ry="4" fill="#1de9b6" />
+                        <path d="M 62 36 L 62 40 A 8 4 0 0 0 78 40 L 78 36 Z" fill="#00bfa5" />
+                        <ellipse cx="50" cy="46" rx="8" ry="4" fill="#1de9b6" />
+                        <path d="M 42 46 L 42 50 A 8 4 0 0 0 58 50 L 58 46 Z" fill="#00bfa5" />
+                    </g>
+                </svg>
+
+                <!-- Pink 1x1 Brick -->
+                <svg class="floating-brick brick-11" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#ff80ab" />
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#f50057" />
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#ff4081" />
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#ff80ab" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#ff4081" />
+                    </g>
+                </svg>
+
+                <!-- Golden Yellow 1x1 Brick -->
+                <svg class="floating-brick brick-12" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#ffc400" />
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#ff6d00" />
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#ffab00" />
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#ffc400" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#ffab00" />
+                    </g>
+                </svg>
+
+                <!-- Royal Blue 1x1 Brick -->
+                <svg class="floating-brick brick-13" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#2979ff" />
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#1565c0" />
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#2962ff" />
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#2979ff" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#2962ff" />
+                    </g>
+                </svg>
+
+                <!-- Coral Red 2x2 Brick -->
+                <svg class="floating-brick brick-14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 20 L 90 40 L 50 60 L 10 40 Z" fill="#ff5252" />
+                        <path d="M 10 40 L 50 60 L 50 85 L 10 65 Z" fill="#d50000" />
+                        <path d="M 50 60 L 90 40 L 90 65 L 50 85 Z" fill="#ff1744" />
+                        <ellipse cx="50" cy="26" rx="8" ry="4" fill="#ff5252" />
+                        <path d="M 42 26 L 42 30 A 8 4 0 0 0 58 30 L 58 26 Z" fill="#ff1744" />
+                        <ellipse cx="30" cy="36" rx="8" ry="4" fill="#ff5252" />
+                        <path d="M 22 36 L 22 40 A 8 4 0 0 0 38 40 L 38 36 Z" fill="#d50000" />
+                        <ellipse cx="70" cy="36" rx="8" ry="4" fill="#ff5252" />
+                        <path d="M 62 36 L 62 40 A 8 4 0 0 0 78 40 L 78 36 Z" fill="#ff1744" />
+                        <ellipse cx="50" cy="46" rx="8" ry="4" fill="#ff5252" />
+                        <path d="M 42 46 L 42 50 A 8 4 0 0 0 58 50 L 58 46 Z" fill="#ff1744" />
+                    </g>
+                </svg>
+
+                <!-- Deep Green 1x1 Brick -->
+                <svg class="floating-brick brick-15" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#00e676" />
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#1b5e20" />
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#00c853" />
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#00e676" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#00c853" />
+                    </g>
+                </svg>
+
+                <!-- Bright Orange 1x1 Brick -->
+                <svg class="floating-brick brick-16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#ff9100" />
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#e65100" />
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#ff6d00" />
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#ff9100" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#ff6d00" />
+                    </g>
+                </svg>
+
+                <!-- Soft Lavender Purple 2x2 Brick -->
+                <svg class="floating-brick brick-17" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 20 L 90 40 L 50 60 L 10 40 Z" fill="#d500f9" />
+                        <path d="M 10 40 L 50 60 L 50 85 L 10 65 Z" fill="#4a148c" />
+                        <path d="M 50 60 L 90 40 L 90 65 L 50 85 Z" fill="#aa00ff" />
+                        <ellipse cx="50" cy="26" rx="8" ry="4" fill="#d500f9" />
+                        <path d="M 42 26 L 42 30 A 8 4 0 0 0 58 30 L 58 26 Z" fill="#aa00ff" />
+                        <ellipse cx="30" cy="36" rx="8" ry="4" fill="#d500f9" />
+                        <path d="M 22 36 L 22 40 A 8 4 0 0 0 38 40 L 38 36 Z" fill="#4a148c" />
+                        <ellipse cx="70" cy="36" rx="8" ry="4" fill="#d500f9" />
+                        <path d="M 62 36 L 62 40 A 8 4 0 0 0 78 40 L 78 36 Z" fill="#aa00ff" />
+                        <ellipse cx="50" cy="46" rx="8" ry="4" fill="#d500f9" />
+                        <path d="M 42 46 L 42 50 A 8 4 0 0 0 58 50 L 58 46 Z" fill="#aa00ff" />
+                    </g>
+                </svg>
+
+                <!-- Mint Green 1x1 Brick -->
+                <svg class="floating-brick brick-18" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#1de9b6" />
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#004d40" />
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#00bfa5" />
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#1de9b6" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#00bfa5" />
+                    </g>
+                </svg>
+
+                <!-- Pastel Yellow 1x1 Brick -->
+                <svg class="floating-brick brick-19" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#ffee58" />
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#fbc02d" />
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#fdd835" />
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#ffee58" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#fdd835" />
+                    </g>
+                </svg>
+
+                <!-- Warm Orange 2x2 Brick -->
+                <svg class="floating-brick brick-20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 20 L 90 40 L 50 60 L 10 40 Z" fill="#ff7043" />
+                        <path d="M 10 40 L 50 60 L 50 85 L 10 65 Z" fill="#d84315" />
+                        <path d="M 50 60 L 90 40 L 90 65 L 50 85 Z" fill="#f4511e" />
+                        <ellipse cx="50" cy="26" rx="8" ry="4" fill="#ff7043" />
+                        <path d="M 42 26 L 42 30 A 8 4 0 0 0 58 30 L 58 26 Z" fill="#f4511e" />
+                        <ellipse cx="30" cy="36" rx="8" ry="4" fill="#ff7043" />
+                        <path d="M 22 36 L 22 40 A 8 4 0 0 0 38 40 L 38 36 Z" fill="#d84315" />
+                        <ellipse cx="70" cy="36" rx="8" ry="4" fill="#ff7043" />
+                        <path d="M 62 36 L 62 40 A 8 4 0 0 0 78 40 L 78 36 Z" fill="#f4511e" />
+                        <ellipse cx="50" cy="46" rx="8" ry="4" fill="#ff7043" />
+                        <path d="M 42 46 L 42 50 A 8 4 0 0 0 58 50 L 58 46 Z" fill="#f4511e" />
+                    </g>
+                </svg>
+
+                <!-- Cyan Blue 1x1 Brick -->
+                <svg class="floating-brick brick-21" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#26c6da" />
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#00838f" />
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#00acc1" />
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#26c6da" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#00acc1" />
+                    </g>
+                </svg>
+
+                <!-- Bright Lime 1x1 Brick -->
+                <svg class="floating-brick brick-22" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#d4e157" />
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#9e9d24" />
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#c0ca33" />
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#d4e157" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#c0ca33" />
+                    </g>
+                </svg>
+
+                <!-- Soft Pink 2x2 Brick -->
+                <svg class="floating-brick brick-23" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 20 L 90 40 L 50 60 L 10 40 Z" fill="#ec407a" />
+                        <path d="M 10 40 L 50 60 L 50 85 L 10 65 Z" fill="#ad1457" />
+                        <path d="M 50 60 L 90 40 L 90 65 L 50 85 Z" fill="#d81b60" />
+                        <ellipse cx="50" cy="26" rx="8" ry="4" fill="#ec407a" />
+                        <path d="M 42 26 L 42 30 A 8 4 0 0 0 58 30 L 58 26 Z" fill="#d81b60" />
+                        <ellipse cx="30" cy="36" rx="8" ry="4" fill="#ec407a" />
+                        <path d="M 22 36 L 22 40 A 8 4 0 0 0 38 40 L 38 36 Z" fill="#ad1457" />
+                        <ellipse cx="70" cy="36" rx="8" ry="4" fill="#ec407a" />
+                        <path d="M 62 36 L 62 40 A 8 4 0 0 0 78 40 L 78 36 Z" fill="#d81b60" />
+                        <ellipse cx="50" cy="46" rx="8" ry="4" fill="#ec407a" />
+                        <path d="M 42 46 L 42 50 A 8 4 0 0 0 58 50 L 58 46 Z" fill="#d81b60" />
+                    </g>
+                </svg>
+
+                <!-- Rich Violet 1x1 Brick -->
+                <svg class="floating-brick brick-24" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#ab47bc" />
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#6a1b9a" />
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#8e24aa" />
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#ab47bc" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#8e24aa" />
+                    </g>
+                </svg>
+
+                <!-- Sky Blue 2x2 Brick -->
+                <svg class="floating-brick brick-25" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 20 L 90 40 L 50 60 L 10 40 Z" fill="#4fc3f7" />
+                        <path d="M 10 40 L 50 60 L 50 85 L 10 65 Z" fill="#01579b" />
+                        <path d="M 50 60 L 90 40 L 90 65 L 50 85 Z" fill="#0288d1" />
+                        <ellipse cx="50" cy="26" rx="8" ry="4" fill="#4fc3f7" />
+                        <path d="M 42 26 L 42 30 A 8 4 0 0 0 58 30 L 58 26 Z" fill="#0288d1" />
+                        <ellipse cx="30" cy="36" rx="8" ry="4" fill="#4fc3f7" />
+                        <path d="M 22 36 L 22 40 A 8 4 0 0 0 38 40 L 38 36 Z" fill="#01579b" />
+                        <ellipse cx="70" cy="36" rx="8" ry="4" fill="#4fc3f7" />
+                        <path d="M 62 36 L 62 40 A 8 4 0 0 0 78 40 L 78 36 Z" fill="#0288d1" />
+                        <ellipse cx="50" cy="46" rx="8" ry="4" fill="#4fc3f7" />
+                        <path d="M 42 46 L 42 50 A 8 4 0 0 0 58 50 L 58 46 Z" fill="#0288d1" />
+                    </g>
+                </svg>
+
+                <!-- Sunny Orange 1x1 Brick -->
+                <svg class="floating-brick brick-26" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#ffb74d" />
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#e65100" />
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#f57c00" />
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#ffb74d" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#f57c00" />
+                    </g>
+                </svg>
+
+                <!-- Soft Jade Mint 1x1 Brick -->
+                <svg class="floating-brick brick-27" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(0, 5)">
+                        <path d="M 50 25 L 80 40 L 50 55 L 20 40 Z" fill="#4db6ac" />
+                        <path d="M 20 40 L 50 55 L 50 80 L 20 65 Z" fill="#004d40" />
+                        <path d="M 50 55 L 80 40 L 80 65 L 50 80 Z" fill="#00796b" />
+                        <ellipse cx="50" cy="36" rx="10" ry="5" fill="#4db6ac" />
+                        <path d="M 40 36 L 40 40 A 10 5 0 0 0 60 40 L 60 36 Z" fill="#00796b" />
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Sentimental Hero Quote -->
+            <div class="hero-quote-container">
+                <h1 class="quote-main">
+                    오늘, 당신은 무엇을 만들고 싶나요?<br>
+                    <span class="quote-accent">블럭이요!</span>
+                </h1>
+                <p class="quote-sub">아이에게는 상상을, 어른에게는 잊고 있던 동심을 선물합니다.</p>
+            </div>
+
+        </section>
+
+        <!-- Category Grid Section -->
+        <section id="scroll-category-section" class="section dark" style="padding: 100px 0;">
+            <div class="section-container">
+                <div class="category-tabs">
+                    <button class="tab-btn active">PRODUCTS</button>
+                    <button class="tab-btn">NEWS</button>
+                </div>
+                <div class="category-grid-main">
+                    <div class="category-item" style="background-color: #e3000b;">
+                        <div class="cat-content">
+                            <span>SERIES</span>
+                            <img src="5.png" class="cat-img" alt="Series">
+                        </div>
+                    </div>
+                    <div class="category-item" style="background-color: #006cb7;">
+                        <div class="cat-content">
+                            <span>AGE</span>
+                            <img src="6.png" class="cat-img" alt="Age">
+                        </div>
+                    </div>
+                    <div class="category-item" style="background-color: #ffd500; color: #000;">
+                        <div class="cat-content">
+                            <span>PRICE</span>
+                            <img src="7.png" class="cat-img" alt="Price">
+                        </div>
+                    </div>
+                    <div class="category-item" style="background-color: #009639;">
+                        <div class="cat-content">
+                            <span>NEW</span>
+                            <img src="8.png" class="cat-img" alt="New">
+                        </div>
+                    </div>
+                    <div class="category-item" style="background-color: #e3000b;">
+                        <div class="cat-content">
+                            <span>EXCLUSIVE</span>
+                            <img src="1.png" class="cat-img" alt="Exclusive">
+                        </div>
+                    </div>
+                    <div class="category-item" style="background-color: #006cb7;">
+                        <div class="cat-content">
+                            <span>DEALS</span>
+                            <img src="2.png" class="cat-img" alt="Deals">
+                        </div>
+                    </div>
+                    <div class="category-item" style="background-color: #ffd500; color: #000;">
+                        <div class="cat-content">
+                            <span>COMING SOON</span>
+                            <img src="3.png" class="cat-img" alt="Coming Soon">
+                        </div>
+                    </div>
+                    <div class="category-item" style="background-color: #009639;">
+                        <div class="cat-content">
+                            <span>LAST CHANCE</span>
+                            <img src="4.png" class="cat-img" alt="Last Chance">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gear Collection Section (Space 3D Edition) -->
+        <section id="gear" class="section space-theme" style="padding: 70px 0 120px 0; background: #ffffff;">
+            <div class="section-container" style="position: relative; z-index: 1;">
+                <div class="gear-section-header">
+                    <h2 class="section-title" style="color: #111111; font-size: clamp(1.6rem, 4.5vw, 2.4rem); line-height: 1.45; letter-spacing: -1px; font-weight: 800; margin-bottom: 0;">다른 사람들 창의적인 작품을 보고<br><span class="outline-text"
+                            style="color: #111111; font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 900; display: inline-block; margin-top: 8px;">나만의 작품을 만들어 보아요.</span></h2>
+                </div>
+                <div class="gear-grid-v2 floating-3d">
+                    <div class="gear-item-v2 floating-card hoverable">
+                        <div class="zoom-icon-v2"><i class="fas fa-search-plus"></i></div>
+                        <img src="1.png" alt="작품1" class="brick-hover-image">
+                        <div class="lego-3d-brick" style="--brick-color: #ff8a80;">
+                            <div class="face front"></div><div class="face back"></div>
+                            <div class="face left"></div><div class="face right"></div>
+                            <div class="face top"></div><div class="face bottom"></div>
+                            <div class="studs-wrap">
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                            </div>
+                        </div>
+                        <div class="brick-label-v2"><span>LEGO</span><span>작품1</span></div>
+                    </div>
+                    <div class="gear-item-v2 floating-card hoverable">
+                        <div class="zoom-icon-v2"><i class="fas fa-search-plus"></i></div>
+                        <img src="2.png" alt="작품2" class="brick-hover-image">
+                        <div class="lego-3d-brick" style="--brick-color: #a5d6a7;">
+                            <div class="face front"></div><div class="face back"></div>
+                            <div class="face left"></div><div class="face right"></div>
+                            <div class="face top"></div><div class="face bottom"></div>
+                            <div class="studs-wrap">
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                            </div>
+                        </div>
+                        <div class="brick-label-v2"><span>LEGO</span><span>작품2</span></div>
+                    </div>
+                    <div class="gear-item-v2 floating-card hoverable">
+                        <div class="zoom-icon-v2"><i class="fas fa-search-plus"></i></div>
+                        <img src="3.png" alt="작품3" class="brick-hover-image">
+                        <div class="lego-3d-brick" style="--brick-color: #ffcc80;">
+                            <div class="face front"></div><div class="face back"></div>
+                            <div class="face left"></div><div class="face right"></div>
+                            <div class="face top"></div><div class="face bottom"></div>
+                            <div class="studs-wrap">
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                            </div>
+                        </div>
+                        <div class="brick-label-v2"><span>LEGO</span><span>작품3</span></div>
+                    </div>
+                    <div class="gear-item-v2 floating-card hoverable">
+                        <div class="zoom-icon-v2"><i class="fas fa-search-plus"></i></div>
+                        <img src="4.png" alt="작품4" class="brick-hover-image">
+                        <div class="lego-3d-brick" style="--brick-color: #80cbc4;">
+                            <div class="face front"></div><div class="face back"></div>
+                            <div class="face left"></div><div class="face right"></div>
+                            <div class="face top"></div><div class="face bottom"></div>
+                            <div class="studs-wrap">
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                            </div>
+                        </div>
+                        <div class="brick-label-v2"><span>LEGO</span><span>작품4</span></div>
+                    </div>
+                    <div class="gear-item-v2 floating-card hoverable">
+                        <div class="zoom-icon-v2"><i class="fas fa-search-plus"></i></div>
+                        <img src="5.png" alt="작품5" class="brick-hover-image">
+                        <div class="lego-3d-brick" style="--brick-color: #90caf9;">
+                            <div class="face front"></div><div class="face back"></div>
+                            <div class="face left"></div><div class="face right"></div>
+                            <div class="face top"></div><div class="face bottom"></div>
+                            <div class="studs-wrap">
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                            </div>
+                        </div>
+                        <div class="brick-label-v2"><span>LEGO</span><span>작품5</span></div>
+                    </div>
+                    <div class="gear-item-v2 floating-card hoverable">
+                        <div class="zoom-icon-v2"><i class="fas fa-search-plus"></i></div>
+                        <img src="6.png" alt="작품6" class="brick-hover-image">
+                        <div class="lego-3d-brick" style="--brick-color: #fff59d;">
+                            <div class="face front"></div><div class="face back"></div>
+                            <div class="face left"></div><div class="face right"></div>
+                            <div class="face top"></div><div class="face bottom"></div>
+                            <div class="studs-wrap">
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                            </div>
+                        </div>
+                        <div class="brick-label-v2"><span>LEGO</span><span>작품6</span></div>
+                    </div>
+                    <div class="gear-item-v2 floating-card hoverable">
+                        <div class="zoom-icon-v2"><i class="fas fa-search-plus"></i></div>
+                        <img src="7.png" alt="작품7" class="brick-hover-image">
+                        <div class="lego-3d-brick" style="--brick-color: #ce93d8;">
+                            <div class="face front"></div><div class="face back"></div>
+                            <div class="face left"></div><div class="face right"></div>
+                            <div class="face top"></div><div class="face bottom"></div>
+                            <div class="studs-wrap">
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                            </div>
+                        </div>
+                        <div class="brick-label-v2"><span>LEGO</span><span>작품7</span></div>
+                    </div>
+                    <div class="gear-item-v2 floating-card hoverable">
+                        <div class="zoom-icon-v2"><i class="fas fa-search-plus"></i></div>
+                        <img src="8.png" alt="작품8" class="brick-hover-image">
+                        <div class="lego-3d-brick" style="--brick-color: #f5f5f5;">
+                            <div class="face front"></div><div class="face back"></div>
+                            <div class="face left"></div><div class="face right"></div>
+                            <div class="face top"></div><div class="face bottom"></div>
+                            <div class="studs-wrap">
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                                <div class="stud"></div><div class="stud"></div><div class="stud"></div><div class="stud"></div>
+                            </div>
+                        </div>
+                        <div class="brick-label-v2"><span>LEGO</span><span>작품8</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Socials Fan Gallery Section -->
+        <section class="socials-fan-section">
+            <div class="section-container">
+                <h2 class="socials-title">FAN<br><span class="outline-text">GALLERY</span></h2>
+                <div class="socials-fan-gallery">
+                    <div class="fan-item item-1"><img src="1.png" alt="Social 1"></div>
+                    <div class="fan-item item-2"><img src="2.png" alt="Social 2"></div>
+                    <div class="fan-item item-3"><img src="3.png" alt="Social 3"></div>
+                    <div class="fan-item item-4"><img src="4.png" alt="Social 4"></div>
+                    <div class="fan-item item-5"><img src="5.png" alt="Social 5"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals (Standardized) -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-login">&times;</button>
+            <h2 class="modal-title">로그인</h2>
+            <form class="modal-form">
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" placeholder="이메일을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+                <button type="submit" class="modal-submit">로그인</button>
+            </form>
+            <div class="social-login">
+                <p class="social-divider">다른 계정으로 계속</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/login" target="_blank" class="social-icon facebook"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://accounts.google.com/signin" target="_blank" class="social-icon google"><i
+                            class="fab fa-google"></i></a>
+                    <a href="https://appleid.apple.com/" target="_blank" class="social-icon apple"><i
+                            class="fab fa-apple"></i></a>
+                    <a href="https://v3.account.samsung.com/" target="_blank" class="social-icon samsung"><i
+                            class="fa-solid fa-s"></i></a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                계정이 없으신가요? <span class="modal-link" id="go-to-signup">회원가입</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="signup-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-signup">&times;</button>
+            <h2 class="modal-title">회원가입</h2>
+            <form class="modal-form">
+                <div class="form-group">
+                    <label for="new-name">이름</label>
+                    <input type="text" id="new-name" placeholder="이름을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-email">이메일</label>
+                    <input type="email" id="new-email" placeholder="이메일을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">비밀번호</label>
+                    <input type="password" id="new-password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+                <button type="submit" class="modal-submit">회원가입</button>
+            </form>
+            <div class="modal-footer">
+                이미 계정이 있으신가요? <span class="modal-link" id="go-to-login">로그인</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mega-menu-overlay" id="mega-menu">
+        <div class="mega-menu-container">
+            <div class="mega-menu-header">
+                <div class="mega-menu-logo">
+                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg"
+                        alt="LEGO" class="lego-square-logo">
+                </div>
+                <nav class="mega-menu-nav">
+                    <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
+                    <button class="mega-nav-btn" data-category="products">제품 소식</button>
+                    <button class="mega-nav-btn" data-category="support">고객 지원</button>
+                </nav>
+                <button class="mega-menu-close" id="close-mega-menu"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="mega-menu-content">
+                <div class="mega-category-pane" id="mega-pane-brand">
+                    <ul class="mega-links-list">
+                        <li><a href="about.html">소개</a></li>
+                        <li><a href="news.html">소식</a></li>
+                        <li><a href="partnership.html">다가오는 파트너십</a></li>
+                    </ul>
+                </div>
+                <div class="mega-category-pane" id="mega-pane-support">
+                    <ul class="mega-links-list">
+                        <li><a href="order.html">주문 현황 확인</a></li>
+                        <li><a href="shipping.html">배송 및 반품</a></li>
+                        <li><a href="assembly.html">조립 설명서 검색</a></li>
+                        <li><a href="faq.html">일반적인 질문</a></li>
+                        <li><a href="contact.html">문의하기</a></li>
+                        <li><a href="bricks.html">부속품 및 브릭</a></li>
+                    </ul>
+                </div>
+                <div class="mega-category-pane" id="mega-pane-products">
+                    <div class="mega-products-grid">
+                        <ul class="mega-links-list">
+                            <li><a href="series.html">시리즈별 세트</a></li>
+                            <li><a href="age.html">연령별</a></li>
+                            <li><a href="price.html">가격별</a></li>
+                            <li><a href="new.html">신제품</a></li>
+                        </ul>
+                        <ul class="mega-links-list">
+
+                            <li><a href="deals.html">할인 및 행사</a></li>
+                            <li><a href="coming-soon.html">출시 예정</a></li>
+                            <li><a href="last-chance.html">단종 예정</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close">&times;</button>
+            <img src="" alt="확대 이미지" id="lightbox-img">
+        </div>
+    </div>
+
+    <script src="main.js?v=1.1"></script>
+</body>
+
+</html>

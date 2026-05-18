@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOARD | YH04</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .board-container {
+            max-width: 1000px;
+            margin: 150px auto;
+            padding: 0 20px;
+        }
+        .board-header {
+            margin-bottom: 50px;
+        }
+        .comment-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .comment-form h3 { margin-bottom: 20px; color: var(--accent-color); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; opacity: 0.7; font-size: 0.9rem; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+        .submit-btn {
+            background: var(--accent-color);
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .submit-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+        
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .comment-item {
+            background: rgba(255,255,255,0.03);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+        }
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+        .comment-author { font-weight: 700; color: white; opacity: 1; }
+        .comment-body { line-height: 1.6; }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="custom-cursor" id="cursor"></div>
+    
+    <header id="header" class="scrolled">
+        <nav>
+            <div class="logo-norris hoverable" onclick="location.href='index.html'">
+                HWANG<br>YOUNGHO
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="hoverable">HOME</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="university.html" class="hoverable">브랜드 소개</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="university.html#intro" class="hoverable">소개</a></li>
+                        <li><a href="university.html#stats" class="hoverable">소식</a></li>
+                        <li><a href="university.html#partnership" class="hoverable">다가오는 파트너십</a></li>
+                    </ul>
+                </li>
+                <li><a href="portfolio.html" class="hoverable">제품 소개</a></li>
+                <li><a href="companies.html" class="hoverable">장바구니</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="board.html" class="active hoverable">고객 지원</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="hoverable">주문 현황 확인</a></li>
+                        <li><a href="#" class="hoverable">배송 및 반품</a></li>
+                        <li><a href="#" class="hoverable">조립 설명서 검색</a></li>
+                        <li><a href="#" class="hoverable">일반적인 질문</a></li>
+                        <li><a href="#" class="hoverable">문의하기</a></li>
+                        <li><a href="#" class="hoverable">부속품 및 브릭</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="header-right">
+                <button class="login-btn hoverable" id="open-login">로그인</button>
+                <button class="burger-menu hoverable">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="board-container">
+        <div class="board-header">
+            <h1 class="section-title">GUEST<br><span class="outline-text">BOARD</span></h1>
+            <p>Share your thoughts and connect with others.</p>
+        </div>
+
+        <section class="comment-form">
+            <h3>Write a Post</h3>
+            <form id="boardForm">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="author" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="message" rows="4" placeholder="Write something..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn hoverable">Post Message</button>
+            </form>
+        </section>
+
+        <section class="comment-list" id="commentList">
+            <!-- Comments will be loaded here -->
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-login">&times;</button>
+            <h2 class="modal-title">로그인</h2>
+            <form class="modal-form">
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" placeholder="이메일을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+                <button type="submit" class="modal-submit">로그인</button>
+            </form>
+            
+            <div class="social-login">
+                <p class="social-divider">다른 계정으로 계속</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/login" target="_blank" class="social-icon facebook hoverable" title="Facebook으로 로그인"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://accounts.google.com/signin" target="_blank" class="social-icon google hoverable" title="Google로 로그인"><i class="fab fa-google"></i></a>
+                    <a href="https://appleid.apple.com/" target="_blank" class="social-icon apple hoverable" title="Apple로 로그인"><i class="fab fa-apple"></i></a>
+                    <a href="https://v3.account.samsung.com/" target="_blank" class="social-icon samsung hoverable" title="Samsung으로 로그인"><i class="fa-solid fa-s"></i></a>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                계정이 없으신가요? <span class="modal-link" id="go-to-signup">회원가입</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div class="modal-overlay" id="signup-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-signup">&times;</button>
+            <h2 class="modal-title">회원가입</h2>
+            <form class="modal-form">
+                <div class="form-group">
+                    <label for="new-name">이름</label>
+                    <input type="text" id="new-name" placeholder="이름을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-email">이메일</label>
+                    <input type="email" id="new-email" placeholder="이메일을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">비밀번호</label>
+                    <input type="password" id="new-password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+                <button type="submit" class="modal-submit">회원가입</button>
+            </form>
+            <div class="modal-footer">
+                이미 계정이 있으신가요? <span class="modal-link" id="go-to-login">로그인</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        // Board Logic
+        const boardForm = document.getElementById('boardForm');
+        const commentList = document.getElementById('commentList');
+
+        function loadComments() {
+            const comments = JSON.parse(localStorage.getItem('yh04_comments') || '[]');
+            commentList.innerHTML = comments.length ? '' : '<p style="opacity: 0.5;">No messages yet. Be the first to post!</p>';
+            
+            comments.slice().reverse().forEach(comment => {
+                const item = document.createElement('div');
+                item.className = 'comment-item';
+                item.innerHTML = `
+                    <div class="comment-meta">
+                        <span class="comment-author">${comment.author}</span>
+                        <span>${new Date(comment.date).toLocaleDateString()}</span>
+                    </div>
+                    <div class="comment-body">${comment.message}</div>
+                `;
+                commentList.appendChild(item);
+            });
+        }
+
+        boardForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const author = document.getElementById('author').value;
+            const message = document.getElementById('message').value;
+            
+            const comments = JSON.parse(localStorage.getItem('yh04_comments') || '[]');
+            comments.push({ author, message, date: new Date().toISOString() });
+            localStorage.setItem('yh04_comments', JSON.stringify(comments));
+            
+            boardForm.reset();
+            loadComments();
+        });
+
+        loadComments();
+    </script>
+</body>
+</html>

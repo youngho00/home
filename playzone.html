@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAY ZONE | YH04</title>
+    <link rel="stylesheet" href="style.css?v=1.2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --lego-red: #e60012;
+            --lego-blue: #0057b7;
+            --lego-yellow: #ffd500;
+            --lego-green: #00aa47;
+            --lego-orange: #ff5f00;
+            --lego-black: #111111;
+            --lego-white: #ffffff;
+        }
+
+        .playzone-main {
+            padding-top: 130px;
+            min-height: 100vh;
+            background-color: #0b0b0b;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 60px 40px;
+        }
+
+        .playzone-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .playzone-title {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .playzone-subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.2rem;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
+        /* Mode Selector Grid */
+        .mode-selector {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mode-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .mode-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(255, 207, 0, 0.15), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .mode-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--lego-yellow);
+            box-shadow: 0 20px 40px rgba(255, 207, 0, 0.1);
+        }
+
+        .mode-card:hover::before {
+            opacity: 1;
+        }
+
+        .mode-icon {
+            font-size: 3.5rem;
+            color: var(--lego-yellow);
+            margin-bottom: 25px;
+            transition: transform 0.4s ease;
+        }
+
+        .mode-card:hover .mode-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .mode-name {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .mode-desc {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mode-btn {
+            background-color: var(--lego-yellow);
+            color: #000;
+            border: none;
+            padding: 16px 36px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .mode-card:hover .mode-btn {
+            background-color: #ffffff;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+        }
+
+        /* Active Game Overlay */
+        .game-viewport {
+            display: none;
+            background: rgba(15, 15, 15, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
+            padding: 40px;
+            margin-top: 20px;
+            position: relative;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-btn-dash {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .back-btn-dash:hover {
+            background: var(--lego-yellow);
+            color: #000;
+            border-color: var(--lego-yellow);
+            transform: translateX(-4px);
+        }
+
+        /* Game 1: Tetris UI */
+        .tetris-layout {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .tetris-canvas-wrapper {
+            background: #151515;
+            border: 6px solid #2d2d2d;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        .tetris-canvas-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, #222 2px, transparent 2px);
+            background-size: 30px 30px;
+            pointer-events: none;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        #tetrisCanvas {
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tetris-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 250px;
+        }
+
+        .tetris-score-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .tetris-label {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .tetris-value {
+            font-size: 2.2rem;
+            font-weight: 900;
+            font-family: 'Outfit', sans-serif;
+            color: var(--lego-yellow);
+        }
+
+        .next-preview-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #nextCanvas {
+            background: #111;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .tetris-controls {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .game-btn {
+            background: var(--lego-yellow);
+            color: #000;
+            border: none;
+            padding: 15px;
+            border-radius: 30px;
+            font-weight: 900;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .game-btn.secondary {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .game-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(255, 207, 0, 0.2);
+        }
+
+        .game-btn.secondary:hover {
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+        }
+
+        /* Keyboard help styling */
+        .kb-help {
+            margin-top: 15px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.6;
+        }
+
+        .kb-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .kb-key {
+            background: rgba(255,255,255,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: var(--lego-yellow);
+        }
+
+        /* Game 2: Builder UI */
+        .builder-layout {
+            display: flex;
+            gap: 30px;
+            margin-top: 60px;
+            align-items: stretch;
+        }
+
+        .builder-palette {
+            width: 280px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .palette-section-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--lego-yellow);
+            margin-bottom: 15px;
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 8px;
+        }
+
+        .brick-types-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .brick-select-card {
+            background: rgba(255,255,255,0.03);
+            border: 2px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .brick-select-card:hover {
+            border-color: rgba(255,207,0,0.5);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .brick-select-card.active {
+            border-color: var(--lego-yellow);
+            background: rgba(255, 207, 0, 0.1);
+        }
+
+        /* Tiny visual representations of brick types */
+        .brick-icon-draw {
+            background: var(--lego-red);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .brick-icon-1x1 { width: 16px; height: 16px; }
+        .brick-icon-2x1 { width: 32px; height: 16px; }
+        .brick-icon-3x1 { width: 48px; height: 16px; }
+        .brick-icon-4x1 { width: 64px; height: 16px; }
+        .brick-icon-2x2 { width: 32px; height: 32px; }
+        .brick-icon-2x4 { width: 64px; height: 32px; }
+
+        .colors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .color-dot {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid transparent;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .color-dot:hover {
+            transform: scale(1.15);
+        }
+
+        .color-dot.active {
+            border-color: #fff;
+            transform: scale(1.1);
+            box-shadow: 0 0 12px rgba(255,255,255,0.5);
+        }
+
+        .builder-workspace {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .builder-toolbar {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tool-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tool-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 1.1rem;
+        }
+
+        .tool-btn:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.3);
+            color: var(--lego-yellow);
+        }
+
+        .tool-btn.active {
+            background: var(--lego-yellow);
+            color: #000;
+            border-color: var(--lego-yellow);
+        }
+
+        .canvas-container {
+            background: #111;
+            border: 4px solid #2d2d2d;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            position: relative;
+            cursor: crosshair;
+        }
+
+        #builderCanvas {
+            display: block;
+        }
+
+        @media (max-width: 1024px) {
+            .mode-selector {
+                grid-template-columns: 1fr;
+            }
+            .tetris-layout, .builder-layout {
+                flex-direction: column;
+                align-items: center;
+            }
+            .builder-palette {
+                width: 100%;
+            }
+            .canvas-container {
+                width: 100%;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="promo-bar">
+        <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
+        <div class="promo-bar-content">
+            <button class="promo-arrow" id="promo-prev">&lt;</button>
+            <div class="promo-bar-inner">
+                <span class="promo-msg active">6만원 이상 주문시 무료 배송!</span>
+                <span class="promo-msg">할인 및 행사중 지금 구매해 보세요.</span>
+                <span class="promo-msg">신제품을 한번 둘러보세요.</span>
+                <span class="promo-msg">지금 당장 단종 예정 제품을 구매해 보세요.</span>
+            </div>
+            <button class="promo-arrow" id="promo-next">&gt;</button>
+        </div>
+        <button class="promo-login-btn hoverable" id="promo-open-login">로그인</button>
+    </div>
+    <header id="header">
+        <nav>
+            <div class="logo-norris hoverable" onclick="location.href='index.html'">
+                HWANG<br>YOUNGHO
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="hoverable ">HOME</a></li>
+                <li class="nav-item-mega">
+                    <a href="javascript:void(0)" class="hoverable mega-trigger " data-category="brand">브랜드 소개</a>
+                </li>
+                <li class="nav-item-mega">
+                    <a href="javascript:void(0)" class="hoverable mega-trigger " data-category="products">제품 소식</a>
+                </li>
+                <li><a href="companies.html" class="hoverable">장바구니</a></li>
+                <li class="nav-item-mega">
+                    <a href="javascript:void(0)" class="hoverable mega-trigger active" data-category="support">고객 지원</a>
+                </li>
+            </ul>
+            <div class="header-right">
+            </div>
+        </nav>
+    </header>
+
+    <main class="playzone-main">
+        <div class="dashboard-container">
+            <div class="playzone-header">
+                <h1 class="playzone-title">PLAY<br><span class="outline-text">ZONE</span></h1>
+                <p class="playzone-subtitle">나만의 창의력을 펼치는 YH04 브릭 체험 테마 존</p>
+            </div>
+
+            <!-- Dashboard Mode Selector -->
+            <div class="mode-selector" id="modeSelector">
+                <!-- Card 1: Tetris -->
+                <div class="mode-card" onclick="launchGame('tetris')">
+                    <div class="mode-icon"><i class="fas fa-th"></i></div>
+                    <h2 class="mode-name">LEGO® 브릭 테트리스</h2>
+                    <p class="mode-desc">
+                        클래식 테트리스 게임을 LEGO 브릭 테마로 즐겨보세요! 브릭을 회전시키고 맞춰서 줄을 지우고 고득점을 기록해보세요.
+                    </p>
+                    <button class="mode-btn">플레이 하기</button>
+                </div>
+
+                <!-- Card 2: Builder -->
+                <div class="mode-card" onclick="launchGame('builder')">
+                    <div class="mode-icon"><i class="fas fa-cubes"></i></div>
+                    <h2 class="mode-name">LEGO® 나만의 블릭 빌더</h2>
+                    <p class="mode-desc">
+                        제공되는 다양한 형태와 클래식 컬러 브릭을 활용해 캔버스 위에 자유롭게 나만의 멋진 작품을 조립하고 저장하세요!
+                    </p>
+                    <button class="mode-btn">창작 하기</button>
+                </div>
+            </div>
+
+            <!-- Game Viewports -->
+            <!-- 1. Tetris viewport -->
+            <div class="game-viewport" id="tetrisViewport">
+                <button class="back-btn-dash" onclick="exitGame('tetris')">
+                    <i class="fas fa-arrow-left"></i> 대시보드로 돌아가기
+                </button>
+                
+                <div class="tetris-layout">
+                    <div class="tetris-canvas-wrapper">
+                        <canvas id="tetrisCanvas" width="300" height="600"></canvas>
+                    </div>
+
+                    <div class="tetris-panel">
+                        <div class="tetris-score-box">
+                            <div class="tetris-label">Score</div>
+                            <div class="tetris-value" id="scoreVal">0</div>
+                        </div>
+
+                        <div class="tetris-score-box">
+                            <div class="tetris-label">Lines</div>
+                            <div class="tetris-value" id="linesVal">0</div>
+                        </div>
+
+                        <div class="next-preview-box">
+                            <div class="tetris-label">Next Piece</div>
+                            <canvas id="nextCanvas" width="100" height="100"></canvas>
+                        </div>
+
+                        <div class="tetris-controls">
+                            <button class="game-btn" id="startBtn" onclick="toggleTetris()">시작</button>
+                            <button class="game-btn secondary" onclick="resetTetris()">재설정</button>
+                        </div>
+
+                        <div class="kb-help">
+                            <div class="palette-section-title" style="font-size: 0.8rem; margin-bottom: 10px;">게임 조작 방법</div>
+                            <div class="kb-row"><span class="kb-key">←</span> <span class="kb-key">→</span> <span>좌우 이동</span></div>
+                            <div class="kb-row"><span class="kb-key">↑</span> <span>블록 회전</span></div>
+                            <div class="kb-row"><span class="kb-key">↓</span> <span>빠른 낙하</span></div>
+                            <div class="kb-row"><span class="kb-key">Space</span> <span>순간 낙하</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Builder viewport -->
+            <div class="game-viewport" id="builderViewport">
+                <button class="back-btn-dash" onclick="exitGame('builder')">
+                    <i class="fas fa-arrow-left"></i> 대시보드로 돌아가기
+                </button>
+
+                <div class="builder-layout">
+                    <!-- Left Palette Panel -->
+                    <div class="builder-palette">
+                        <div>
+                            <div class="palette-section-title">1. 브릭 크기 선택</div>
+                            <div class="brick-types-grid">
+                                <div class="brick-select-card active" onclick="selectBrick('1x1')" id="b-1x1">
+                                    <div class="brick-icon-draw brick-icon-1x1"></div>
+                                    <span>1 x 1 Stud</span>
+                                </div>
+                                <div class="brick-select-card" onclick="selectBrick('2x1')" id="b-2x1">
+                                    <div class="brick-icon-draw brick-icon-2x1"></div>
+                                    <span>2 x 1 Brick</span>
+                                </div>
+                                <div class="brick-select-card" onclick="selectBrick('4x1')" id="b-4x1">
+                                    <div class="brick-icon-draw brick-icon-4x1"></div>
+                                    <span>4 x 1 Brick</span>
+                                </div>
+                                <div class="brick-select-card" onclick="selectCard2x2()" id="b-2x2">
+                                    <div class="brick-icon-draw brick-icon-2x2"></div>
+                                    <span>2 x 2 Block</span>
+                                </div>
+                                <div class="brick-select-card" onclick="selectCard2x4()" id="b-2x4">
+                                    <div class="brick-icon-draw brick-icon-2x4"></div>
+                                    <span>2 x 4 Block</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="palette-section-title">2. 브릭 컬러 선택</div>
+                            <div class="colors-grid">
+                                <div class="color-dot active" style="background-color: var(--lego-red);" onclick="selectColor('#e60012')" id="c-red"></div>
+                                <div class="color-dot" style="background-color: var(--lego-blue);" onclick="selectColor('#0057b7')" id="c-blue"></div>
+                                <div class="color-dot" style="background-color: var(--lego-yellow);" onclick="selectColor('#ffd500')" id="c-yellow"></div>
+                                <div class="color-dot" style="background-color: var(--lego-green);" onclick="selectColor('#00aa47')" id="c-green"></div>
+                                <div class="color-dot" style="background-color: var(--lego-orange);" onclick="selectColor('#ff5f00')" id="c-orange"></div>
+                                <div class="color-dot" style="background-color: #111111; border: 1px solid rgba(255,255,255,0.2);" onclick="selectColor('#111111')" id="c-black"></div>
+                                <div class="color-dot" style="background-color: #ffffff;" onclick="selectColor('#ffffff')" id="c-white"></div>
+                            </div>
+                        </div>
+
+                        <div class="kb-help">
+                            <div class="palette-section-title" style="font-size: 0.8rem; margin-bottom: 10px;">창작 도구 가이드</div>
+                            <div class="kb-row"><span class="kb-key">R</span> <span>브릭 90도 회전</span></div>
+                            <div class="kb-row"><span class="kb-key">Double Click</span> <span>브릭 삭제</span></div>
+                            <div style="margin-top: 10px; font-size: 0.75rem; color: rgba(255,255,255,0.4);">
+                                격자 무늬 배경의 스터드(Stud) 위에 마우스 클릭으로 간편하게 브릭을 스냅 배치 및 조립할 수 있습니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Workspace -->
+                    <div class="builder-workspace">
+                        <div class="builder-toolbar">
+                            <div class="tool-group">
+                                <button class="tool-btn active" id="tool-paint" onclick="setTool('paint')" title="브릭 놓기"><i class="fas fa-paint-brush"></i></button>
+                                <button class="tool-btn" id="tool-erase" onclick="setTool('erase')" title="브릭 지우개"><i class="fas fa-eraser"></i></button>
+                            </div>
+
+                            <div class="tool-group">
+                                <button class="tool-btn" onclick="rotateBuilderBrick()" title="브릭 회전 (R)"><i class="fas fa-redo"></i></button>
+                                <button class="tool-btn" onclick="clearBuilderCanvas()" title="캔버스 초기화"><i class="fas fa-trash-alt"></i></button>
+                                <button class="tool-btn" onclick="exportBuilderImage()" title="내 작품 이미지 저장"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="canvas-container">
+                            <canvas id="builderCanvas" width="750" height="500"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-login">&times;</button>
+            <h2 class="modal-title">로그인</h2>
+            <form class="modal-form">
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" placeholder="이메일을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+                <button type="submit" class="modal-submit">로그인</button>
+            </form>
+            <div class="social-login">
+                <p class="social-divider">다른 계정으로 계속</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/login" target="_blank" class="social-icon facebook hoverable"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://accounts.google.com/signin" target="_blank" class="social-icon google hoverable"><i class="fab fa-google"></i></a>
+                    <a href="https://appleid.apple.com/" target="_blank" class="social-icon apple hoverable"><i class="fab fa-apple"></i></a>
+                    <a href="https://v3.account.samsung.com/" target="_blank" class="social-icon samsung hoverable"><i class="fa-solid fa-s"></i></a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                계정이 없으신가요? <span class="modal-link" id="go-to-signup">회원가입</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mega-menu-overlay" id="mega-menu">
+        <div class="mega-menu-container">
+            <div class="mega-menu-header">
+                <div class="mega-menu-logo">
+                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                </div>
+                <nav class="mega-menu-nav">
+                    <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
+                    <button class="mega-nav-btn" data-category="products">제품 소식</button>
+                    <button class="mega-nav-btn" data-category="support">고객 지원</button>
+                </nav>
+                <button class="mega-menu-close" id="close-mega-menu"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="mega-menu-content">
+                <div class="mega-category-pane" id="mega-pane-brand">
+                    <ul class="mega-links-list">
+                        <li><a href="about.html">소개</a></li>
+                        <li><a href="news.html">소식</a></li>
+                        <li><a href="partnership.html">다가오는 파트너십</a></li>
+                    </ul>
+                </div>
+                <div class="mega-category-pane" id="mega-pane-support">
+                    <ul class="mega-links-list">
+                        <li><a href="order.html">주문 현황 확인</a></li>
+                        <li><a href="shipping.html">배송 및 반품</a></li>
+                        <li><a href="assembly.html">조립 설명서 검색</a></li>
+                        <li><a href="faq.html">일반적인 질문</a></li>
+                        <li><a href="contact.html">문의하기</a></li>
+                        <li><a href="bricks.html">부속품 및 브릭</a></li>
+                    </ul>
+                </div>
+                <div class="mega-category-pane" id="mega-pane-products">
+                    <div class="mega-products-grid">
+                        <ul class="mega-links-list">
+                            <li><a href="series.html">시리즈별 세트</a></li>
+                            <li><a href="age.html">연령별</a></li>
+                            <li><a href="price.html">가격별</a></li>
+                            <li><a href="new.html">신제품</a></li>
+                        </ul>
+                        <ul class="mega-links-list">
+                            <li><a href="deals.html">할인 및 행사</a></li>
+                            <li><a href="coming-soon.html">출시 예정</a></li>
+                            <li><a href="last-chance.html">단종 예정</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close">&times;</button>
+            <img src="" alt="확대 이미지" id="lightbox-img">
+        </div>
+    </div>
+
+    <script src="main.js?v=1.2"></script>
+    <script>
+        // Immersive Synth Sound Engine (Synthetically generated for reliability)
+        let audioCtx = null;
+        function playSound(type) {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                const now = audioCtx.currentTime;
+                if (type === 'click') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(180, now);
+                    osc.frequency.exponentialRampToValueAtTime(70, now + 0.08);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } else if (type === 'clear') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+                    osc.start(now);
+                    osc.stop(now + 0.35);
+                } else if (type === 'gameover') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(320, now);
+                    osc.frequency.linearRampToValueAtTime(80, now + 0.55);
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.55);
+                    osc.start(now);
+                    osc.stop(now + 0.55);
+                } else if (type === 'snap') {
+                    // Satisfaction Lego Snap
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(600, now);
+                    osc.frequency.exponentialRampToValueAtTime(150, now + 0.05);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                }
+            } catch (e) {
+                console.log("Audio Engine error: ", e);
+            }
+        }
+
+        // Dashboard router
+        function launchGame(game) {
+            playSound('click');
+            document.getElementById('modeSelector').style.display = 'none';
+            if (game === 'tetris') {
+                document.getElementById('tetrisViewport').style.display = 'block';
+                initTetris();
+            } else if (game === 'builder') {
+                document.getElementById('builderViewport').style.display = 'block';
+                initBuilder();
+            }
+        }
+
+        // Keep selectCard2x2 and selectCard2x4 functions for onclick to call properly
+        function selectCard2x2() {
+            selectBrick('2x2');
+        }
+
+        function selectCard2x4() {
+            selectBrick('2x4');
+        }
+
+        function exitGame(game) {
+            playSound('click');
+            if (game === 'tetris') {
+                stopTetrisLoop();
+                document.getElementById('tetrisViewport').style.display = 'none';
+            } else if (game === 'builder') {
+                document.getElementById('builderViewport').style.display = 'none';
+            }
+            document.getElementById('modeSelector').style.display = 'grid';
+        }
+
+        // LEGO block 3D renderer helper
+        function drawLegoBlock(ctx, x, y, size, color) {
+            // Shadow base
+            ctx.fillStyle = 'rgba(0,0,0,0.15)';
+            ctx.fillRect(x + 1, y + 1, size, size);
+
+            // Brick Body
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, size, size);
+
+            // Left & Top 3D Highlights
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+            ctx.fillRect(x, y, size, 2);
+            ctx.fillRect(x, y, 2, size);
+
+            // Bottom & Right Shadows
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+            ctx.fillRect(x, y + size - 2, size, 2);
+            ctx.fillRect(x + size - 2, y, 2, size);
+
+            // Stud on top (Classic Lego circle)
+            const studSize = size * 0.5;
+            const studOffset = (size - studSize) / 2;
+            
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(x + size/2, y + size/2, studSize/2, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Stud Highlight
+            ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        }
+
+        // ==========================================
+        // GAME 1: LEGO TETRIS GAME ENGINE
+        // ==========================================
+        const tCanvas = document.getElementById('tetrisCanvas');
+        const tCtx = tCanvas.getContext('2d');
+        const nCanvas = document.getElementById('nextCanvas');
+        const nCtx = nCanvas.getContext('2d');
+
+        const BLOCK_SIZE = 30;
+        const COLS = 10;
+        const ROWS = 20;
+
+        let board = [];
+        let score = 0;
+        let lines = 0;
+        let gameRunning = false;
+        let isPaused = false;
+        let dropCounter = 0;
+        let lastTime = 0;
+        let dropInterval = 1000;
+
+        const SHAPES = {
+            'I': [[1,1,1,1]],
+            'O': [[1,1],[1,1]],
+            'T': [[0,1,0],[1,1,1]],
+            'L': [[1,0],[1,0],[1,1]],
+            'J': [[0,1],[0,1],[1,1]],
+            'S': [[0,1,1],[1,1,0]],
+            'Z': [[1,1,0],[0,1,1]]
+        };
+
+        const LEGO_COLORS = {
+            'I': '#0057b7', // Blue
+            'O': '#ffd500', // Yellow
+            'T': '#ff5f00', // Orange
+            'L': '#e60012', // Red
+            'J': '#00aa47', // Green
+            'S': '#ffffff', // White
+            'Z': '#888888'  // Grey
+        };
+
+        let player = {
+            pos: {x: 0, y: 0},
+            matrix: null,
+            color: '',
+            nextMatrix: null,
+            nextColor: ''
+        };
+
+        function initTetris() {
+            board = Array.from({length: ROWS}, () => Array(COLS).fill(0));
+            score = 0;
+            lines = 0;
+            updateStats();
+            playerReset();
+            drawTetris();
+        }
+
+        function updateStats() {
+            document.getElementById('scoreVal').innerText = score;
+            document.getElementById('linesVal').innerText = lines;
+        }
+
+        function createPiece(type) {
+            return SHAPES[type];
+        }
+
+        function playerReset() {
+            const pieces = 'IOTSJLZ';
+            if (!player.nextMatrix) {
+                const randType = pieces[Math.floor(Math.random() * pieces.length)];
+                player.matrix = createPiece(randType);
+                player.color = LEGO_COLORS[randType];
+            } else {
+                player.matrix = player.nextMatrix;
+                player.color = player.nextColor;
+            }
+            
+            const nextType = pieces[Math.floor(Math.random() * pieces.length)];
+            player.nextMatrix = createPiece(nextType);
+            player.nextColor = LEGO_COLORS[nextType];
+
+            player.pos.y = 0;
+            player.pos.x = Math.floor((COLS - player.matrix[0].length) / 2);
+
+            if (collide(board, player)) {
+                playSound('gameover');
+                gameRunning = false;
+                alert('게임 오버! 최종 점수: ' + score);
+                resetTetris();
+            }
+            drawNext();
+        }
+
+        function collide(board, player) {
+            const [m, o] = [player.matrix, player.pos];
+            for (let y = 0; y < m.length; ++y) {
+                for (let x = 0; x < m[y].length; ++x) {
+                    if (m[y][x] !== 0 && (board[y + o.y] && board[y + o.y][x + o.x]) !== 0) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        function merge(board, player) {
+            player.matrix.forEach((row, y) => {
+                row.forEach((value, x) => {
+                    if (value !== 0) {
+                        board[y + player.pos.y][x + player.pos.x] = player.color;
+                    }
+                });
+            });
+        }
+
+        function rotate(matrix, dir) {
+            for (let y = 0; y < matrix.length; ++y) {
+                for (let x = 0; x < y; ++x) {
+                    [matrix[x][y], matrix[y][x]] = [matrix[y][x], matrix[x][y]];
+                }
+            }
+            if (dir > 0) matrix.forEach(row => row.reverse());
+            else matrix.reverse();
+        }
+
+        function playerRotate(dir) {
+            const pos = player.pos.x;
+            let offset = 1;
+            rotate(player.matrix, dir);
+            while (collide(board, player)) {
+                player.pos.x += offset;
+                offset = -(offset + (offset > 0 ? 1 : -1));
+                if (offset > player.matrix[0].length) {
+                    rotate(player.matrix, -dir);
+                    player.pos.x = pos;
+                    return;
+                }
+            }
+            playSound('click');
+        }
+
+        function playerMove(dir) {
+            player.pos.x += dir;
+            if (collide(board, player)) {
+                player.pos.x -= dir;
+            } else {
+                playSound('click');
+            }
+        }
+
+        function playerDrop() {
+            player.pos.y++;
+            if (collide(board, player)) {
+                player.pos.y--;
+                merge(board, player);
+                playSound('snap');
+                arenaSweep();
+                playerReset();
+            }
+            dropCounter = 0;
+        }
+
+        function arenaSweep() {
+            let rowCount = 1;
+            outer: for (let y = ROWS - 1; y >= 0; --y) {
+                for (let x = 0; x < COLS; ++x) {
+                    if (board[y][x] === 0) {
+                        continue outer;
+                    }
+                }
+                const row = board.splice(y, 1)[0].fill(0);
+                board.unshift(row);
+                ++y;
+
+                score += rowCount * 100;
+                lines++;
+                rowCount *= 2;
+                playSound('clear');
+                updateStats();
+            }
+        }
+
+        let reqId = null;
+        function updateTetris(time = 0) {
+            if (!gameRunning || isPaused) return;
+            const deltaTime = time - lastTime;
+            lastTime = time;
+
+            dropCounter += deltaTime;
+            if (dropCounter > dropInterval) {
+                playerDrop();
+            }
+
+            drawTetris();
+            reqId = requestAnimationFrame(updateTetris);
+        }
+
+        function drawTetris() {
+            tCtx.fillStyle = '#151515';
+            tCtx.fillRect(0, 0, tCanvas.width, tCanvas.height);
+
+            // Draw Board
+            board.forEach((row, y) => {
+                row.forEach((value, x) => {
+                    if (value !== 0) {
+                        drawLegoBlock(tCtx, x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, value);
+                    }
+                });
+            });
+
+            // Draw Active Piece
+            player.matrix.forEach((row, y) => {
+                row.forEach((value, x) => {
+                    if (value !== 0) {
+                        drawLegoBlock(tCtx, (x + player.pos.x) * BLOCK_SIZE, (y + player.pos.y) * BLOCK_SIZE, BLOCK_SIZE, player.color);
+                    }
+                });
+            });
+        }
+
+        function drawNext() {
+            nCtx.fillStyle = '#111';
+            nCtx.fillRect(0, 0, nCanvas.width, nCanvas.height);
+            if (!player.nextMatrix) return;
+
+            const nextW = player.nextMatrix[0].length * BLOCK_SIZE;
+            const nextH = player.nextMatrix.length * BLOCK_SIZE;
+            const offsetWidth = (nCanvas.width - nextW) / 2;
+            const offsetHeight = (nCanvas.height - nextH) / 2;
+
+            player.nextMatrix.forEach((row, y) => {
+                row.forEach((value, x) => {
+                    if (value !== 0) {
+                        drawLegoBlock(nCtx, offsetWidth + x * BLOCK_SIZE, offsetHeight + y * BLOCK_SIZE, BLOCK_SIZE, player.nextColor);
+                    }
+                });
+            });
+        }
+
+        function toggleTetris() {
+            if (!gameRunning) {
+                playSound('click');
+                gameRunning = true;
+                isPaused = false;
+                document.getElementById('startBtn').innerText = '일시 정지';
+                lastTime = performance.now();
+                updateTetris();
+            } else {
+                playSound('click');
+                isPaused = !isPaused;
+                if (isPaused) {
+                    document.getElementById('startBtn').innerText = '재개';
+                } else {
+                    document.getElementById('startBtn').innerText = '일시 정지';
+                    lastTime = performance.now();
+                    updateTetris();
+                }
+            }
+        }
+
+        function resetTetris() {
+            playSound('click');
+            stopTetrisLoop();
+            initTetris();
+            document.getElementById('startBtn').innerText = '시작';
+        }
+
+        function stopTetrisLoop() {
+            gameRunning = false;
+            isPaused = false;
+            if (reqId) cancelAnimationFrame(reqId);
+        }
+
+        // ==========================================
+        // GAME 2: 3D ISOMETRIC LEGO BRICK CREATIVE BUILDER ENGINE
+        // ==========================================
+        const bCanvas = document.getElementById('builderCanvas');
+        const bCtx = bCanvas.getContext('2d');
+
+        // Isometric view transforms
+        let scale = 1.0;
+        let originX = bCanvas.width / 2;
+        let originY = bCanvas.height / 2 + 100; // shifted down for stacking room
+
+        const ISO_W = 50; // iso cell screen width in px
+        const ISO_H = 25; // iso cell screen height in px
+        const ISO_L = 20; // single brick Z-height in px
+
+        const GRID_SIZE = 14; // 14x14 Base Plate dimensions
+
+        let currentBrickType = '1x1';
+        let currentBrickColor = '#e60012';
+        let builderTool = 'paint'; // paint, erase
+        let builderAngle = 0; // rotation angle (0, 90, 180, 270)
+        let placedBricks = [];
+
+        // Dragging and pan states
+        let isPanning = false;
+        let lastPanX = 0;
+        let lastPanY = 0;
+        let lastHoverX = 0;
+        let lastHoverY = 0;
+
+        const BRICK_BLUEPRINTS = {
+            '1x1': {w: 1, h: 1},
+            '2x1': {w: 2, h: 1},
+            '4x1': {w: 4, h: 1},
+            '2x2': {w: 2, h: 2},
+            '2x4': {w: 2, h: 4}
+        };
+
+        // Color shading helper
+        function adjustColor(hex, percent) {
+            let num = parseInt(hex.replace("#",""), 16),
+                amt = Math.round(2.55 * percent),
+                R = (num >> 16) + amt,
+                G = (num >> 8 & 0x00FF) + amt,
+                B = (num & 0x0000FF) + amt;
+            return "#" + (0x1000000 + (R<255?R<0?0:R:255)*0x10000 + (G<255?G<0?0:G:255)*0x100 + (B<255?B<0?0:B:255)).toString(16).slice(1);
+        }
+
+        // Project screen coordinates to isometric grid coordinates
+        function getIsoCoords(mx, my) {
+            const dy = my - originY;
+            const dx = mx - originX;
+            const w = ISO_W * scale;
+            const h = ISO_H * scale;
+            
+            const gx = (dy / (h / 2) + dx / (w / 2)) / 2;
+            const gy = (dy / (h / 2) - dx / (w / 2)) / 2;
+            return {
+                x: Math.floor(gx),
+                y: Math.floor(gy)
+            };
+        }
+
+        // Footprint checker to calculate snap stack Z-height
+        function getHighestZ(gx, gy, spanX, spanY) {
+            let maxZ = 0;
+            placedBricks.forEach(b => {
+                const bBlueprint = BRICK_BLUEPRINTS[b.type];
+                const bSpanX = b.angle % 180 === 0 ? bBlueprint.w : bBlueprint.h;
+                const bSpanY = b.angle % 180 === 0 ? bBlueprint.h : bBlueprint.w;
+                
+                const xOverlap = (gx < b.x + bSpanX) && (gx + spanX > b.x);
+                const yOverlap = (gy < b.y + bSpanY) && (gy + spanY > b.y);
+                
+                if (xOverlap && yOverlap) {
+                    const topZ = b.gz + 1;
+                    if (topZ > maxZ) {
+                        maxZ = topZ;
+                    }
+                }
+            });
+            return maxZ;
+        }
+
+        // Get top-most brick under cursor for eraser
+        function getHighestBrickAt(gx, gy) {
+            let targetBrick = null;
+            let maxZ = -1;
+            placedBricks.forEach(b => {
+                const bBlueprint = BRICK_BLUEPRINTS[b.type];
+                const bSpanX = b.angle % 180 === 0 ? bBlueprint.w : bBlueprint.h;
+                const bSpanY = b.angle % 180 === 0 ? bBlueprint.h : bBlueprint.w;
+                
+                if (gx >= b.x && gx < b.x + bSpanX && gy >= b.y && gy < b.y + bSpanY) {
+                    if (b.gz > maxZ) {
+                        maxZ = b.gz;
+                        targetBrick = b;
+                    }
+                }
+            });
+            return targetBrick;
+        }
+
+        function updateBrickIconsAndActiveStyle(color) {
+            // Update all brick icon drawing colors to match selected color
+            document.querySelectorAll('.brick-icon-draw').forEach(icon => {
+                icon.style.backgroundColor = color;
+            });
+            
+            // Calculate a beautiful translucent active background color
+            let rgbaBg = 'rgba(255, 207, 0, 0.1)'; // default lego yellow
+            if (color === '#e60012') rgbaBg = 'rgba(230, 0, 18, 0.12)';
+            else if (color === '#0057b7') rgbaBg = 'rgba(0, 87, 183, 0.12)';
+            else if (color === '#ffd500') rgbaBg = 'rgba(255, 213, 0, 0.12)';
+            else if (color === '#00aa47') rgbaBg = 'rgba(0, 170, 71, 0.12)';
+            else if (color === '#ff5f00') rgbaBg = 'rgba(255, 95, 0, 0.12)';
+            else if (color === '#111111') rgbaBg = 'rgba(17, 17, 17, 0.5)';
+            else if (color === '#ffffff') rgbaBg = 'rgba(255, 255, 255, 0.12)';
+            
+            // Dynamically style cards: active card gets matching border color & bg glow
+            document.querySelectorAll('.brick-select-card').forEach(card => {
+                if (card.classList.contains('active')) {
+                    card.style.borderColor = color;
+                    card.style.backgroundColor = rgbaBg;
+                } else {
+                    card.style.borderColor = '';
+                    card.style.backgroundColor = '';
+                }
+            });
+        }
+
+        function initBuilder() {
+            placedBricks = [];
+            builderTool = 'paint';
+            builderAngle = 0;
+            currentBrickType = '1x1';
+            currentBrickColor = '#e60012';
+            scale = 1.0;
+            originX = bCanvas.width / 2;
+            originY = bCanvas.height / 2 + 80;
+
+            document.querySelectorAll('.brick-select-card').forEach(c => c.classList.remove('active'));
+            document.getElementById('b-1x1').classList.add('active');
+            document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+            document.getElementById('c-red').classList.add('active');
+            document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tool-paint').classList.add('active');
+
+            updateBrickIconsAndActiveStyle(currentBrickColor);
+            drawBuilderWithOptions();
+        }
+
+        function selectBrick(type) {
+            playSound('click');
+            currentBrickType = type;
+            document.querySelectorAll('.brick-select-card').forEach(c => c.classList.remove('active'));
+            document.getElementById('b-' + type).classList.add('active');
+            builderTool = 'paint';
+            updateBuilderToolsUI();
+            updateBrickIconsAndActiveStyle(currentBrickColor);
+            drawBuilderWithOptions(lastHoverX, lastHoverY);
+        }
+
+        function selectColor(color) {
+            playSound('click');
+            currentBrickColor = color;
+            document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+            if (color === '#e60012') document.getElementById('c-red').classList.add('active');
+            else if (color === '#0057b7') document.getElementById('c-blue').classList.add('active');
+            else if (color === '#ffd500') document.getElementById('c-yellow').classList.add('active');
+            else if (color === '#00aa47') document.getElementById('c-green').classList.add('active');
+            else if (color === '#ff5f00') document.getElementById('c-orange').classList.add('active');
+            else if (color === '#111111') document.getElementById('c-black').classList.add('active');
+            else if (color === '#ffffff') document.getElementById('c-white').classList.add('active');
+            builderTool = 'paint';
+            updateBuilderToolsUI();
+            updateBrickIconsAndActiveStyle(currentBrickColor);
+            drawBuilderWithOptions(lastHoverX, lastHoverY);
+        }
+
+        function setTool(tool) {
+            playSound('click');
+            builderTool = tool;
+            updateBuilderToolsUI();
+            drawBuilderWithOptions(lastHoverX, lastHoverY);
+        }
+
+        function updateBuilderToolsUI() {
+            document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+            if (builderTool === 'paint') {
+                document.getElementById('tool-paint').classList.add('active');
+            } else if (builderTool === 'erase') {
+                document.getElementById('tool-erase').classList.add('active');
+            }
+        }
+
+        function rotateBuilderBrick() {
+            playSound('click');
+            builderAngle = (builderAngle + 90) % 360;
+            drawBuilderWithOptions(lastHoverX, lastHoverY);
+        }
+
+        function clearBuilderCanvas() {
+            playSound('clear');
+            placedBricks = [];
+            drawBuilderWithOptions();
+        }
+
+        function getMousePos(canvas, evt) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: evt.clientX - rect.left,
+                y: evt.clientY - rect.top
+            };
+        }
+
+        // Draw 3D side edge to make the base plate feel solid
+        function drawBasePlate3D() {
+            const w = ISO_W * scale;
+            const h = ISO_H * scale;
+            const L = ISO_L * scale * 0.4; // flat grey base plate edge height
+
+            const x1 = originX + (GRID_SIZE - 0) * (w / 2);
+            const y1 = originY + (GRID_SIZE + 0) * (h / 2) - (-1) * (ISO_L * scale);
+            const x2 = originX + (GRID_SIZE - GRID_SIZE) * (w / 2);
+            const y2 = originY + (GRID_SIZE + GRID_SIZE) * (h / 2) - (-1) * (ISO_L * scale);
+            const x3 = originX + (0 - GRID_SIZE) * (w / 2);
+            const y3 = originY + (0 + GRID_SIZE) * (h / 2) - (-1) * (ISO_L * scale);
+
+            // Left Edge Face
+            bCtx.fillStyle = '#222222';
+            bCtx.beginPath();
+            bCtx.moveTo(x3, y3);
+            bCtx.lineTo(x2, y2);
+            bCtx.lineTo(x2, y2 + L);
+            bCtx.lineTo(x3, y3 + L);
+            bCtx.closePath();
+            bCtx.fill();
+
+            // Right Edge Face
+            bCtx.fillStyle = '#2a2a2a';
+            bCtx.beginPath();
+            bCtx.moveTo(x2, y2);
+            bCtx.lineTo(x1, y1);
+            bCtx.lineTo(x1, y1 + L);
+            bCtx.lineTo(x2, y2 + L);
+            bCtx.closePath();
+            bCtx.fill();
+        }
+
+        // Draw 14x14 floor cells at gz = -1
+        function drawBasePlate() {
+            const w = ISO_W * scale;
+            const h = ISO_H * scale;
+            const L = ISO_L * scale;
+            const floorZ = -1;
+            
+            for (let gx = 0; gx < GRID_SIZE; gx++) {
+                for (let gy = 0; gy < GRID_SIZE; gy++) {
+                    const x0 = originX + (gx - gy) * (w / 2);
+                    const y0 = originY + (gx + gy) * (h / 2) - floorZ * L;
+                    
+                    const x1 = originX + (gx + 1 - gy) * (w / 2);
+                    const y1 = originY + (gx + 1 + gy) * (h / 2) - floorZ * L;
+                    
+                    const x2 = originX + (gx + 1 - (gy + 1)) * (w / 2);
+                    const y2 = originY + (gx + 1 + gy + 1) * (h / 2) - floorZ * L;
+                    
+                    const x3 = originX + (gx - (gy + 1)) * (w / 2);
+                    const y3 = originY + (gx + gy + 1) * (h / 2) - floorZ * L;
+                    
+                    bCtx.fillStyle = '#333333';
+                    bCtx.beginPath();
+                    bCtx.moveTo(x0, y0);
+                    bCtx.lineTo(x1, y1);
+                    bCtx.lineTo(x2, y2);
+                    bCtx.lineTo(x3, y3);
+                    bCtx.closePath();
+                    bCtx.fill();
+                    
+                    bCtx.strokeStyle = '#252525';
+                    bCtx.lineWidth = 1;
+                    bCtx.stroke();
+                    
+                    // Stud (drawn centered on the tile top face)
+                    const scx = originX + (gx + 0.5 - (gy + 0.5)) * (w / 2);
+                    const scy = originY + (gx + 0.5 + (gy + 0.5)) * (h / 2) - floorZ * L;
+                    
+                    bCtx.fillStyle = '#444444';
+                    bCtx.beginPath();
+                    bCtx.ellipse(scx, scy, w * 0.14, h * 0.14, 0, 0, Math.PI * 2);
+                    bCtx.fill();
+                }
+            }
+        }
+
+        // Isometric unified 3D LEGO brick rendering logic
+        function drawCustomBrick(gx, gy, gz, type, color, angle, alpha) {
+            const w = ISO_W * scale;
+            const h = ISO_H * scale;
+            const L = ISO_L * scale;
+            
+            const blueprint = BRICK_BLUEPRINTS[type];
+            const spanX = angle % 180 === 0 ? blueprint.w : blueprint.h;
+            const spanY = angle % 180 === 0 ? blueprint.h : blueprint.w;
+            
+            const x0 = originX + (gx - gy) * (w / 2);
+            const y0 = originY + (gx + gy) * (h / 2) - gz * L;
+            const x1 = originX + ((gx + spanX) - gy) * (w / 2);
+            const y1 = originY + ((gx + spanX) + gy) * (h / 2) - gz * L;
+            const x2 = originX + ((gx + spanX) - (gy + spanY)) * (w / 2);
+            const y2 = originY + ((gx + spanX) + (gy + spanY)) * (h / 2) - gz * L;
+            const x3 = originX + (gx - (gy + spanY)) * (w / 2);
+            const y3 = originY + (gx + (gy + spanY)) * (h / 2) - gz * L;
+            
+            bCtx.save();
+            bCtx.globalAlpha = alpha;
+            
+            // 1. Left Face (Shadowed)
+            bCtx.fillStyle = adjustColor(color, -25);
+            bCtx.beginPath();
+            bCtx.moveTo(x3, y3);
+            bCtx.lineTo(x2, y2);
+            bCtx.lineTo(x2, y2 + L);
+            bCtx.lineTo(x3, y3 + L);
+            bCtx.closePath();
+            bCtx.fill();
+            
+            // 2. Right Face (Medium Shadowed)
+            bCtx.fillStyle = adjustColor(color, -12);
+            bCtx.beginPath();
+            bCtx.moveTo(x2, y2);
+            bCtx.lineTo(x1, y1);
+            bCtx.lineTo(x1, y1 + L);
+            bCtx.lineTo(x2, y2 + L);
+            bCtx.closePath();
+            bCtx.fill();
+            
+            // 3. Top Face (Base highlight color)
+            bCtx.fillStyle = color;
+            bCtx.beginPath();
+            bCtx.moveTo(x0, y0);
+            bCtx.lineTo(x1, y1);
+            bCtx.lineTo(x2, y2);
+            bCtx.lineTo(x3, y3);
+            bCtx.closePath();
+            bCtx.fill();
+
+            // 4. White Highlight Borders on Top Face
+            bCtx.strokeStyle = 'rgba(255,255,255,0.22)';
+            bCtx.lineWidth = 1;
+            bCtx.beginPath();
+            bCtx.moveTo(x3, y3);
+            bCtx.lineTo(x0, y0);
+            bCtx.lineTo(x1, y1);
+            bCtx.stroke();
+            
+            bCtx.strokeStyle = 'rgba(0,0,0,0.12)';
+            bCtx.beginPath();
+            bCtx.moveTo(x3, y3);
+            bCtx.lineTo(x2, y2);
+            bCtx.lineTo(x1, y1);
+            bCtx.stroke();
+            
+            // 5. Render Studs on the Top Face
+            const studRadiusX = w * 0.15;
+            const studRadiusY = h * 0.15;
+            const studH = 3 * scale; // stud vertical 3D height
+            
+            for (let ix = 0; ix < spanX; ix++) {
+                for (let iy = 0; iy < spanY; iy++) {
+                    const scx = originX + ((gx + ix + 0.5) - (gy + iy + 0.5)) * (w / 2);
+                    const scy = originY + ((gx + ix + 0.5) + (gy + iy + 0.5)) * (h / 2) - gz * L;
+                    
+                    // Stud Cylinder (Left Face Side)
+                    bCtx.fillStyle = adjustColor(color, -10);
+                    bCtx.beginPath();
+                    bCtx.ellipse(scx, scy, studRadiusX, studRadiusY, 0, 0, Math.PI * 2);
+                    bCtx.fill();
+                    
+                    // Stud Cap
+                    bCtx.fillStyle = color;
+                    bCtx.beginPath();
+                    bCtx.ellipse(scx, scy - studH, studRadiusX, studRadiusY, 0, 0, Math.PI * 2);
+                    bCtx.fill();
+                    
+                    // Stud Rim Highlight
+                    bCtx.strokeStyle = 'rgba(255,255,255,0.25)';
+                    bCtx.lineWidth = 1;
+                    bCtx.beginPath();
+                    bCtx.ellipse(scx, scy - studH, studRadiusX, studRadiusY, 0, 0, Math.PI * 2);
+                    bCtx.stroke();
+                }
+            }
+            
+            bCtx.restore();
+        }
+
+        // Draw Eraser Target red border highlight
+        function drawCustomBrickHighlight(gx, gy, gz, type, angle) {
+            const w = ISO_W * scale;
+            const h = ISO_H * scale;
+            const L = ISO_L * scale;
+            const blueprint = BRICK_BLUEPRINTS[type];
+            const spanX = angle % 180 === 0 ? blueprint.w : blueprint.h;
+            const spanY = angle % 180 === 0 ? blueprint.h : blueprint.w;
+            
+            const x0 = originX + (gx - gy) * (w / 2);
+            const y0 = originY + (gx + gy) * (h / 2) - gz * L;
+            const x1 = originX + ((gx + spanX) - gy) * (w / 2);
+            const y1 = originY + ((gx + spanX) + gy) * (h / 2) - gz * L;
+            const x2 = originX + ((gx + spanX) - (gy + spanY)) * (w / 2);
+            const y2 = originY + ((gx + spanX) + (gy + spanY)) * (h / 2) - gz * L;
+            const x3 = originX + (gx - (gy + spanY)) * (w / 2);
+            const y3 = originY + (gx + (gy + spanY)) * (h / 2) - gz * L;
+
+            bCtx.save();
+            bCtx.strokeStyle = '#e60012';
+            bCtx.lineWidth = 3;
+            
+            bCtx.beginPath();
+            bCtx.moveTo(x0, y0);
+            bCtx.lineTo(x1, y1);
+            bCtx.lineTo(x2, y2);
+            bCtx.lineTo(x3, y3);
+            bCtx.closePath();
+            bCtx.stroke();
+            
+            bCtx.fillStyle = 'rgba(230, 0, 18, 0.2)';
+            bCtx.fill();
+            bCtx.restore();
+        }
+
+        // Main Painter depth sorting rendering engine
+        function drawBuilderWithOptions(hoverX = null, hoverY = null) {
+            bCtx.fillStyle = '#0b0b0b';
+            bCtx.fillRect(0, 0, bCanvas.width, bCanvas.height);
+            
+            drawBasePlate3D();
+            drawBasePlate();
+            
+            // Generate list of bricks to render
+            let renderList = [...placedBricks];
+            
+            if (hoverX !== null && hoverY !== null) {
+                const blueprint = BRICK_BLUEPRINTS[currentBrickType];
+                const spanX = builderAngle % 180 === 0 ? blueprint.w : blueprint.h;
+                const spanY = builderAngle % 180 === 0 ? blueprint.h : blueprint.w;
+                const snapZ = getHighestZ(hoverX, hoverY, spanX, spanY);
+                
+                if (builderTool === 'paint') {
+                    // Inject translucent preview brick into rendering list for perfect depth sorting!
+                    renderList.push({
+                        x: hoverX,
+                        y: hoverY,
+                        gz: snapZ,
+                        type: currentBrickType,
+                        color: currentBrickColor,
+                        angle: builderAngle,
+                        isPreview: true
+                    });
+                }
+            }
+            
+            // Painter's Sorting Algorithm: 
+            // 1. gz (bottom-to-top layers)
+            // 2. gx + gy depth footprint (back-to-front projection)
+            renderList.sort((a, b) => {
+                if (a.gz !== b.gz) {
+                    return a.gz - b.gz;
+                }
+                return (a.x + a.y) - (b.x + b.y);
+            });
+            
+            // Draw all sorted bricks
+            renderList.forEach(brick => {
+                const alpha = brick.isPreview ? 0.6 : 1.0;
+                drawCustomBrick(brick.x, brick.y, brick.gz, brick.type, brick.color, brick.angle, alpha);
+                
+                // Draw selection highlight for eraser tool
+                if (builderTool === 'erase' && hoverX !== null && hoverY !== null && !brick.isPreview) {
+                    const bBlueprint = BRICK_BLUEPRINTS[brick.type];
+                    const bSpanX = brick.angle % 180 === 0 ? bBlueprint.w : bBlueprint.h;
+                    const bSpanY = brick.angle % 180 === 0 ? bBlueprint.h : bBlueprint.w;
+                    
+                    if (hoverX >= brick.x && hoverX < brick.x + bSpanX && hoverY >= brick.y && hoverY < brick.y + bSpanY) {
+                        const highestBrick = getHighestBrickAt(hoverX, hoverY);
+                        if (highestBrick === brick) {
+                            drawCustomBrickHighlight(brick.x, brick.y, brick.gz, brick.type, brick.angle);
+                        }
+                    }
+                }
+            });
+        }
+
+        // High-performance requestAnimationFrame throttled rendering loop
+        let renderRequested = false;
+        let pendingHoverX = null;
+        let pendingHoverY = null;
+        function requestRender(hoverX = null, hoverY = null) {
+            pendingHoverX = hoverX;
+            pendingHoverY = hoverY;
+            if (!renderRequested) {
+                renderRequested = true;
+                requestAnimationFrame(() => {
+                    drawBuilderWithOptions(pendingHoverX, pendingHoverY);
+                    renderRequested = false;
+                });
+            }
+        }
+
+        // Context menu disabled on builder canvas to allow right-click pan drag smoothly
+        bCanvas.addEventListener('contextmenu', e => e.preventDefault());
+
+        // Mouse Drag to Pan Grid
+        bCanvas.addEventListener('mousedown', (e) => {
+            if (e.button === 1) {
+                // Middle Click acts as Panning (prevents default scroll icon)
+                e.preventDefault();
+                isPanning = true;
+                lastPanX = e.clientX;
+                lastPanY = e.clientY;
+                return;
+            }
+            if (e.button === 2) {
+                // Right Click effect completely removed
+                return;
+            }
+            
+            // Paint or Erase blocks
+            if (e.button === 0) {
+                const pos = getMousePos(bCanvas, e);
+                const cell = getIsoCoords(pos.x, pos.y);
+                let hoverX = cell.x;
+                let hoverY = cell.y;
+                
+                const blueprint = BRICK_BLUEPRINTS[currentBrickType];
+                const spanX = builderAngle % 180 === 0 ? blueprint.w : blueprint.h;
+                const spanY = builderAngle % 180 === 0 ? blueprint.h : blueprint.w;
+                
+                if (hoverX < 0) hoverX = 0;
+                if (hoverX > GRID_SIZE - spanX) hoverX = GRID_SIZE - spanX;
+                if (hoverY < 0) hoverY = 0;
+                if (hoverY > GRID_SIZE - spanY) hoverY = GRID_SIZE - spanY;
+                
+                if (builderTool === 'paint') {
+                    const snapZ = getHighestZ(hoverX, hoverY, spanX, spanY);
+                    placedBricks.push({
+                        x: hoverX,
+                        y: hoverY,
+                        gz: snapZ,
+                        type: currentBrickType,
+                        color: currentBrickColor,
+                        angle: builderAngle
+                    });
+                    playSound('snap');
+                } else if (builderTool === 'erase') {
+                    const target = getHighestBrickAt(hoverX, hoverY);
+                    if (target) {
+                        placedBricks = placedBricks.filter(b => b !== target);
+                        playSound('click');
+                    }
+                }
+                requestRender(hoverX, hoverY);
+            }
+        });
+
+        // Mouse Move for Drag/Pan or Preview Snapping
+        bCanvas.addEventListener('mousemove', (e) => {
+            if (isPanning) {
+                // Restore fast, responsive 1:1 drag speed
+                const dx = e.clientX - lastPanX;
+                const dy = e.clientY - lastPanY;
+                originX += dx;
+                originY += dy;
+                
+                // Travel boundaries expand dynamically proportional to the active zoom scale!
+                const centerX = bCanvas.width / 2;
+                const centerY = bCanvas.height / 2 + 80;
+                
+                // Generous travel displacement: Left/Right = 350px * scale, Top (brings bottom corner up) = 450px * scale, Bottom = 260px * scale
+                const minX = centerX - 350 * scale;
+                const maxX = centerX + 350 * scale;
+                const minY = centerY - 450 * scale;
+                const maxY = centerY + 260 * scale;
+                
+                originX = Math.min(Math.max(originX, minX), maxX);
+                originY = Math.min(Math.max(originY, minY), maxY);
+                
+                lastPanX = e.clientX;
+                lastPanY = e.clientY;
+                requestRender();
+                return;
+            }
+
+            const pos = getMousePos(bCanvas, e);
+            const cell = getIsoCoords(pos.x, pos.y);
+            let hoverX = cell.x;
+            let hoverY = cell.y;
+            
+            const blueprint = BRICK_BLUEPRINTS[currentBrickType];
+            const spanX = builderAngle % 180 === 0 ? blueprint.w : blueprint.h;
+            const spanY = builderAngle % 180 === 0 ? blueprint.h : blueprint.w;
+            
+            if (hoverX < 0) hoverX = 0;
+            if (hoverX > GRID_SIZE - spanX) hoverX = GRID_SIZE - spanX;
+            if (hoverY < 0) hoverY = 0;
+            if (hoverY > GRID_SIZE - spanY) hoverY = GRID_SIZE - spanY;
+            
+            lastHoverX = hoverX;
+            lastHoverY = hoverY;
+            
+            requestRender(hoverX, hoverY);
+        });
+
+        window.addEventListener('mouseup', (e) => {
+            if (isPanning) {
+                isPanning = false;
+            }
+        });
+
+        // Mouse Wheel centered Zoom
+        bCanvas.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const zoomFactor = e.deltaY < 0 ? 1.08 : 0.92;
+            scale = Math.min(Math.max(scale * zoomFactor, 0.4), 2.5);
+            
+            // Instantly re-clamp the position on zoom scale changes to prevent edge-locking!
+            const centerX = bCanvas.width / 2;
+            const centerY = bCanvas.height / 2 + 80;
+            
+            // Generous travel displacement: Left/Right = 350px * scale, Top (brings bottom corner up) = 450px * scale, Bottom = 260px * scale
+            const minX = centerX - 350 * scale;
+            const maxX = centerX + 350 * scale;
+            const minY = centerY - 450 * scale;
+            const maxY = centerY + 260 * scale;
+            
+            originX = Math.min(Math.max(originX, minX), maxX);
+            originY = Math.min(Math.max(originY, minY), maxY);
+            
+            requestRender(lastHoverX, lastHoverY);
+        });
+
+        // Double click to erase topmost stacked block easily
+        bCanvas.addEventListener('dblclick', (e) => {
+            if (e.shiftKey) return;
+            const pos = getMousePos(bCanvas, e);
+            const cell = getIsoCoords(pos.x, pos.y);
+            const target = getHighestBrickAt(cell.x, cell.y);
+            if (target) {
+                placedBricks = placedBricks.filter(b => b !== target);
+                playSound('click');
+                requestRender(lastHoverX, lastHoverY);
+            }
+        });
+
+        // Export transparent high-fidelity PNG of the 3D model
+        function exportBuilderImage() {
+            playSound('clear');
+            drawBuilderWithOptions(); // draw clean frame without previews
+            
+            const image = bCanvas.toDataURL("image/png");
+            const link = document.createElement('a');
+            link.download = 'my_3d_lego_masterpiece.png';
+            link.href = image;
+            link.click();
+        }
+
+        // Global Keydown Router for rotation and game controls
+        window.addEventListener('keydown', (e) => {
+            // Game 1 Controls (Tetris)
+            if (document.getElementById('tetrisViewport').style.display === 'block' && gameRunning && !isPaused) {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    playerMove(-1);
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    playerMove(1);
+                } else if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    playerDrop();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    playerRotate(1);
+                } else if (e.key === ' ') {
+                    e.preventDefault();
+                    while (!collide(board, player)) {
+                        player.pos.y++;
+                    }
+                    player.pos.y--;
+                    merge(board, player);
+                    playSound('snap');
+                    arenaSweep();
+                    playerReset();
+                    drawTetris();
+                }
+            }
+
+            // Game 2 Controls (3D Builder)
+            if (document.getElementById('builderViewport').style.display === 'block') {
+                if (e.key === 'r' || e.key === 'R') {
+                    e.preventDefault();
+                    rotateBuilderBrick();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DREAM COMPANIES | YH04</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+    <div class="custom-cursor" id="cursor"></div>
+    <header id="header" class="scrolled">
+        <nav>
+            <div class="logo-norris hoverable" onclick="location.href='index.html'">
+                HWANG<br>YOUNGHO
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="hoverable">HOME</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="javascript:void(0)" class="hoverable">브랜드 소개</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about.html" class="hoverable">소개</a></li>
+                        <li><a href="news.html" class="hoverable">소식</a></li>
+                        <li><a href="partnership.html" class="hoverable">다가오는 파트너십</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item-dropdown">
+                    <a href="javascript:void(0)" class="hoverable">제품 소식</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="series.html" class="hoverable">시리즈별 세트</a></li>
+                        <li><a href="age.html" class="hoverable">연령별</a></li>
+                        <li><a href="price.html" class="hoverable">가격별</a></li>
+                        <li><a href="new.html" class="hoverable">신제품</a></li>
+                        <li><a href="exclusive.html" class="hoverable">독점 제품</a></li>
+                        <li><a href="deals.html" class="hoverable">할인 및 행사</a></li>
+                        <li><a href="coming-soon.html" class="hoverable">출시 예정</a></li>
+                        <li><a href="last-chance.html" class="hoverable">단종 예정</a></li>
+                    </ul>
+                </li>
+                <li><a href="companies.html" class="active hoverable">장바구니</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="javascript:void(0)" class="hoverable">고객 지원</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="order.html" class="hoverable">주문 현황 확인</a></li>
+                        <li><a href="shipping.html" class="hoverable">배송 및 반품</a></li>
+                        <li><a href="assembly.html" class="hoverable">조립 설명서 검색</a></li>
+                        <li><a href="faq.html" class="hoverable">일반적인 질문</a></li>
+                        <li><a href="contact.html" class="hoverable">문의하기</a></li>
+                        <li><a href="bricks.html" class="hoverable">부속품 및 브릭</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="header-right">
+                <button class="login-btn hoverable" id="open-login">로그인</button>
+                <button class="burger-menu hoverable">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="section" style="padding-top: 150px; min-height: 100vh; display: flex; align-items: center; justify-content: center; background-color: var(--bg-color);">
+        <div class="section-container" style="text-align: center; max-width: 600px;">
+            <div class="empty-cart-visual fade-in-up" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                <div class="cart-icon-wrapper" style="font-size: 5rem; color: #0066cc; margin-bottom: 10px;">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </div>
+                
+                <h1 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 5px;">장바구니가 비어 있습니다</h1>
+                <p style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 30px;">로그인 후 쇼핑을 시작하세요.</p>
+                
+                <button class="cart-login-btn hoverable" onclick="document.getElementById('open-login').click()" style="background: #0056b3; color: #fff; border: none; padding: 15px 50px; border-radius: 50px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(0, 102, 204, 0.3);">
+                    로그인
+                </button>
+                
+                <a href="series.html" class="cart-shop-link hoverable" style="color: #0066cc; text-decoration: none; font-size: 1.1rem; font-weight: 700; margin-top: 20px; display: flex; align-items: center; gap: 8px;">
+                    쇼핑하기 <i class="fa-solid fa-chevron-right" style="font-size: 0.9rem;"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-login">&times;</button>
+            <h2 class="modal-title">로그인</h2>
+            <form class="modal-form">
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" placeholder="이메일을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+                <button type="submit" class="modal-submit">로그인</button>
+            </form>
+            
+            <div class="social-login">
+                <p class="social-divider">다른 계정으로 계속</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/login" target="_blank" class="social-icon facebook hoverable" title="Facebook으로 로그인"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://accounts.google.com/signin" target="_blank" class="social-icon google hoverable" title="Google로 로그인"><i class="fab fa-google"></i></a>
+                    <a href="https://appleid.apple.com/" target="_blank" class="social-icon apple hoverable" title="Apple로 로그인"><i class="fab fa-apple"></i></a>
+                    <a href="https://v3.account.samsung.com/" target="_blank" class="social-icon samsung hoverable" title="Samsung으로 로그인"><i class="fa-solid fa-s"></i></a>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                계정이 없으신가요? <span class="modal-link" id="go-to-signup">회원가입</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div class="modal-overlay" id="signup-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-signup">&times;</button>
+            <h2 class="modal-title">회원가입</h2>
+            <form class="modal-form">
+                <div class="form-group">
+                    <label for="new-name">이름</label>
+                    <input type="text" id="new-name" placeholder="이름을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-email">이메일</label>
+                    <input type="email" id="new-email" placeholder="이메일을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">비밀번호</label>
+                    <input type="password" id="new-password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+                <button type="submit" class="modal-submit">회원가입</button>
+            </form>
+            <div class="modal-footer">
+                이미 계정이 있으신가요? <span class="modal-link" id="go-to-login">로그인</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
