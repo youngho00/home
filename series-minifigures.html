@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -78,14 +78,30 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: #ffdb00;
-            color: #000000;
+            background: #e6f2ff;
+            color: #0056b3;
             font-size: 0.75rem;
-            font-weight: 800;
+            font-weight: 500;
             padding: 4px 12px;
             border-radius: 4px;
             z-index: 2;
             letter-spacing: -0.3px;
+            border: 1px solid rgba(0, 86, 179, 0.15);
+        }
+
+        .new-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e6f2ff;
+            color: #0056b3;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 4px;
+            z-index: 2;
+            letter-spacing: -0.3px;
+            border: 1px solid rgba(0, 86, 179, 0.15);
         }
 
         /* Image section with perfect centering */
@@ -314,7 +330,7 @@
             </div>
 
             <h1 style="font-size: 3rem; font-family: var(--font-heading); font-weight: 800; color: #111; margin-bottom: 10px; text-align: left; letter-spacing: -1.5px;">미니피규어 컬렉션</h1>
-            <p style="font-size: 1.05rem; color: #555555; margin-bottom: 40px; text-align: left; font-weight: 500;">전 세계 가장 역사적이고 아름다운 미니피규어들을 소장해보세요.</p>
+            <p style="font-size: 1.05rem; color: #555555; margin-bottom: 40px; text-align: left; font-weight: 500;">다양하고 색다른 미니 피규어를 소장해보세요.</p>
             
             <!-- Grid -->
             <div class="landmark-grid">
@@ -322,18 +338,18 @@
                 <!-- Card 1 -->
                 <div class="landmark-card hoverable">
                     <div class="card-image-wrap">
-                        <img src="1.png" alt="클래식 스페이스 우주비행사">
+                        <img src="j1.png" alt="요리사">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
                         <span><i class="fa-solid fa-cake-candles"></i> 6+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 8</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
+                        <span><i class="fa-solid fa-cubes"></i> 5</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.5</span>
                     </div>
-                    <h3 class="card-name">클래식 스페이스 우주비행사</h3>
-                    <div class="card-price">6,900 원</div>
+                    <h3 class="card-name">요리사</h3>
+                    <div class="card-price">5,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('클래식 스페이스 우주비행사')">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('요리사')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
                         </button>
                     </div>
@@ -341,19 +357,20 @@
 
                 <!-- Card 2 -->
                 <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
                     <div class="card-image-wrap">
-                        <img src="1.png" alt="빈티지 캐슬 기사">
+                        <img src="j2.png" alt="라이프가드">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
                         <span><i class="fa-solid fa-cake-candles"></i> 6+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 10</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
+                        <span><i class="fa-solid fa-cubes"></i> 7</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
                     </div>
-                    <h3 class="card-name">빈티지 캐슬 기사</h3>
-                    <div class="card-price">7,900 원</div>
+                    <h3 class="card-name">라이프가드</h3>
+                    <div class="card-price">5,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('빈티지 캐슬 기사')">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('라이프가드')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
                         </button>
                     </div>
@@ -361,19 +378,20 @@
 
                 <!-- Card 3 -->
                 <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
                     <div class="card-image-wrap">
-                        <img src="1.png" alt="해적 선장 레드비어드">
+                        <img src="j3.png" alt="축구선수">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 8+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 12</span>
+                        <span><i class="fa-solid fa-cake-candles"></i> 6+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 5</span>
                         <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
                     </div>
-                    <h3 class="card-name">해적 선장 레드비어드</h3>
-                    <div class="card-price">8,900 원</div>
+                    <h3 class="card-name">축구선수</h3>
+                    <div class="card-price">6,400 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('해적 선장 레드비어드')">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('축구선수')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
                         </button>
                     </div>
@@ -381,40 +399,41 @@
 
                 <!-- Card 4 -->
                 <div class="landmark-card hoverable">
+                    <span class="retiring-tag">단종 예정</span>
                     <div class="card-image-wrap">
-                        <img src="1.png" alt="도심 속 경찰관">
+                        <img src="j4.png" alt="남자 카우보이">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
                         <span><i class="fa-solid fa-cake-candles"></i> 6+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 9</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
+                        <span><i class="fa-solid fa-cubes"></i> 5</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 5.0</span>
                     </div>
-                    <h3 class="card-name">도심 속 경찰관</h3>
-                    <div class="card-price">5,900 원</div>
+                    <h3 class="card-name">남자 카우보이</h3>
+                    <div class="card-price">7,200 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('도심 속 경찰관')">
-                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
-                        </button>
+                        <button class="btn-sold-out" disabled>일시품절</button>
                     </div>
                 </div>
 
                 <!-- Card 5 -->
                 <div class="landmark-card hoverable">
-                    <span class="retiring-tag">단종 예정</span>
+                    <span class="new-tag">신제품</span>
                     <div class="card-image-wrap">
-                        <img src="1.png" alt="복고풍 다이버">
+                        <img src="j5.png" alt="수영선수">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 8+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 11</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.6</span>
+                        <span><i class="fa-solid fa-cake-candles"></i> 6+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 7</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
                     </div>
-                    <h3 class="card-name">복고풍 다이버</h3>
-                    <div class="card-price">9,900 원</div>
+                    <h3 class="card-name">수영선수</h3>
+                    <div class="card-price">6,400 원</div>
                     <div class="card-actions">
-                        <button class="btn-sold-out" disabled>일시품절</button>
+                        <button class="btn-cart-add hoverable" onclick="addToCart('수영선수')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
                     </div>
                 </div>
 
@@ -422,16 +441,16 @@
                 <div class="landmark-card hoverable">
                     <span class="retiring-tag">단종 예정</span>
                     <div class="card-image-wrap">
-                        <img src="1.png" alt="숲속의 요정">
+                        <img src="j6.png" alt="여자 카우보이">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
                         <span><i class="fa-solid fa-cake-candles"></i> 6+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 10</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
+                        <span><i class="fa-solid fa-cubes"></i> 5</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 5.0</span>
                     </div>
-                    <h3 class="card-name">숲속의 요정</h3>
-                    <div class="card-price">6,900 원</div>
+                    <h3 class="card-name">여자 카우보이</h3>
+                    <div class="card-price">7,200 원</div>
                     <div class="card-actions">
                         <button class="btn-sold-out" disabled>일시품절</button>
                     </div>
@@ -440,18 +459,18 @@
                 <!-- Card 7 -->
                 <div class="landmark-card hoverable">
                     <div class="card-image-wrap">
-                        <img src="1.png" alt="우주 탐사 대원">
+                        <img src="j7.png" alt="연주자">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
                         <span><i class="fa-solid fa-cake-candles"></i> 6+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 8</span>
+                        <span><i class="fa-solid fa-cubes"></i> 6</span>
                         <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
                     </div>
-                    <h3 class="card-name">우주 탐사 대원</h3>
-                    <div class="card-price">7,900 원</div>
+                    <h3 class="card-name">연주자</h3>
+                    <div class="card-price">6,400 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('우주 탐사 대원')">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('연주자')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
                         </button>
                     </div>
@@ -460,18 +479,18 @@
                 <!-- Card 8 -->
                 <div class="landmark-card hoverable">
                     <div class="card-image-wrap">
-                        <img src="1.png" alt="락스타 미니피규어">
+                        <img src="j8.png" alt="마법사">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 8+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 11</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
+                        <span><i class="fa-solid fa-cake-candles"></i> 6+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 5</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.5</span>
                     </div>
-                    <h3 class="card-name">락스타 미니피규어</h3>
-                    <div class="card-price">8,900 원</div>
+                    <h3 class="card-name">마법사</h3>
+                    <div class="card-price">5,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('락스타 미니피규어')">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('마법사')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
                         </button>
                     </div>
@@ -480,18 +499,18 @@
                 <!-- Card 9 -->
                 <div class="landmark-card hoverable">
                     <div class="card-image-wrap">
-                        <img src="1.png" alt="탐정 미니피규어">
+                        <img src="j9.png" alt="공룡 알바생">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 8+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 12</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
+                        <span><i class="fa-solid fa-cake-candles"></i> 6+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 5</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.5</span>
                     </div>
-                    <h3 class="card-name">탐정 미니피규어</h3>
-                    <div class="card-price">7,900 원</div>
+                    <h3 class="card-name">공룡 알바생</h3>
+                    <div class="card-price">5,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('탐정 미니피규어')">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('공룡 알바생')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
                         </button>
                     </div>

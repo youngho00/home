@@ -78,14 +78,30 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: #ffdb00;
-            color: #000000;
+            background: #e6f2ff;
+            color: #0056b3;
             font-size: 0.75rem;
-            font-weight: 800;
+            font-weight: 500;
             padding: 4px 12px;
             border-radius: 4px;
             z-index: 2;
             letter-spacing: -0.3px;
+            border: 1px solid rgba(0, 86, 179, 0.15);
+        }
+
+        .new-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e6f2ff;
+            color: #0056b3;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 4px;
+            z-index: 2;
+            letter-spacing: -0.3px;
+            border: 1px solid rgba(0, 86, 179, 0.15);
         }
 
         /* Image section with perfect centering */
@@ -354,12 +370,12 @@
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 3455</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.4</span>
+                        <span><i class="fa-solid fa-cake-candles"></i> 16+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 4217</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
                     </div>
                     <h3 class="card-name">콜로세움</h3>
-                    <div class="card-price">369,900 원</div>
+                    <div class="card-price">329,900 원</div>
                     <div class="card-actions">
                         <button class="btn-cart-add hoverable" onclick="addToCart('콜로세움')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
@@ -369,37 +385,37 @@
 
                 <!-- Card 2: Gwanghwamun -->
                 <div class="landmark-card hoverable">
+                    <span class="retiring-tag">단종 예정</span>
                     <div class="card-image-wrap">
                         <img src="b.png" alt="광화문">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
                         <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 958</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.6</span>
+                        <span><i class="fa-solid fa-cubes"></i> 6379</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 5.0</span>
                     </div>
                     <h3 class="card-name">광화문</h3>
-                    <div class="card-price">109,900 원</div>
+                    <div class="card-price">419,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('광화문')">
-                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
-                        </button>
+                        <button class="btn-sold-out" disabled>일시품절</button>
                     </div>
                 </div>
 
                 <!-- Card 3: Namsan Seoul Tower -->
                 <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
                     <div class="card-image-wrap">
                         <img src="c.png" alt="남산 서울타워">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 2125</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
+                        <span><i class="fa-solid fa-cake-candles"></i> 16+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 3527</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
                     </div>
                     <h3 class="card-name">남산 서울타워</h3>
-                    <div class="card-price">209,900 원</div>
+                    <div class="card-price">249,900 원</div>
                     <div class="card-actions">
                         <button class="btn-cart-add hoverable" onclick="addToCart('남산 서울타워')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
@@ -414,12 +430,12 @@
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 12+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 468</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.5</span>
+                        <span><i class="fa-solid fa-cake-candles"></i> 16+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 3258</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
                     </div>
                     <h3 class="card-name">타지마할</h3>
-                    <div class="card-price">64,900 원</div>
+                    <div class="card-price">249,900 원</div>
                     <div class="card-actions">
                         <button class="btn-cart-add hoverable" onclick="addToCart('타지마할')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
@@ -435,12 +451,12 @@
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 16+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 1685</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.5</span>
+                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 4357</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
                     </div>
                     <h3 class="card-name">루브르 박물관</h3>
-                    <div class="card-price">149,900 원</div>
+                    <div class="card-price">329,900 원</div>
                     <div class="card-actions">
                         <button class="btn-sold-out" disabled>일시품절</button>
                     </div>
@@ -455,11 +471,11 @@
                     <div class="card-divider"></div>
                     <div class="card-stats">
                         <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 1476</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
+                        <span><i class="fa-solid fa-cubes"></i> 8357</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
                     </div>
                     <h3 class="card-name">사그라다 파밀리아 성당</h3>
-                    <div class="card-price">189,900 원</div>
+                    <div class="card-price">489,900 원</div>
                     <div class="card-actions">
                         <button class="btn-sold-out" disabled>일시품절</button>
                     </div>
@@ -467,17 +483,18 @@
 
                 <!-- Card 7: Christ the Redeemer -->
                 <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
                     <div class="card-image-wrap">
                         <img src="g.png" alt="예수상">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
                         <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 827</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
+                        <span><i class="fa-solid fa-cubes"></i> 5876</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
                     </div>
                     <h3 class="card-name">예수상</h3>
-                    <div class="card-price">89,900 원</div>
+                    <div class="card-price">349,900 원</div>
                     <div class="card-actions">
                         <button class="btn-cart-add hoverable" onclick="addToCart('예수상')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
@@ -487,17 +504,18 @@
 
                 <!-- Card 8: Opera House -->
                 <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
                     <div class="card-image-wrap">
                         <img src="h.png" alt="오페라 하우스">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
                         <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 2022</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
+                        <span><i class="fa-solid fa-cubes"></i> 5231</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 5.0</span>
                     </div>
                     <h3 class="card-name">오페라 하우스</h3>
-                    <div class="card-price">179,900 원</div>
+                    <div class="card-price">249,900 원</div>
                     <div class="card-actions">
                         <button class="btn-cart-add hoverable" onclick="addToCart('오페라 하우스')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
@@ -513,11 +531,11 @@
                     <div class="card-divider"></div>
                     <div class="card-stats">
                         <span><i class="fa-solid fa-cake-candles"></i> 16+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 1767</span>
+                        <span><i class="fa-solid fa-cubes"></i> 4361</span>
                         <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.6</span>
                     </div>
                     <h3 class="card-name">피라미드와 스핑크스</h3>
-                    <div class="card-price">139,900 원</div>
+                    <div class="card-price">239,900 원</div>
                     <div class="card-actions">
                         <button class="btn-cart-add hoverable" onclick="addToCart('피라미드와 스핑크스')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기

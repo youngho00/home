@@ -1,4 +1,4 @@
-﻿:root {
+:root {
     --bg-color: #f6f6f6; /* Lego light gray */
     --bg-alt: #ffffff;
     --bg-light: #ffffff; 
@@ -23,6 +23,7 @@
 
 html {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
 }
 
 body {
@@ -408,12 +409,11 @@ header.header-hidden {
 
 
 header.scrolled {
-    height: 60px; /* Default for subpages */
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .home-page header.scrolled {
-    height: 65px; /* Further reduced from 70px */
+    /* Keep default height to prevent shifting */
 }
 
 nav {
@@ -3449,7 +3449,7 @@ header#header nav button.login-btn:hover {
     bottom: 20px;
     right: 25px;
     font-size: 0.9rem;
-    font-weight: 700;
+    font-weight: 600;
     color: #006cb7;
     opacity: 0.8;
 }
@@ -3759,7 +3759,7 @@ header#header nav button.login-btn:hover {
     border-radius: 30px 0 25px 0; 
     font-family: 'Inter', sans-serif;
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 600;
     display: flex;
     gap: 8px;
     align-items: center;
@@ -4134,6 +4134,214 @@ header#header nav button.login-btn:hover {
     box-shadow: 0 10px 30px rgba(0, 119, 255, 0.04);
     border: 1px solid rgba(0, 119, 255, 0.2);
     display: inline-block;
+}
+
+/* ==========================================
+   ULTIMATE MOBILE & RESPONSIVE OPTIMIZATIONS
+   ========================================== */
+
+/* 1. Universal Touch Screen Optimizations */
+@media (pointer: coarse) {
+    .custom-cursor {
+        display: none !important;
+    }
+    body.no-cursor * {
+        cursor: auto !important;
+    }
+}
+
+/* 2. PC & Mobile Coexistence Layout Adaptations */
+@media (max-width: 1024px) {
+    /* 2.1 Adjust Body Padding to offset Mobile Bottom App Bar */
+    body {
+        padding-bottom: 75px !important;
+    }
+
+    /* 2.2 Promo Bar cleanup - hide side buttons to prevent layout collapse */
+    .promo-bar {
+        padding: 0 10px !important;
+    }
+    .playzone-btn, .promo-login-btn {
+        display: none !important;
+    }
+    .promo-bar-content {
+        max-width: 100% !important;
+    }
+
+    /* 2.3 Elegant Header layout on mobile - center brand name */
+    header {
+        padding: 0 20px !important;
+        justify-content: center !important;
+    }
+    header nav {
+        justify-content: center !important;
+    }
+    .logo-norris {
+        font-size: 1.4rem !important;
+        text-align: center !important;
+        margin: 0 auto !important;
+        line-height: 1.0 !important;
+    }
+    .home-page .logo-norris {
+        font-size: 1.5rem !important;
+    }
+
+    /* 2.4 Bottom App Bar Navigation - 100% responsive, high-end mobile UX */
+    .nav-links {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        height: 65px !important;
+        background-color: rgba(255, 255, 255, 0.96) !important;
+        backdrop-filter: blur(15px) !important;
+        -webkit-backdrop-filter: blur(15px) !important;
+        border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-around !important;
+        align-items: center !important;
+        margin: 0 !important;
+        padding: 0 5px !important;
+        gap: 0 !important;
+        z-index: 9999 !important;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06) !important;
+    }
+    
+    .nav-links li {
+        flex: 1 !important;
+        text-align: center !important;
+        margin: 0 !important;
+        list-style: none !important;
+    }
+    
+    /* Standardizing mobile button links to vertical layouts with FontAwesome icons */
+    header nav ul.nav-links li a,
+    header#header nav ul.nav-links li a,
+    header nav ul.nav-links li a.active,
+    header#header nav ul.nav-links li a.active {
+        background-color: transparent !important;
+        color: #555555 !important;
+        padding: 6px 2px !important;
+        font-size: 0.72rem !important;
+        font-weight: 750 !important;
+        letter-spacing: -0.3px !important;
+        border-radius: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 4px !important;
+        transition: all 0.25s ease !important;
+        text-wrap: nowrap !important;
+        text-transform: none !important;
+    }
+    
+    /* Inject beautiful, high-resolution visual FontAwesome navigation icons */
+    .nav-links li:nth-child(1) a::before { content: "\f015"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 1.15rem; }
+    .nav-links li:nth-child(2) a::before { content: "\f05a"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 1.15rem; }
+    .nav-links li:nth-child(3) a::before { content: "\f0a1"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 1.15rem; }
+    .nav-links li:nth-child(4) a::before { content: "\f290"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 1.15rem; }
+    .nav-links li:nth-child(5) a::before { content: "\f059"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 1.15rem; }
+    
+    /* Active & Hover states colored in LEGO blue */
+    header nav ul.nav-links li a.active,
+    header#header nav ul.nav-links li a.active,
+    header nav ul.nav-links li a:hover {
+        color: #006CB7 !important;
+        background-color: transparent !important;
+    }
+
+    /* 2.5 Full-screen width mobile mega menu side-drawer */
+    .mega-menu-container {
+        width: 100% !important;
+        min-width: 100% !important;
+        padding: 30px 25px !important;
+    }
+}
+
+/* 3. Jeep Landing Hero Banner Responsiveness */
+@media (max-width: 768px) {
+    .lego-banner-container {
+        flex-direction: column !important;
+        height: auto !important;
+        min-height: calc(100vh - 135px) !important;
+        padding: 60px 20px 40px !important;
+        justify-content: flex-start !important;
+    }
+    .lego-hero-image-wrapper {
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        transform: none !important;
+        width: 100% !important;
+        margin: 20px 0 !important;
+        order: 2 !important;
+    }
+    .lego-hero-content {
+        position: relative !important;
+        right: 0 !important;
+        top: 0 !important;
+        transform: none !important;
+        width: 100% !important;
+        text-align: center !important;
+        order: 1 !important;
+        margin-bottom: 20px !important;
+    }
+    .lego-badges {
+        justify-content: center !important;
+    }
+    .lego-hero-actions {
+        justify-content: center !important;
+    }
+    .lego-logo-jp {
+        top: 20px !important;
+        left: 20px !important;
+        width: 60px !important;
+    }
+    .lego-brand-logo {
+        position: relative !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        margin-top: 25px !important;
+        text-align: center !important;
+        order: 3 !important;
+        font-size: 1.4rem !important;
+    }
+}
+
+/* 4. Column Grid Scaling for Categories */
+@media (max-width: 1200px) {
+    .category-grid-main {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+@media (max-width: 768px) {
+    .category-grid-main {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .collection-hero {
+        height: auto !important;
+        padding: 50px 20px !important;
+    }
+}
+
+/* 5. Compact Modal Layouts on Mobile Screen Widths */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 30px 20px !important;
+        border-radius: 14px !important;
+    }
+    .cookie-modal-content {
+        padding: 25px 20px !important;
+    }
+    .cookie-buttons {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
 }
 
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,314 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Shopping Grid styles */
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .landmark-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 680px) {
+            .landmark-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Product Card styles */
+        .landmark-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        }
+
+        .landmark-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        /* Tag styles */
+        .retiring-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e6f2ff;
+            color: #0056b3;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 4px;
+            z-index: 2;
+            letter-spacing: -0.3px;
+            border: 1px solid rgba(0, 86, 179, 0.15);
+        }
+
+        .new-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e6f2ff;
+            color: #0056b3;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 4px;
+            z-index: 2;
+            letter-spacing: -0.3px;
+            border: 1px solid rgba(0, 86, 179, 0.15);
+        }
+
+        /* Image section with perfect centering */
+        .card-image-wrap {
+            width: 100%;
+            aspect-ratio: 1.15 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .card-image-wrap img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .landmark-card:hover .card-image-wrap img {
+            transform: scale(1.06);
+        }
+
+        /* Horizontal Divider */
+        .card-divider {
+            height: 4px;
+            background: #eaeaea;
+            width: 130px;
+            border-radius: 2px;
+            margin-bottom: 18px;
+        }
+
+        /* Stats Row */
+        .card-stats {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: #555555;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card-stats span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-stats i {
+            font-size: 0.9rem;
+        }
+
+        /* Name */
+        .card-name {
+            font-family: var(--font-heading), sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 8px;
+            line-height: 1.35;
+        }
+
+        /* Price */
+        .card-price {
+            font-family: var(--font-body), sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 24px;
+        }
+
+        /* Buttons Row */
+        .card-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* Add to Cart button matching warm orange capsule exactly */
+        .btn-cart-add {
+            flex-grow: 1;
+            height: 48px;
+            background: #e27022;
+            color: #ffffff;
+            border: none;
+            border-radius: 24px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 10px rgba(226, 112, 34, 0.15);
+        }
+
+        .btn-cart-add:hover {
+            background: #ca5f18;
+        }
+
+        .btn-cart-add:active {
+            transform: scale(0.98);
+        }
+
+        /* Sold Out button (Red outline) */
+        .btn-sold-out {
+            flex-grow: 1;
+            height: 48px;
+            background: transparent;
+            color: #d11a2a;
+            border: 1.5px solid #e2b0b5;
+            border-radius: 24px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: not-allowed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        /* Toast Notification */
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1e293b;
+            color: #ffffff;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 9999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            color: #10b981;
+            font-size: 1.2rem;
+        }
+
+        /* Cart Badge */
+        .cart-badge {
+            background: #ef4444;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 10px;
+            margin-left: 6px;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1.2;
+        }
+
+        /* Pagination Styles */
+        .pagination-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 50px;
+            user-select: none;
+        }
+
+        .pagination-arrow {
+            font-size: 1.5rem;
+            color: #000000;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease;
+            background: none;
+            border: none;
+            padding: 5px 10px;
+            font-family: inherit;
+            font-weight: 900;
+        }
+
+        .pagination-arrow:disabled {
+            color: #e2e2e2;
+            cursor: not-allowed;
+            opacity: 1;
+        }
+
+        .pagination-arrow:not(:disabled):hover {
+            color: #0029b3;
+        }
+
+        .pagination-number {
+            font-size: 1.3rem;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            background: none;
+            border: none;
+            padding: 5px 10px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        /* Active page (Blue/bold) */
+        .pagination-number.active {
+            color: #0029b3;
+            cursor: default;
+            font-weight: 900;
+        }
+
+        /* Inactive page (Black) */
+        .pagination-number.inactive {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .pagination-number.inactive:hover {
+            color: #555555;
+        }
+    </style>
 </head>
 <body class="dark-mode">
     <div class="custom-cursor" id="cursor"></div>
@@ -59,69 +367,89 @@
 
     <main class="section" style="padding-top: 30px; min-height: 100vh; background-color: #ffffff; padding-bottom: 100px;">
         <div class="section-container" style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
-            <h1 style="font-size: 3rem; font-family: var(--font-heading); font-weight: 900; color: #111; margin-bottom: 40px; text-align: left;">가격별 제품</h1>
-            <div class="series-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px 30px;">
+            <h1 style="font-size: 3rem; font-family: var(--font-heading); font-weight: 900; color: #111; margin-bottom: 30px; text-align: left;">가격별 제품</h1>
+            
+            <!-- Category Title & Back button (Hidden by default) -->
+            <div id="price-filter-header" style="display: none; align-items: center; justify-content: space-between; margin-bottom: 35px; border-bottom: 2px solid #eaeaea; padding-bottom: 20px;">
+                <h2 id="active-price-title" style="font-size: 1.8rem; font-family: var(--font-heading); font-weight: 800; color: #111; margin: 0;">30,000원이하</h2>
+                <button onclick="showCategories()" style="background: #111; color: #fff; border: none; padding: 12px 24px; border-radius: 30px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; transition: all 0.2s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" class="hoverable">
+                    <i class="fa-solid fa-arrow-left"></i> 다른 가격대 보기
+                </button>
+            </div>
+
+            <!-- Categories Grid (Visible by default) -->
+            <div class="series-grid" id="categories-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px 30px;">
                 
                 <!-- Item 1 -->
                 <div class="series-card hoverable" style="display: flex; flex-direction: column; text-align: left; height: 100%;">
                     <div style="width: 100%; background-color: #f6f6f6; margin-bottom: 20px; overflow: hidden; display: flex; align-items: center; justify-content: center; aspect-ratio: 21/9;">
-                        <img src="1.png" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="20,000 원 이하">
+                        <img src="m1.png" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="30,000 원 이하">
                     </div>
                     <h3 style="font-size: 1.2rem; font-weight: 900; color: #000; margin-bottom: 10px; font-family: var(--font-heading);">30,000원이하</h3>
                     <p style="font-size: 0.85rem; color: #333; line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">부담스럽지 않은 가격! 30,000원 이하로 구매할 수 있는 멋진 레고® 선물을 살펴보세요.</p>
                     <div style="display: flex; gap: 15px; font-size: 0.85rem; font-weight: 900;">
-                        <a href="#" style="text-decoration: none; color: #000; display: inline-flex; align-items: center;">쇼핑하기 <i class="fas fa-chevron-right" style="font-size: 0.7em; margin-left: 5px;"></i></a>
+                        <a href="javascript:void(0)" onclick="filterProducts('under-30k', '30,000원이하')" style="text-decoration: none; color: #000; display: inline-flex; align-items: center; cursor: pointer;">쇼핑하기 <i class="fas fa-chevron-right" style="font-size: 0.7em; margin-left: 5px;"></i></a>
                     </div>
                 </div>
 
                 <!-- Item 2 -->
                 <div class="series-card hoverable" style="display: flex; flex-direction: column; text-align: left; height: 100%;">
                     <div style="width: 100%; background-color: #f6f6f6; margin-bottom: 20px; overflow: hidden; display: flex; align-items: center; justify-content: center; aspect-ratio: 21/9;">
-                        <img src="2.png" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="20,000 원 - 50,000 원">
+                        <img src="m2.png" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="30,000 원 - 50,000 원">
                     </div>
                     <h3 style="font-size: 1.2rem; font-weight: 900; color: #000; margin-bottom: 10px; font-family: var(--font-heading);">30,000 ~ 50,000원</h3>
                     <p style="font-size: 0.85rem; color: #333; line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">누구나 만족할 선물 아이디어! 30,000원~50,000원 가격대의 멋진 세트를 검색해 보세요.</p>
                     <div style="display: flex; gap: 15px; font-size: 0.85rem; font-weight: 900;">
-                        <a href="#" style="text-decoration: none; color: #000; display: inline-flex; align-items: center;">쇼핑하기 <i class="fas fa-chevron-right" style="font-size: 0.7em; margin-left: 5px;"></i></a>
+                        <a href="javascript:void(0)" onclick="filterProducts('30k-50k', '30,000 ~ 50,000원')" style="text-decoration: none; color: #000; display: inline-flex; align-items: center; cursor: pointer;">쇼핑하기 <i class="fas fa-chevron-right" style="font-size: 0.7em; margin-left: 5px;"></i></a>
                     </div>
                 </div>
 
                 <!-- Item 3 -->
                 <div class="series-card hoverable" style="display: flex; flex-direction: column; text-align: left; height: 100%;">
                     <div style="width: 100%; background-color: #f6f6f6; margin-bottom: 20px; overflow: hidden; display: flex; align-items: center; justify-content: center; aspect-ratio: 21/9;">
-                        <img src="3.png" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="50,000 원 - 100,000 원">
+                        <img src="m3.png" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="50,000 원 - 100,000 원">
                     </div>
                     <h3 style="font-size: 1.2rem; font-weight: 900; color: #000; margin-bottom: 10px; font-family: var(--font-heading);">50,000 원 ~ 100,000 원</h3>
                     <p style="font-size: 0.85rem; color: #333; line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">특별한 날 선물로 제격인 세트! 50,000원~100,000원 가격대의 매력적인 세트가 다양하게 준비되어 있습니다.</p>
                     <div style="display: flex; gap: 15px; font-size: 0.85rem; font-weight: 900;">
-                        <a href="#" style="text-decoration: none; color: #000; display: inline-flex; align-items: center;">쇼핑하기 <i class="fas fa-chevron-right" style="font-size: 0.7em; margin-left: 5px;"></i></a>
+                        <a href="javascript:void(0)" onclick="filterProducts('50k-100k', '50,000 원 ~ 100,000 원')" style="text-decoration: none; color: #000; display: inline-flex; align-items: center; cursor: pointer;">쇼핑하기 <i class="fas fa-chevron-right" style="font-size: 0.7em; margin-left: 5px;"></i></a>
                     </div>
                 </div>
 
                 <!-- Item 4 -->
                 <div class="series-card hoverable" style="display: flex; flex-direction: column; text-align: left; height: 100%;">
                     <div style="width: 100%; background-color: #f6f6f6; margin-bottom: 20px; overflow: hidden; display: flex; align-items: center; justify-content: center; aspect-ratio: 21/9;">
-                        <img src="4.png" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="100,000 원 - 200,000 원">
+                        <img src="m4.png" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="100,000 원 - 200,000 원">
                     </div>
                     <h3 style="font-size: 1.2rem; font-weight: 900; color: #000; margin-bottom: 10px; font-family: var(--font-heading);">100,000 원 ~ 200,000 원</h3>
                     <p style="font-size: 0.85rem; color: #333; line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">감탄을 자아내는 세트! 보자마자 아이들이 탄성을 지를 만한 100,000원~200,000원 가격대의 세트를 확인해 보세요.</p>
                     <div style="display: flex; gap: 15px; font-size: 0.85rem; font-weight: 900;">
-                        <a href="#" style="text-decoration: none; color: #000; display: inline-flex; align-items: center;">쇼핑하기 <i class="fas fa-chevron-right" style="font-size: 0.7em; margin-left: 5px;"></i></a>
+                        <a href="javascript:void(0)" onclick="filterProducts('100k-200k', '100,000 원 ~ 200,000 원')" style="text-decoration: none; color: #000; display: inline-flex; align-items: center; cursor: pointer;">쇼핑하기 <i class="fas fa-chevron-right" style="font-size: 0.7em; margin-left: 5px;"></i></a>
                     </div>
                 </div>
 
                 <!-- Item 5 -->
                 <div class="series-card hoverable" style="display: flex; flex-direction: column; text-align: left; height: 100%;">
                     <div style="width: 100%; background-color: #f6f6f6; margin-bottom: 20px; overflow: hidden; display: flex; align-items: center; justify-content: center; aspect-ratio: 21/9;">
-                        <img src="5.png" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="200,000 원 이상">
+                        <img src="m5.png" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="200,000 원 이상">
                     </div>
                     <h3 style="font-size: 1.2rem; font-weight: 900; color: #000; margin-bottom: 10px; font-family: var(--font-heading);">200,000 원 이상</h3>
                     <p style="font-size: 0.85rem; color: #333; line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">시선을 사로잡는 세트! 아이들에게 보물 1순위가 될 최고의 세트를 검색해 보세요.</p>
                     <div style="display: flex; gap: 15px; font-size: 0.85rem; font-weight: 900;">
-                        <a href="#" style="text-decoration: none; color: #000; display: inline-flex; align-items: center;">쇼핑하기 <i class="fas fa-chevron-right" style="font-size: 0.7em; margin-left: 5px;"></i></a>
+                        <a href="javascript:void(0)" onclick="filterProducts('over-200k', '200,000 원 이상')" style="text-decoration: none; color: #000; display: inline-flex; align-items: center; cursor: pointer;">쇼핑하기 <i class="fas fa-chevron-right" style="font-size: 0.7em; margin-left: 5px;"></i></a>
                     </div>
                 </div>
 
+            </div>
+
+            <!-- Products Grid (Hidden by default) -->
+            <div id="products-container" style="display: none; margin-top: 10px;">
+                <div class="landmark-grid" id="filtered-products-grid">
+                    <!-- Dynamic products go here -->
+                </div>
+                <div class="pagination-wrap" id="pagination-container">
+                    <!-- Dynamic pagination goes here -->
+                </div>
             </div>
         </div>
     </main>
@@ -215,6 +543,224 @@
         </div>
     </div>
 
+    <!-- Toast -->
+    <div class="toast-notification" id="cart-toast">
+        <i class="fa-solid fa-circle-check toast-icon"></i>
+        <span id="toast-message">장바구니에 상품이 담겼습니다.</span>
+    </div>
+
     <script src="main.js?v=1.1"></script>
+    <script>
+        const products = [
+            // Under 30,000원
+            { name: "요리사", priceText: "5,900 원", img: "j1.png", age: "6+", pieces: 5, stars: "4.5", tags: [], category: "under-30k" },
+            { name: "라이프가드", priceText: "5,900 원", img: "j2.png", age: "6+", pieces: 7, stars: "4.7", tags: ["new"], category: "under-30k" },
+            { name: "축구선수", priceText: "6,400 원", img: "j3.png", age: "6+", pieces: 5, stars: "4.9", tags: ["new"], category: "under-30k" },
+            { name: "남자 카우보이", priceText: "7,200 원", img: "j4.png", age: "6+", pieces: 5, stars: "5.0", tags: ["retiring", "soldout"], category: "under-30k" },
+            { name: "수영선수", priceText: "6,400 원", img: "j5.png", age: "6+", pieces: 7, stars: "4.9", tags: ["new"], category: "under-30k" },
+            { name: "여자 카우보이", priceText: "7,200 원", img: "j6.png", age: "6+", pieces: 5, stars: "5.0", tags: ["retiring", "soldout"], category: "under-30k" },
+            { name: "연주자", priceText: "6,400 원", img: "j7.png", age: "6+", pieces: 6, stars: "4.7", tags: [], category: "under-30k" },
+            { name: "마법사", priceText: "5,900 원", img: "j8.png", age: "6+", pieces: 5, stars: "4.5", tags: [], category: "under-30k" },
+            { name: "공룡 알바생", priceText: "5,900 원", img: "j9.png", age: "6+", pieces: 5, stars: "4.5", tags: [], category: "under-30k" },
+
+            // 30,000 ~ 50,000원
+            { name: "토이 스토리 알린", priceText: "39,900 원", img: "4.png", age: "6+", pieces: 256, stars: "4.7", tags: [], category: "30k-50k" },
+            { name: "클래식 빈티지 카", priceText: "45,000 원", img: "3.png", age: "8+", pieces: 320, stars: "4.8", tags: ["new"], category: "30k-50k" },
+            { name: "스피드 챔피언 레이서", priceText: "35,000 원", img: "2.png", age: "7+", pieces: 280, stars: "4.9", tags: [], category: "30k-50k" },
+            { name: "크리에이터 미니 타운하우스", priceText: "48,000 원", img: "1.png", age: "8+", pieces: 450, stars: "4.6", tags: ["retiring"], category: "30k-50k" },
+
+            // 50,000 ~ 100,000원
+            { name: "미니언즈 연구소", priceText: "79,900 원", img: "4.png", age: "8+", pieces: 640, stars: "4.5", tags: [], category: "50k-100k" },
+            { name: "클래식 브릭 보물상자", priceText: "68,000 원", img: "5.png", age: "9+", pieces: 850, stars: "4.7", tags: [], category: "50k-100k" },
+            { name: "스페이스 셔틀 탐사선", priceText: "89,000 원", img: "6.png", age: "8+", pieces: 590, stars: "4.8", tags: ["new"], category: "50k-100k" },
+            { name: "아키텍처 런던 스카이라인", priceText: "74,900 원", img: "7.png", age: "12+", pieces: 468, stars: "4.9", tags: [], category: "50k-100k" },
+
+            // 100,000 ~ 200,000원
+            { name: "빈티지 미키 마우스", priceText: "139,900 원", img: "4.png", age: "10+", pieces: 822, stars: "4.8", tags: [], category: "100k-200k" },
+            { name: "지브리 스타일 하늘정원", priceText: "189,900 원", img: "4.png", age: "12+", pieces: 1350, stars: "4.6", tags: ["retiring", "soldout"], category: "100k-200k" },
+            { name: "스파이더맨 웹 쿼터", priceText: "119,900 원", img: "4.png", age: "8+", pieces: 1090, stars: "4.8", tags: [], category: "100k-200k" },
+            { name: "크리에이터 중세 성곽", priceText: "159,000 원", img: "8.png", age: "9+", pieces: 1280, stars: "4.7", tags: ["new"], category: "100k-200k" },
+
+            // 200,000원 이상
+            { name: "콜로세움", priceText: "329,900 원", img: "a.png", age: "16+", pieces: 4217, stars: "4.7", tags: [], category: "over-200k" },
+            { name: "광화문", priceText: "419,900 원", img: "b.png", age: "18+", pieces: 6379, stars: "5.0", tags: ["retiring", "soldout"], category: "over-200k" },
+            { name: "남산 서울타워", priceText: "249,900 원", img: "c.png", age: "16+", pieces: 3527, stars: "4.8", tags: ["new"], category: "over-200k" },
+            { name: "타지마할", priceText: "249,900 원", img: "d.png", age: "16+", pieces: 3258, stars: "4.7", tags: [], category: "over-200k" },
+            { name: "루브르 박물관", priceText: "329,900 원", img: "e.png", age: "18+", pieces: 4357, stars: "4.8", tags: [], category: "over-200k" },
+            { name: "사그라다 파밀리아 성당", priceText: "489,900 원", img: "f.png", age: "18+", pieces: 8357, stars: "4.9", tags: [], category: "over-200k" },
+            { name: "예수상", priceText: "349,900 원", img: "g.png", age: "18+", pieces: 5876, stars: "4.9", tags: ["new"], category: "over-200k" },
+            { name: "오페라 하우스", priceText: "249,900 원", img: "h.png", age: "18+", pieces: 5231, stars: "5.0", tags: ["new"], category: "over-200k" },
+            { name: "피라미드와 스핑크스", priceText: "239,900 원", img: "i.png", age: "16+", pieces: 4361, stars: "4.6", tags: [], category: "over-200k" },
+            { name: "겨울왕국 얼음 궁전", priceText: "299,900 원", img: "4.png", age: "14+", pieces: 1709, stars: "4.9", tags: [], category: "over-200k" },
+            { name: "심슨 가족 하우스", priceText: "349,900 원", img: "4.png", age: "12+", pieces: 2523, stars: "4.9", tags: [], category: "over-200k" },
+            { name: "디즈니 클래식 캐슬", priceText: "479,900 원", img: "4.png", age: "18+", pieces: 4837, stars: "4.9", tags: ["retiring", "soldout"], category: "over-200k" },
+            { name: "배트맨 애니메이션 클래식", priceText: "259,900 원", img: "4.png", age: "18+", pieces: 2210, stars: "4.9", tags: [], category: "over-200k" }
+        ];
+
+        const cardsPerPage = 9;
+
+        function filterProducts(categoryKey, titleText, page = 1) {
+            // Show header and toggle view
+            document.getElementById('price-filter-header').style.display = 'flex';
+            document.getElementById('categories-grid').style.display = 'none';
+            document.getElementById('products-container').style.display = 'block';
+            document.getElementById('active-price-title').textContent = titleText;
+
+            const grid = document.getElementById('filtered-products-grid');
+            grid.innerHTML = '';
+
+            const filtered = products.filter(p => p.category === categoryKey);
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 50px; font-weight: 700; color: #777;">해당 가격대의 제품을 찾을 수 없습니다.</div>`;
+                document.getElementById('pagination-container').innerHTML = '';
+                return;
+            }
+
+            // Calculate pagination indexes
+            const totalPages = Math.ceil(filtered.length / cardsPerPage);
+            const startIndex = (page - 1) * cardsPerPage;
+            const endIndex = startIndex + cardsPerPage;
+            const paginatedItems = filtered.slice(startIndex, endIndex);
+
+            paginatedItems.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'landmark-card hoverable';
+
+                // Tag handling
+                let tagHtml = '';
+                if (p.tags.includes('retiring')) {
+                    tagHtml = `<span class="retiring-tag">단종 예정</span>`;
+                } else if (p.tags.includes('new')) {
+                    tagHtml = `<span class="new-tag">신제품</span>`;
+                }
+
+                // Action button handling
+                let actionBtnHtml = '';
+                if (p.tags.includes('soldout')) {
+                    actionBtnHtml = `<button class="btn-sold-out" disabled>일시품절</button>`;
+                } else {
+                    actionBtnHtml = `
+                        <button class="btn-cart-add hoverable" onclick="addToCart('${p.name}')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    `;
+                }
+
+                card.innerHTML = `
+                    ${tagHtml}
+                    <div class="card-image-wrap">
+                        <img src="${p.img}" alt="${p.name}" style="cursor: zoom-in;" onclick="openLightbox(this.src)">
+                    </div>
+                    <div class="card-divider"></div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> ${p.age}</span>
+                        <span><i class="fa-solid fa-cubes"></i> ${p.pieces}</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> ${p.stars}</span>
+                    </div>
+                    <h3 class="card-name">${p.name}</h3>
+                    <div class="card-price">${p.priceText}</div>
+                    <div class="card-actions">
+                        ${actionBtnHtml}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Render Pagination matching the image `< 1 2 >`
+            const paginationContainer = document.getElementById('pagination-container');
+            paginationContainer.innerHTML = '';
+
+            if (totalPages > 1) {
+                // Left Arrow Button
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'pagination-arrow';
+                prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+                if (page === 1) {
+                    prevBtn.disabled = true;
+                } else {
+                    prevBtn.onclick = () => filterProducts(categoryKey, titleText, page - 1);
+                }
+                paginationContainer.appendChild(prevBtn);
+
+                // Page Number Buttons
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageNumBtn = document.createElement('button');
+                    if (i === page) {
+                        pageNumBtn.className = 'pagination-number active';
+                    } else {
+                        pageNumBtn.className = 'pagination-number inactive';
+                        pageNumBtn.onclick = () => filterProducts(categoryKey, titleText, i);
+                    }
+                    pageNumBtn.textContent = i;
+                    paginationContainer.appendChild(pageNumBtn);
+                }
+
+                // Right Arrow Button
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'pagination-arrow';
+                nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+                if (page === totalPages) {
+                    nextBtn.disabled = true;
+                } else {
+                    nextBtn.onclick = () => filterProducts(categoryKey, titleText, page + 1);
+                }
+                paginationContainer.appendChild(nextBtn);
+            }
+
+            // Smooth scroll to top of section
+            window.scrollTo({ top: document.querySelector('main').offsetTop - 30, behavior: 'smooth' });
+        }
+
+        function showCategories() {
+            document.getElementById('price-filter-header').style.display = 'none';
+            document.getElementById('categories-grid').style.display = 'grid';
+            document.getElementById('products-container').style.display = 'none';
+            
+            // Smooth scroll to top
+            window.scrollTo({ top: document.querySelector('main').offsetTop - 30, behavior: 'smooth' });
+        }
+
+        let cartCount = 0;
+        function addToCart(productName) {
+            cartCount++;
+            const toast = document.getElementById('cart-toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = `🛒 "${productName}"이(가) 장바구니에 담겼습니다!`;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+
+            // Update header cart link with badge
+            const cartLink = document.querySelector('a[href="companies.html"]');
+            if (cartLink) {
+                let badge = cartLink.querySelector('.cart-badge');
+                if (!badge) {
+                    badge = document.createElement('span');
+                    badge.className = 'cart-badge';
+                    cartLink.appendChild(badge);
+                }
+                badge.textContent = cartCount;
+            }
+        }
+
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+
+        // Setup generic lightbox close handlers
+        document.getElementById('lightbox-close').addEventListener('click', () => {
+            document.getElementById('lightbox').classList.remove('active');
+        });
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox' || e.target.id === 'lightbox-close') {
+                document.getElementById('lightbox').classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
