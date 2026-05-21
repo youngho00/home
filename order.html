@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -57,49 +57,210 @@
 
     
 
-    <main class="section" style="padding-top: 150px; min-height: 100vh; background-color: #0b0b0b;">
-        <div class="section-container">
-            <h1 style="font-size: 5rem; font-family: var(--font-heading); font-weight: 900; color: #fff; margin-bottom: 50px;">주문 현황 확인</h1>
-            <div style="background: rgba(255,255,255,0.05); padding: 50px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); max-width: 600px; margin: 0 auto;">
-                <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px; text-align: center;">주문 번호와 이메일을 입력하여 주문 현황을 확인하실 수 있습니다.</p>
-                <form style="display: flex; flex-direction: column; gap: 20px;">
-                    <input type="text" placeholder="주문 번호" style="padding: 20px; border-radius: 15px; border: none; background: #fff; color: #000; font-size: 1.1rem;">
-                    <input type="email" placeholder="이메일 주소" style="padding: 20px; border-radius: 15px; border: none; background: #fff; color: #000; font-size: 1.1rem;">
-                    <button type="submit" style="padding: 20px; border-radius: 15px; border: none; background: var(--accent-color); color: #000; font-weight: 900; font-size: 1.2rem; cursor: pointer;">확인하기</button>
-                </form>
-            </div>
+    <main class="section" style="padding-top: 50px; padding-bottom: 120px; min-height: 100vh; background-color: #ffffff; color: #000000; display: block;">
+        <style>
+            .order-status-container {
+                max-width: 680px;
+                margin: 0 auto;
+                padding: 0 40px;
+                font-family: var(--font-body);
+                color: #000000;
+            }
+            .order-status-title {
+                font-size: 2.3rem;
+                font-family: var(--font-heading);
+                font-weight: 700;
+                color: #000000;
+                margin-top: 0;
+                margin-bottom: 40px;
+                letter-spacing: -0.5px;
+            }
+            .order-status-subtitle {
+                font-size: 1.45rem;
+                font-family: var(--font-heading);
+                font-weight: 700;
+                color: #000000;
+                margin-top: 0;
+                margin-bottom: 15px;
+                letter-spacing: -0.3px;
+            }
+            .order-status-desc {
+                font-size: 1.0rem;
+                line-height: 1.6;
+                color: #000000;
+                margin-top: 0;
+                margin-bottom: 30px;
+                font-weight: 400;
+                letter-spacing: -0.2px;
+            }
+            .order-status-form {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+            }
+            .order-status-input-group {
+                position: relative;
+                width: 100%;
+            }
+            .order-status-input {
+                width: 100%;
+                padding: 22px 24px;
+                font-size: 1.1rem;
+                font-family: var(--font-body);
+                border: 1.5px solid #b5b5b5;
+                border-radius: 12px;
+                background-color: #ffffff;
+                color: #000000;
+                outline: none;
+                transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            }
+            .order-status-input::placeholder {
+                color: #767676;
+                opacity: 1;
+            }
+            .order-status-input:focus {
+                border-color: #2a5cd1;
+                box-shadow: 0 0 0 4px rgba(42, 92, 209, 0.15);
+            }
+            .order-status-btn {
+                width: 100%;
+                padding: 20px;
+                font-size: 1.25rem;
+                font-family: var(--font-body);
+                font-weight: 700;
+                color: #ffffff;
+                background-color: #0080ff;
+                border: none;
+                border-radius: 40px;
+                cursor: pointer;
+                text-align: center;
+                transition: background-color 0.2s ease, transform 0.1s ease;
+                margin-top: 10px;
+            }
+            .order-status-btn:hover {
+                background-color: #3b9cff;
+            }
+            .order-status-btn:active {
+                transform: scale(0.99);
+            }
+            /* Media queries for responsiveness */
+            @media (max-width: 768px) {
+                .order-status-container {
+                    padding: 0 20px;
+                }
+                .order-status-title {
+                    font-size: 2.0rem;
+                    margin-bottom: 30px;
+                }
+                .order-status-subtitle {
+                    font-size: 1.3rem;
+                }
+                .order-status-desc {
+                    font-size: 0.95rem;
+                }
+                .order-status-input {
+                    padding: 18px 20px;
+                    font-size: 1.0rem;
+                }
+                .order-status-btn {
+                    padding: 18px;
+                    font-size: 1.15rem;
+                }
+            }
+        </style>
+        <div class="order-status-container">
+            <h1 class="order-status-title">주문 현황 확인</h1>
+            
+            <h2 class="order-status-subtitle">레고 계정이 없으신가요?</h2>
+            
+            <p class="order-status-desc">
+                주문번호(주문 확인 이메일에서 확인 가능)와 이메일 주소를 입력하시면 주문 상태를 볼 수 있는 링크를 보내 드립니다.
+            </p>
+            
+            <form class="order-status-form" onsubmit="event.preventDefault(); alert('이메일이 전송되었습니다!');">
+                <div class="order-status-input-group">
+                    <input type="text" placeholder="주문번호 *" class="order-status-input" required>
+                </div>
+                <div class="order-status-input-group">
+                    <input type="email" placeholder="이메일 *" class="order-status-input" required>
+                </div>
+                <button type="submit" class="order-status-btn hoverable">이메일 보내기</button>
+            </form>
         </div>
     </main>
 
-    <div class="modal-overlay" id="login-modal">
-        <div class="modal-content">
-            <button class="modal-close" id="close-login">&times;</button>
-            <h2 class="modal-title">로그인</h2>
-            <form class="modal-form">
-                <div class="form-group">
-                    <label for="email">이메일</label>
-                    <input type="email" id="email" placeholder="이메일을 입력하세요" required>
+            <div class="modal-overlay" id="login-modal">
+        <div class="insiders-modal-content">
+            <button class="insiders-modal-close" id="close-login">&times;</button>
+            <div class="insiders-modal-body">
+                <!-- Left Column -->
+                <div class="insiders-left-col">
+                    <h2 class="insiders-brand">환영합니다</h2>
+                    <p class="insiders-subtitle">제품을 구매할 때마다 포인트를 적립하고, 회원 전용 혜택을 누려보세요.</p>
+                    <div class="insiders-buttons">
+                        <button class="insiders-btn insiders-btn-primary hoverable">회원 가입</button>
+                        <button class="insiders-btn insiders-btn-secondary hoverable">로그인</button>
+                    </div>
+                    <div class="insiders-order-status">
+                        <a href="order.html" class="insiders-link hoverable">
+                            주문현황
+                        </a>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="password">비밀번호</label>
-                    <input type="password" id="password" placeholder="비밀번호를 입력하세요" required>
+                <!-- Right Column -->
+                <div class="insiders-right-col">
+                    <div class="insiders-benefits-box">
+                        <!-- Benefit 1 -->
+                        <div class="insiders-benefit-item">
+                            <div class="insiders-icon-container">
+                                <!-- Red diamond with % -->
+                                <div class="insiders-icon-diamond">
+                                    <span>%</span>
+                                </div>
+                            </div>
+                            <div class="insiders-benefit-text">
+                                <h3 class="insiders-benefit-title">회원 할인 혜택</h3>
+                                <p class="insiders-benefit-desc">구매할 때마다 쌓이는 포인트를 사용해 더 저렴하게 구매할 수 있어요.</p>
+                            </div>
+                        </div>
+                        <!-- Benefit 2 -->
+                        <div class="insiders-benefit-item">
+                            <div class="insiders-icon-container">
+                                <!-- Purple star with circle -->
+                                <div class="insiders-icon-star">
+                                    <svg viewBox="0 0 24 24" width="36" height="36" fill="#4d3791">
+                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                        <circle cx="12" cy="11.5" r="2.5" fill="#ffffff"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="insiders-benefit-text">
+                                <h3 class="insiders-benefit-title">사용 가능한 리워드</h3>
+                                <p class="insiders-benefit-desc">획득한 포인트를 레고&reg; 세트, 상품, 레고랜드&reg; 티켓 등 다양한 독점 리워드로 교환할 수 있어요.</p>
+                            </div>
+                        </div>
+                        <!-- Benefit 3 -->
+                        <div class="insiders-benefit-item">
+                            <div class="insiders-icon-container">
+                                <!-- Golden key -->
+                                <div class="insiders-icon-key">
+                                    <svg viewBox="0 0 24 24" width="36" height="36" fill="#e6b830">
+                                        <path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="insiders-benefit-text">
+                                <h3 class="insiders-benefit-title">선주문 혜택</h3>
+                                <p class="insiders-benefit-desc">좋아하는 신제품이나 인기 세트를 누구보다 먼저 받아볼 수 있어요.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="modal-submit">로그인</button>
-            </form>
-            <div class="social-login">
-                <p class="social-divider">다른 계정으로 계속</p>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/login" target="_blank" class="social-icon facebook hoverable"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://accounts.google.com/signin" target="_blank" class="social-icon google hoverable"><i class="fab fa-google"></i></a>
-                    <a href="https://appleid.apple.com/" target="_blank" class="social-icon apple hoverable"><i class="fab fa-apple"></i></a>
-                    <a href="https://v3.account.samsung.com/" target="_blank" class="social-icon samsung hoverable"><i class="fa-solid fa-s"></i></a>
-                </div>
-            </div>
-            <div class="modal-footer">
-                계정이 없으신가요? <span class="modal-link" id="go-to-signup">회원가입</span>
             </div>
         </div>
     </div>
+
 
     <div class="mega-menu-overlay" id="mega-menu">
         <div class="mega-menu-container">

@@ -93,41 +93,79 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Login & Signup Modal Logic
     const loginModal = document.getElementById('login-modal');
     let signupModal = document.getElementById('signup-modal');
+    let loginFormModal = document.getElementById('login-form-modal');
 
-    if (!signupModal && loginModal) {
+    // Inject signup modal if not present
+    if (!signupModal) {
         document.body.insertAdjacentHTML('beforeend', `
         <div class="modal-overlay" id="signup-modal">
             <div class="modal-content">
                 <button class="modal-close" id="close-signup">&times;</button>
-                <h2 class="modal-title">회원가입</h2>
-                <form class="modal-form">
+                <h2 class="modal-title">\ud68c\uc6d0\uac00\uc785</h2>
+                <form class="modal-form" onsubmit="event.preventDefault(); alert('\ud68c\uc6d0\uac00\uc785\uc774 \uc644\ub8cc\ub418\uc5c8\uc2b5\ub2c8\ub2e4!');"> 
                     <div class="form-group">
-                        <label for="signup-name">이름</label>
-                        <input type="text" id="signup-name" placeholder="이름을 입력하세요" required>
+                        <label for="signup-name">\uc774\ub984</label>
+                        <input type="text" id="signup-name" placeholder="\uc774\ub984\uc744 \uc785\ub825\ud558\uc138\uc694" required>
                     </div>
                     <div class="form-group">
-                        <label for="signup-email">이메일</label>
-                        <input type="email" id="signup-email" placeholder="이메일을 입력하세요" required>
+                        <label for="signup-email">\uc774\uba54\uc77c</label>
+                        <input type="email" id="signup-email" placeholder="\uc774\uba54\uc77c\uc744 \uc785\ub825\ud558\uc138\uc694" required>
                     </div>
                     <div class="form-group">
-                        <label for="signup-password">비밀번호</label>
-                        <input type="password" id="signup-password" placeholder="비밀번호를 입력하세요" required>
+                        <label for="signup-password">\ube44\ubc00\ubc88\ud638</label>
+                        <input type="password" id="signup-password" placeholder="\ube44\ubc00\ubc88\ud638\ub97c \uc785\ub825\ud558\uc138\uc694" required>
                     </div>
-                    <button type="submit" class="modal-submit" style="margin-top: 10px;">회원가입</button>
+                    <button type="submit" class="modal-submit">\ud68c\uc6d0\uac00\uc785</button>
                 </form>
                 <div class="modal-footer">
-                    이미 계정이 있으신가요? <span class="modal-link" id="go-to-login">로그인</span>
+                    \uc774\ubbf8 \uacc4\uc815\uc774 \uc788\uc73c\uc2e0\uac00\uc694? <span class="modal-link" id="go-to-login-form">\ub85c\uadf8\uc778</span>
                 </div>
             </div>
         </div>`);
         signupModal = document.getElementById('signup-modal');
     }
 
+    // Inject login form modal if not present
+    if (!loginFormModal) {
+        document.body.insertAdjacentHTML('beforeend', `
+        <div class="modal-overlay" id="login-form-modal">
+            <div class="modal-content">
+                <button class="modal-close" id="close-login-form">&times;</button>
+                <h2 class="modal-title">\ub85c\uadf8\uc778</h2>
+                <form class="modal-form" onsubmit="event.preventDefault(); alert('\ub85c\uadf8\uc778\uc774 \uc644\ub8cc\ub418\uc5c8\uc2b5\ub2c8\ub2e4!');"> 
+                    <div class="form-group">
+                        <label for="lf-email">\uc774\uba54\uc77c</label>
+                        <input type="email" id="lf-email" placeholder="\uc774\uba54\uc77c\uc744 \uc785\ub825\ud558\uc138\uc694" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lf-password">\ube44\ubc00\ubc88\ud638</label>
+                        <input type="password" id="lf-password" placeholder="\ube44\ubc00\ubc88\ud638\ub97c \uc785\ub825\ud558\uc138\uc694" required>
+                    </div>
+                    <button type="submit" class="modal-submit">\ub85c\uadf8\uc778</button>
+                </form>
+                <div class="login-form-social">
+                    <p class="login-form-divider">\ub2e4\ub978 \uacc4\uc815\uc73c\ub85c \uacc4\uc18d</p>
+                    <div class="login-form-social-icons">
+                        <a href="https://www.facebook.com/login" target="_blank" class="lf-social-btn lf-facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://accounts.google.com/signin" target="_blank" class="lf-social-btn lf-google" title="Google"><i class="fab fa-google"></i></a>
+                        <a href="https://appleid.apple.com/" target="_blank" class="lf-social-btn lf-apple" title="Apple"><i class="fab fa-apple"></i></a>
+                        <a href="https://v3.account.samsung.com/" target="_blank" class="lf-social-btn lf-samsung" title="Samsung"><span>\uc2ec\uc2dc\uc54a</span><b>S</b></a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    \uacc4\uc815\uc774 \uc5c6\uc73c\uc2e0\uac00\uc694? <span class="modal-link" id="go-to-signup-from-login">\ud68c\uc6d0\uac00\uc785</span>
+                </div>
+            </div>
+        </div>`);
+        loginFormModal = document.getElementById('login-form-modal');
+    }
+
     const openLoginBtns = document.querySelectorAll('#open-login, #promo-open-login');
     const closeLogin = document.getElementById('close-login');
     const closeSignup = document.getElementById('close-signup');
-    const goToSignup = document.getElementById('go-to-signup');
-    const goToLogin = document.getElementById('go-to-login');
+    const closeLoginForm = document.getElementById('close-login-form');
+    const goToLoginForm = document.getElementById('go-to-login-form');
+    const goToSignupFromLogin = document.getElementById('go-to-signup-from-login');
 
     const openModal = (modal) => {
         if (!modal) return;
@@ -143,13 +181,34 @@ document.addEventListener('DOMContentLoaded', () => {
     openLoginBtns.forEach(btn => btn.addEventListener('click', () => openModal(loginModal)));
     if (closeLogin) closeLogin.addEventListener('click', () => closeModal(loginModal));
     if (closeSignup) closeSignup.addEventListener('click', () => closeModal(signupModal));
-    
-    if (goToSignup) goToSignup.addEventListener('click', () => { closeModal(loginModal); setTimeout(() => openModal(signupModal), 300); });
-    if (goToLogin) goToLogin.addEventListener('click', () => { closeModal(signupModal); setTimeout(() => openModal(loginModal), 300); });
+    if (closeLoginForm) closeLoginForm.addEventListener('click', () => closeModal(loginFormModal));
+
+    // Insiders modal — '회원 가입' button opens signup modal
+    document.querySelectorAll('.insiders-btn-primary').forEach(btn => {
+        btn.removeAttribute('onclick');
+        btn.addEventListener('click', () => {
+            closeModal(loginModal);
+            setTimeout(() => openModal(signupModal), 300);
+        });
+    });
+
+    // Insiders modal — '로그인' button opens login form modal
+    document.querySelectorAll('.insiders-btn-secondary').forEach(btn => {
+        btn.removeAttribute('onclick');
+        btn.addEventListener('click', () => {
+            closeModal(loginModal);
+            setTimeout(() => openModal(loginFormModal), 300);
+        });
+    });
+
+    // Cross-navigation between modals
+    if (goToLoginForm) goToLoginForm.addEventListener('click', () => { closeModal(signupModal); setTimeout(() => openModal(loginFormModal), 300); });
+    if (goToSignupFromLogin) goToSignupFromLogin.addEventListener('click', () => { closeModal(loginFormModal); setTimeout(() => openModal(signupModal), 300); });
 
     window.addEventListener('click', (e) => {
         if (e.target === loginModal) closeModal(loginModal);
         if (e.target === signupModal) closeModal(signupModal);
+        if (e.target === loginFormModal) closeModal(loginFormModal);
     });
 
     // 5. Mega Menu Interaction

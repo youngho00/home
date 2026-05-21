@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -78,14 +78,30 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: #ffdb00;
-            color: #000000;
+            background: #e6f2ff;
+            color: #0056b3;
             font-size: 0.75rem;
-            font-weight: 800;
+            font-weight: 500;
             padding: 4px 12px;
             border-radius: 4px;
             z-index: 2;
             letter-spacing: -0.3px;
+            border: 1px solid rgba(0, 86, 179, 0.15);
+        }
+
+        .new-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e6f2ff;
+            color: #0056b3;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 4px;
+            z-index: 2;
+            letter-spacing: -0.3px;
+            border: 1px solid rgba(0, 86, 179, 0.15);
         }
 
         /* Image section with perfect centering */
@@ -314,15 +330,16 @@
             </div>
 
             <h1 style="font-size: 3rem; font-family: var(--font-heading); font-weight: 800; color: #111; margin-bottom: 10px; text-align: left; letter-spacing: -1.5px;">에디션 컬렉션</h1>
-            <p style="font-size: 1.05rem; color: #555555; margin-bottom: 40px; text-align: left; font-weight: 500;">전 세계 가장 역사적이고 아름다운 한정판 에디션들을 소장해보세요.</p>
+            <p style="font-size: 1.05rem; color: #555555; margin-bottom: 40px; text-align: left; font-weight: 500;">아름다운 한정판 에디션들 제품들을 소장해보세요.</p>
             
             <!-- Grid -->
             <div class="landmark-grid">
                 
                 <!-- Card 1 -->
                 <div class="landmark-card hoverable">
+                    <span class="retiring-tag">단종 예정</span>
                     <div class="card-image-wrap">
-                        <img src="8.png" alt="NASA 아폴로 새턴 V">
+                        <img src="k1.png" alt="맨체스터 유나이티드 - 올드 트래퍼드">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
@@ -330,19 +347,18 @@
                         <span><i class="fa-solid fa-cubes"></i> 1969</span>
                         <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
                     </div>
-                    <h3 class="card-name">NASA 아폴로 새턴 V</h3>
+                    <h3 class="card-name">맨체스터 유나이티드 - 올드 트래퍼드</h3>
                     <div class="card-price">179,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('NASA 아폴로 새턴 V')">
-                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
-                        </button>
+                        <button class="btn-sold-out" disabled>일시품절</button>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
                 <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
                     <div class="card-image-wrap">
-                        <img src="8.png" alt="스타워즈 밀레니엄 팔콘 UCS">
+                        <img src="k2.png" alt="브릭 크록스">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
@@ -350,19 +366,17 @@
                         <span><i class="fa-solid fa-cubes"></i> 7541</span>
                         <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 5.0</span>
                     </div>
-                    <h3 class="card-name">스타워즈 밀레니엄 팔콘 UCS</h3>
+                    <h3 class="card-name">브릭 크록스</h3>
                     <div class="card-price">1,099,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('스타워즈 밀레니엄 팔콘 UCS')">
-                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
-                        </button>
+                        <button class="btn-sold-out" disabled>일시품절</button>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
                 <div class="landmark-card hoverable">
                     <div class="card-image-wrap">
-                        <img src="8.png" alt="타임머신 스포츠카 에디션">
+                        <img src="k3.png" alt="Nike Air Max 95">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
@@ -370,10 +384,10 @@
                         <span><i class="fa-solid fa-cubes"></i> 1872</span>
                         <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
                     </div>
-                    <h3 class="card-name">타임머신 스포츠카 에디션</h3>
+                    <h3 class="card-name">Nike Air Max 95</h3>
                     <div class="card-price">259,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('타임머신 스포츠카 에디션')">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('Nike Air Max 95')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
                         </button>
                     </div>
@@ -382,7 +396,7 @@
                 <!-- Card 4 -->
                 <div class="landmark-card hoverable">
                     <div class="card-image-wrap">
-                        <img src="8.png" alt="호그와트 캐슬 익스프레스">
+                        <img src="k4.png" alt="FIFA 월드컵 엠블럼">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
@@ -390,10 +404,10 @@
                         <span><i class="fa-solid fa-cubes"></i> 5129</span>
                         <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
                     </div>
-                    <h3 class="card-name">호그와트 캐슬 익스프레스</h3>
+                    <h3 class="card-name">FIFA 월드컵 엠블럼</h3>
                     <div class="card-price">649,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('호그와트 캐슬 익스프레스')">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('FIFA 월드컵 엠블럼')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
                         </button>
                     </div>
@@ -401,9 +415,9 @@
 
                 <!-- Card 5 -->
                 <div class="landmark-card hoverable">
-                    <span class="retiring-tag">단종 예정</span>
+                    <span class="new-tag">신제품</span>
                     <div class="card-image-wrap">
-                        <img src="8.png" alt="타이타닉 레전드 스케일">
+                        <img src="k5.png" alt="브릭 자전거">
                     </div>
                     <div class="card-divider"></div>
                     <div class="card-stats">
@@ -411,87 +425,10 @@
                         <span><i class="fa-solid fa-cubes"></i> 9090</span>
                         <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
                     </div>
-                    <h3 class="card-name">타이타닉 레전드 스케일</h3>
+                    <h3 class="card-name">브릭 자전거</h3>
                     <div class="card-price">899,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-sold-out" disabled>일시품절</button>
-                    </div>
-                </div>
-
-                <!-- Card 6 -->
-                <div class="landmark-card hoverable">
-                    <span class="retiring-tag">단종 예정</span>
-                    <div class="card-image-wrap">
-                        <img src="8.png" alt="에펠탑 얼티메이트">
-                    </div>
-                    <div class="card-divider"></div>
-                    <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 10001</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
-                    </div>
-                    <h3 class="card-name">에펠탑 얼티메이트</h3>
-                    <div class="card-price">849,900 원</div>
-                    <div class="card-actions">
-                        <button class="btn-sold-out" disabled>일시품절</button>
-                    </div>
-                </div>
-
-                <!-- Card 7 -->
-                <div class="landmark-card hoverable">
-                    <div class="card-image-wrap">
-                        <img src="8.png" alt="반지의 제왕 리븐델">
-                    </div>
-                    <div class="card-divider"></div>
-                    <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 6167</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
-                    </div>
-                    <h3 class="card-name">반지의 제왕 리븐델</h3>
-                    <div class="card-price">649,900 원</div>
-                    <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('반지의 제왕 리븐델')">
-                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card 8 -->
-                <div class="landmark-card hoverable">
-                    <div class="card-image-wrap">
-                        <img src="8.png" alt="고스트버스터즈 ECTO-1">
-                    </div>
-                    <div class="card-divider"></div>
-                    <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 2352</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
-                    </div>
-                    <h3 class="card-name">고스트버스터즈 ECTO-1</h3>
-                    <div class="card-price">329,900 원</div>
-                    <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('고스트버스터즈 ECTO-1')">
-                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card 9 -->
-                <div class="landmark-card hoverable">
-                    <div class="card-image-wrap">
-                        <img src="8.png" alt="월-E 클래식 콜렉터">
-                    </div>
-                    <div class="card-divider"></div>
-                    <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 12+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 676</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
-                    </div>
-                    <h3 class="card-name">월-E 클래식 콜렉터</h3>
-                    <div class="card-price">119,900 원</div>
-                    <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('월-E 클래식 콜렉터')">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('브릭 자전거')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
                         </button>
                     </div>
@@ -502,37 +439,78 @@
     </main>
 
     <!-- Modals -->
-    <div class="modal-overlay" id="login-modal">
-        <div class="modal-content">
-            <button class="modal-close" id="close-login">&times;</button>
-            <h2 class="modal-title">로그인</h2>
-            <form class="modal-form">
-                <div class="form-group">
-                    <label for="email">이메일</label>
-                    <input type="email" id="email" placeholder="이메일을 입력하세요" required>
+                <div class="modal-overlay" id="login-modal">
+        <div class="insiders-modal-content">
+            <button class="insiders-modal-close" id="close-login">&times;</button>
+            <div class="insiders-modal-body">
+                <!-- Left Column -->
+                <div class="insiders-left-col">
+                    <h2 class="insiders-brand">환영합니다</h2>
+                    <p class="insiders-subtitle">제품을 구매할 때마다 포인트를 적립하고, 회원 전용 혜택을 누려보세요.</p>
+                    <div class="insiders-buttons">
+                        <button class="insiders-btn insiders-btn-primary hoverable">회원 가입</button>
+                        <button class="insiders-btn insiders-btn-secondary hoverable">로그인</button>
+                    </div>
+                    <div class="insiders-order-status">
+                        <a href="order.html" class="insiders-link hoverable">
+                            주문현황
+                        </a>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="password">비밀번호</label>
-                    <input type="password" id="password" placeholder="비밀번호를 입력하세요" required>
+                <!-- Right Column -->
+                <div class="insiders-right-col">
+                    <div class="insiders-benefits-box">
+                        <!-- Benefit 1 -->
+                        <div class="insiders-benefit-item">
+                            <div class="insiders-icon-container">
+                                <!-- Red diamond with % -->
+                                <div class="insiders-icon-diamond">
+                                    <span>%</span>
+                                </div>
+                            </div>
+                            <div class="insiders-benefit-text">
+                                <h3 class="insiders-benefit-title">회원 할인 혜택</h3>
+                                <p class="insiders-benefit-desc">구매할 때마다 쌓이는 포인트를 사용해 더 저렴하게 구매할 수 있어요.</p>
+                            </div>
+                        </div>
+                        <!-- Benefit 2 -->
+                        <div class="insiders-benefit-item">
+                            <div class="insiders-icon-container">
+                                <!-- Purple star with circle -->
+                                <div class="insiders-icon-star">
+                                    <svg viewBox="0 0 24 24" width="36" height="36" fill="#4d3791">
+                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                        <circle cx="12" cy="11.5" r="2.5" fill="#ffffff"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="insiders-benefit-text">
+                                <h3 class="insiders-benefit-title">사용 가능한 리워드</h3>
+                                <p class="insiders-benefit-desc">획득한 포인트를 레고&reg; 세트, 상품, 레고랜드&reg; 티켓 등 다양한 독점 리워드로 교환할 수 있어요.</p>
+                            </div>
+                        </div>
+                        <!-- Benefit 3 -->
+                        <div class="insiders-benefit-item">
+                            <div class="insiders-icon-container">
+                                <!-- Golden key -->
+                                <div class="insiders-icon-key">
+                                    <svg viewBox="0 0 24 24" width="36" height="36" fill="#e6b830">
+                                        <path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="insiders-benefit-text">
+                                <h3 class="insiders-benefit-title">선주문 혜택</h3>
+                                <p class="insiders-benefit-desc">좋아하는 신제품이나 인기 세트를 누구보다 먼저 받아볼 수 있어요.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="modal-submit">로그인</button>
-            </form>
-            <div class="social-login">
-                <p class="social-divider">다른 계정으로 계속</p>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/login" target="_blank" class="social-icon facebook hoverable"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://accounts.google.com/signin" target="_blank" class="social-icon google hoverable"><i class="fab fa-google"></i></a>
-                    <a href="https://appleid.apple.com/" target="_blank" class="social-icon apple hoverable"><i class="fab fa-apple"></i></a>
-                    <a href="https://v3.account.samsung.com/" target="_blank" class="social-icon samsung hoverable"><i class="fa-solid fa-s"></i></a>
-                </div>
-            </div>
-            <div class="modal-footer">
-                계정이 없으신가요? <span class="modal-link" id="go-to-signup">회원가입</span>
             </div>
         </div>
     </div>
 
-    <!-- Mega Menu -->
+
     <div class="mega-menu-overlay" id="mega-menu">
         <div class="mega-menu-container">
             <div class="mega-menu-header">
