@@ -16,10 +16,12 @@ foreach ($file in $files) {
     if ($file.Name -match "about|news|partnership") { $activeCat = "brand" }
     elseif ($file.Name -match "series|age|price|new|exclusive|deals|coming-soon|last-chance") { $activeCat = "products" }
     elseif ($file.Name -match "order|shipping|assembly|faq|contact|bricks") { $activeCat = "support" }
+    elseif ($file.Name -match "board") { $activeCat = "board" }
     
     $b = if ($activeCat -eq "brand") { "active" } else { "" }
     $p = if ($activeCat -eq "products") { "active" } else { "" }
     $s = if ($activeCat -eq "support") { "active" } else { "" }
+    $boardActive = if ($activeCat -eq "board") { "active" } else { "" }
 
     # 3. Snippets (Using literals now, it's safer than my bad hex math)
     $promoBar = @"
@@ -43,7 +45,7 @@ foreach ($file in $files) {
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="hoverable">HOME</a></li>
@@ -57,6 +59,7 @@ foreach ($file in $files) {
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger $s" data-category="support">고객 지원</a>
                 </li>
+                <li><a href="board.html" class="hoverable $boardActive">팬 커뮤니티</a></li>
             </ul>
             <div class="header-right">
             </div>
@@ -126,7 +129,7 @@ foreach ($file in $files) {
         <div class="mega-menu-container">
             <div class="mega-menu-header">
                 <div class="mega-menu-logo">
-                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                    <span style="font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: #ffcc00; letter-spacing: -0.5px;">Brick Mate</span>
                 </div>
                 <nav class="mega-menu-nav">
                     <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>

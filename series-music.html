@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,7 @@
     <title>뮤직 컬렉션 | YH04 PRODUCTS</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -78,14 +79,30 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: #ffdb00;
-            color: #000000;
+            background: #e6f2ff;
+            color: #0056b3;
             font-size: 0.75rem;
-            font-weight: 800;
+            font-weight: 500;
             padding: 4px 12px;
             border-radius: 4px;
             z-index: 2;
             letter-spacing: -0.3px;
+            border: 1px solid rgba(0, 86, 179, 0.15);
+        }
+
+        .new-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e6f2ff;
+            color: #0056b3;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 4px;
+            z-index: 2;
+            letter-spacing: -0.3px;
+            border: 1px solid rgba(0, 86, 179, 0.15);
         }
 
         /* Image section with perfect centering */
@@ -261,7 +278,62 @@
     </style>
 </head>
 <body class="dark-mode">
-    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor" id="cursor">
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <div class="mobile-nav-panel">
+        <div class="mobile-nav-header">
+            <span class="mobile-nav-logo">Brick Mate</span>
+            <button class="mobile-nav-close" id="mobile-nav-close">&times;</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-brand">
+                    釉뚮옖???뚭컻 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-brand">
+                    <li><a href="about.html">?뚭컻</a></li>
+                    <li><a href="news.html">愿???뚯궗</a></li>
+                    <li><a href="partnership.html">?ㅺ??ㅻ뒗 ?뚰듃?덉떗</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-products">
+                    ?쒗뭹 ?뚯떇 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-products">
+                    <li><a href="series.html">?쒕━利덈퀎 ?명듃</a></li>
+                    <li><a href="age.html">?곕졊蹂?/a></li>
+                    <li><a href="price.html">媛寃⑸퀎</a></li>
+                    <li><a href="new.html">?좎젣??/a></li>
+                    <li><a href="deals.html">?좎씤 諛??됱궗</a></li>
+                    <li><a href="coming-soon.html">異쒖떆 ?덉젙</a></li>
+                    <li><a href="last-chance.html">?⑥쥌 ?덉젙</a></li>
+                </ul>
+            </li>
+            <li><a href="companies.html">?λ컮援щ땲</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-support">
+                    怨좉컼 吏??<i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-support">
+                    <li><a href="order.html">二쇰Ц ?꾪솴 ?뺤씤</a></li>
+                    <li><a href="shipping.html">諛곗넚 諛?諛섑뭹</a></li>
+                    <li><a href="faq.html">?쇰컲?곸씤 吏덈Ц</a></li>
+                    <li><a href="contact.html">臾몄쓽?섍린</a></li>
+                    <li><a href="bricks.html">遺?랁뭹 諛?釉뚮┃</a></li>
+                </ul>
+            </li>
+            <li><a href="board.html">??而ㅻ??덊떚</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <button class="mobile-btn-login" onclick="document.getElementById('promo-open-login')?.click(); document.getElementById('mobile-nav-drawer').classList.remove('open');">濡쒓렇??/button>
+            <button class="mobile-btn-play" onclick="location.href='playzone.html'">PLAY議?/button>
+        </div>
+    </div>
+</div></div>
     <div class="promo-bar">
         <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
         <div class="promo-bar-content">
@@ -279,25 +351,37 @@
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
-                <li><a href="index.html" class="hoverable">HOME</a></li>
+                <li><a href="index.html" class="hoverable ">HOME</a></li>
                 <li class="nav-item-mega">
-                    <a href="javascript:void(0)" class="hoverable mega-trigger" data-category="brand">브랜드 소개</a>
+                    <a href="javascript:void(0)" class="hoverable mega-trigger " data-category="brand">브랜드 소개</a>
                 </li>
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger active" data-category="products">제품 소식</a>
                 </li>
-                <li><a href="companies.html" class="hoverable" id="cart-nav-link">장바구니</a></li>
+                <li><a href="companies.html" class="hoverable">장바구니</a></li>
                 <li class="nav-item-mega">
-                    <a href="javascript:void(0)" class="hoverable mega-trigger" data-category="support">고객 지원</a>
+                    <a href="javascript:void(0)" class="hoverable mega-trigger " data-category="support">고객 지원</a>
                 </li>
+                <li><a href="board.html" class="hoverable ">팬 커뮤니티</a></li>
             </ul>
-            <div class="header-right">
+                <button class="mobile-menu-btn hoverable" id="mobile-menu-btn" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button><div class="header-right">
             </div>
         </nav>
     </header>
+    
+    
+    
+    
+    
+    
+    
 
     <main class="section" style="padding-top: 30px; min-height: 100vh; background-color: #ffffff; padding-bottom: 120px;">
         <div class="section-container" style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
@@ -322,18 +406,17 @@
                 <!-- Card 1 -->
                 <div class="landmark-card hoverable">
                     <div class="card-image-wrap">
-                        <img src="6.png" alt="그랜드 피아노 플레이어">
+                        <img src="mu2.png" alt="피아노">
                     </div>
-                    <div class="card-divider"></div>
                     <div class="card-stats">
                         <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
                         <span><i class="fa-solid fa-cubes"></i> 3662</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
                     </div>
-                    <h3 class="card-name">그랜드 피아노 플레이어</h3>
-                    <div class="card-price">469,900 원</div>
+                    <h3 class="card-name">피아노</h3>
+                    <div class="card-price">519,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('그랜드 피아노 플레이어')">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('피아노')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
                         </button>
                     </div>
@@ -341,19 +424,19 @@
 
                 <!-- Card 2 -->
                 <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
                     <div class="card-image-wrap">
-                        <img src="6.png" alt="재즈 콰르텟 앙상블">
+                        <img src="mu1.png" alt="바이올린">
                     </div>
-                    <div class="card-divider"></div>
                     <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 1606</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
+                        <span><i class="fa-solid fa-cake-candles"></i> 16+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 1827</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
                     </div>
-                    <h3 class="card-name">재즈 콰르텟 앙상블</h3>
-                    <div class="card-price">149,900 원</div>
+                    <h3 class="card-name">바이올린</h3>
+                    <div class="card-price">278,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('재즈 콰르텟 앙상블')">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('바이올린')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
                         </button>
                     </div>
@@ -361,39 +444,36 @@
 
                 <!-- Card 3 -->
                 <div class="landmark-card hoverable">
+                    <span class="retiring-tag">단종 예정</span>
                     <div class="card-image-wrap">
-                        <img src="6.png" alt="레트로 카세트 덱">
+                        <img src="mu3.png" alt="기타">
                     </div>
-                    <div class="card-divider"></div>
                     <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 8+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 320</span>
+                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 1074</span>
                         <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
                     </div>
-                    <h3 class="card-name">레트로 카세트 덱</h3>
-                    <div class="card-price">49,900 원</div>
+                    <h3 class="card-name">기타</h3>
+                    <div class="card-price">211,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('레트로 카세트 덱')">
-                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
-                        </button>
+                        <button class="btn-sold-out" disabled>일시품절</button>
                     </div>
                 </div>
 
                 <!-- Card 4 -->
                 <div class="landmark-card hoverable">
                     <div class="card-image-wrap">
-                        <img src="6.png" alt="빈티지 레코드 플레이어">
+                        <img src="mu4.png" alt="LP플레이어">
                     </div>
-                    <div class="card-divider"></div>
                     <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 1850</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
+                        <span><i class="fa-solid fa-cake-candles"></i> 8+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 366</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.5</span>
                     </div>
-                    <h3 class="card-name">빈티지 레코드 플레이어</h3>
-                    <div class="card-price">219,900 원</div>
+                    <h3 class="card-name">LP플레이어</h3>
+                    <div class="card-price">44,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('빈티지 레코드 플레이어')">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('LP플레이어')">
                             <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
                         </button>
                     </div>
@@ -401,105 +481,33 @@
 
                 <!-- Card 5 -->
                 <div class="landmark-card hoverable">
-                    <span class="retiring-tag">단종 예정</span>
+                    <span class="new-tag">신제품</span>
                     <div class="card-image-wrap">
-                        <img src="6.png" alt="일렉트릭 기타 & 앰프">
+                        <img src="mu5.png" alt="드럼">
                     </div>
-                    <div class="card-divider"></div>
                     <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 16+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 1108</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
-                    </div>
-                    <h3 class="card-name">일렉트릭 기타 & 앰프</h3>
-                    <div class="card-price">139,900 원</div>
-                    <div class="card-actions">
-                        <button class="btn-sold-out" disabled>일시품절</button>
-                    </div>
-                </div>
-
-                <!-- Card 6 -->
-                <div class="landmark-card hoverable">
-                    <span class="retiring-tag">단종 예정</span>
-                    <div class="card-image-wrap">
-                        <img src="6.png" alt="클래식 바이올린 명작">
-                    </div>
-                    <div class="card-divider"></div>
-                    <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 1350</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
-                    </div>
-                    <h3 class="card-name">클래식 바이올린 명작</h3>
-                    <div class="card-price">189,900 원</div>
-                    <div class="card-actions">
-                        <button class="btn-sold-out" disabled>일시품절</button>
-                    </div>
-                </div>
-
-                <!-- Card 7 -->
-                <div class="landmark-card hoverable">
-                    <div class="card-image-wrap">
-                        <img src="6.png" alt="뮤직 박스 캐러셀">
-                    </div>
-                    <div class="card-divider"></div>
-                    <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 10+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 680</span>
+                        <span><i class="fa-solid fa-cake-candles"></i> 8+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 458</span>
                         <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.6</span>
                     </div>
-                    <h3 class="card-name">뮤직 박스 캐러셀</h3>
-                    <div class="card-price">89,900 원</div>
+                    <h3 class="card-name">드럼</h3>
+                    <div class="card-price">51,900 원</div>
                     <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('뮤직 박스 캐러셀')">
-                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card 8 -->
-                <div class="landmark-card hoverable">
-                    <div class="card-image-wrap">
-                        <img src="6.png" alt="드럼 키트 스튜디오">
-                    </div>
-                    <div class="card-divider"></div>
-                    <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 12+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 950</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
-                    </div>
-                    <h3 class="card-name">드럼 키트 스튜디오</h3>
-                    <div class="card-price">109,900 원</div>
-                    <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('드럼 키트 스튜디오')">
-                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card 9 -->
-                <div class="landmark-card hoverable">
-                    <div class="card-image-wrap">
-                        <img src="6.png" alt="축음기 레트로 팩">
-                    </div>
-                    <div class="card-divider"></div>
-                    <div class="card-stats">
-                        <span><i class="fa-solid fa-cake-candles"></i> 16+</span>
-                        <span><i class="fa-solid fa-cubes"></i> 1050</span>
-                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
-                    </div>
-                    <h3 class="card-name">축음기 레트로 팩</h3>
-                    <div class="card-price">119,900 원</div>
-                    <div class="card-actions">
-                        <button class="btn-cart-add hoverable" onclick="addToCart('축음기 레트로 팩')">
-                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
-                        </button>
+                        <button class="btn-sold-out" disabled>일시품절</button>
                     </div>
                 </div>
 
             </div>
         </div>
-    </main>
+</main>
+
+            <!-- Footer -->
+            <footer style="margin-top: 60px; padding: 25px 0;  width: 100%; text-align: center; clear: both;">
+                <p style="font-family: var(--font-heading), 'Outfit', 'Inter', sans-serif; font-size: 0.9rem; color: #888888; margin: 0; letter-spacing: 0.5px; font-weight: 700;">
+                    &copy; 2026 BRICK MATE. ALL RIGHTS RESERVED.
+                </p>
+            </footer>
+
 
     <!-- Modals -->
                 <div class="modal-overlay" id="login-modal">
@@ -578,7 +586,7 @@
         <div class="mega-menu-container">
             <div class="mega-menu-header">
                 <div class="mega-menu-logo">
-                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                    <span style="font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: #ffcc00; letter-spacing: -0.5px;">Brick Mate</span>
                 </div>
                 <nav class="mega-menu-nav">
                     <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
@@ -591,7 +599,7 @@
                 <div class="mega-category-pane" id="mega-pane-brand">
                     <ul class="mega-links-list">
                         <li><a href="about.html">소개</a></li>
-                        <li><a href="news.html">소식</a></li>
+                        <li><a href="news.html">관련 회사</a></li>
                         <li><a href="partnership.html">다가오는 파트너십</a></li>
                     </ul>
                 </div>
@@ -599,7 +607,6 @@
                     <ul class="mega-links-list">
                         <li><a href="order.html">주문 현황 확인</a></li>
                         <li><a href="shipping.html">배송 및 반품</a></li>
-                        <li><a href="assembly.html">조립 설명서 검색</a></li>
                         <li><a href="faq.html">일반적인 질문</a></li>
                         <li><a href="contact.html">문의하기</a></li>
                         <li><a href="bricks.html">부속품 및 브릭</a></li>
@@ -640,26 +647,6 @@
 
     <script src="main.js?v=1.1"></script>
     <script>
-        let cartCount = 0;
-        function addToCart(productName) {
-            cartCount++;
-            const toast = document.getElementById('cart-toast');
-            const toastMsg = document.getElementById('toast-message');
-            toastMsg.textContent = `🛒 "${productName}"이(가) 장바구니에 담겼습니다!`;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-
-            const cartLink = document.getElementById('cart-nav-link');
-            let badge = cartLink.querySelector('.cart-badge');
-            if (!badge) {
-                badge = document.createElement('span');
-                badge.className = 'cart-badge';
-                cartLink.appendChild(badge);
-            }
-            badge.textContent = cartCount;
-        }
 
         document.querySelectorAll('.card-image-wrap img').forEach(img => {
             img.style.cursor = 'zoom-in';

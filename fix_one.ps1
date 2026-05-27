@@ -44,7 +44,7 @@ $header = @"
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="hoverable">HOME</a></li>
@@ -106,7 +106,7 @@ if ($finalContent -notlike "*id=`"mega-menu`"*") {
         <div class="mega-menu-container">
             <div class="mega-menu-header">
                 <div class="mega-menu-logo">
-                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                    <span style="font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: #ffcc00; letter-spacing: -0.5px;">Brick Mate</span>
                 </div>
                 <nav class="mega-menu-nav">
                     <button class="mega-nav-btn" data-category="brand">$brandTxt</button>

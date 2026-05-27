@@ -4849,22 +4849,387 @@ header#header nav button.login-btn:hover {
 
 .lf-social-btn span { display: none; }
 
-#login-form-modal .modal-footer {
-    margin-top: 24px;
-    text-align: center;
-    font-size: 0.92rem;
-    color: #555;
-    opacity: 1;
-}
-
-#login-form-modal .modal-link {
-    color: var(--accent-color);
-    font-weight: 900;
-    text-decoration: none;
-    filter: brightness(0.75);
-}
-
 #login-form-modal .modal-link:hover {
     text-decoration: underline;
     filter: brightness(1);
+}
+
+/* ==========================================================================
+   Brick Mate Redesigned About Page Styles
+   ========================================================================== */
+
+.about-hero-section {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 24px 100px 24px;
+    position: relative;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+    .about-hero-section {
+        background-attachment: fixed; /* Parallax effect on desktop */
+    }
+}
+
+.about-hero-content {
+    max-width: 950px;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 24px;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    letter-spacing: -1.5px;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+}
+
+.about-hero-title .highlight-yellow {
+    color: #ffcc00;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+}
+
+.about-hero-subtitle {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-weight: 700;
+    color: #f0f0f0;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.about-hero-divider {
+    width: 80px;
+    height: 4px;
+    background: #ffcc00;
+    margin: 0 auto 35px auto;
+    border-radius: 2px;
+    box-shadow: 0 0 12px rgba(255, 204, 0, 0.6);
+}
+
+.about-hero-desc {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 850px;
+    margin: 0 auto;
+    font-weight: 500;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.scroll-indicator {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.75;
+    animation: about-bounce 2s infinite;
+}
+
+.scroll-indicator span {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffcc00;
+}
+
+.scroll-indicator i {
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+@keyframes about-bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Philosophy Section */
+.about-philosophy-section {
+    min-height: 100vh;
+    background-color: #0b0b0b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-philosophy-content {
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+}
+
+.philosophy-main-title {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 900;
+    line-height: 1.3;
+    margin-bottom: 60px;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    letter-spacing: -1px;
+    color: #ffffff;
+}
+
+.philosophy-main-title .outline-text {
+    -webkit-text-stroke: 0;
+    color: #ffffff;
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.philosophy-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
+    padding: 45px 35px;
+    text-align: left;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 280px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+}
+
+.philosophy-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.brick-num {
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    padding: 6px 16px;
+    border-radius: 30px;
+    display: inline-block;
+    width: fit-content;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.brick-num-special {
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    padding: 6px 16px;
+    border-radius: 30px;
+    display: inline-block;
+    width: fit-content;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.brick-text {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #dedede;
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+/* Red Brick */
+.brick-red {
+    border-left: 5px solid #ff4d4d;
+}
+.brick-red:hover {
+    border-color: #ff4d4d;
+    box-shadow: 0 20px 40px rgba(255, 77, 77, 0.12), inset 0 1px 1px rgba(255,255,255,0.05);
+}
+.brick-red .brick-num {
+    background: #ff4d4d;
+    color: #ffffff;
+}
+
+/* Blue Brick */
+.brick-blue {
+    border-left: 5px solid #4da6ff;
+}
+.brick-blue:hover {
+    border-color: #4da6ff;
+    box-shadow: 0 20px 40px rgba(77, 166, 255, 0.12), inset 0 1px 1px rgba(255,255,255,0.05);
+}
+.brick-blue .brick-num {
+    background: #4da6ff;
+    color: #ffffff;
+}
+
+/* Yellow Brick */
+.brick-yellow {
+    border-left: 5px solid #ffcc00;
+}
+.brick-yellow:hover {
+    border-color: #ffcc00;
+    box-shadow: 0 20px 40px rgba(255, 204, 0, 0.12), inset 0 1px 1px rgba(255,255,255,0.05);
+}
+.brick-yellow .brick-num {
+    background: #ffcc00;
+    color: #000000;
+}
+
+/* Green Brick */
+.brick-green {
+    border-left: 5px solid #5cd65c;
+}
+.brick-green:hover {
+    border-color: #5cd65c;
+    box-shadow: 0 20px 40px rgba(92, 214, 92, 0.12), inset 0 1px 1px rgba(255,255,255,0.05);
+}
+.brick-green .brick-num {
+    background: #5cd65c;
+    color: #ffffff;
+}
+
+/* Orange/Special Brick */
+.brick-orange {
+    border-left: 5px solid #ff944d;
+    background: linear-gradient(135deg, rgba(255, 148, 77, 0.03) 0%, rgba(198, 140, 252, 0.03) 100%);
+    grid-column: 1 / -1; /* spans full width on desktop for prominence */
+    min-height: 250px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .brick-orange {
+        grid-column: auto;
+    }
+}
+
+.brick-orange:hover {
+    border-color: #ff944d;
+    box-shadow: 0 20px 40px rgba(255, 148, 77, 0.15), inset 0 1px 1px rgba(255,255,255,0.05);
+    background: linear-gradient(135deg, rgba(255, 148, 77, 0.05) 0%, rgba(198, 140, 252, 0.05) 100%);
+}
+
+.brick-orange .brick-num-special {
+    background: #ff944d;
+    color: #000000;
+}
+
+.play-with-mate {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 900;
+    color: #ff944d;
+    font-family: 'Permanent Marker', 'Outfit', sans-serif;
+    margin: 15px 0 10px 0;
+    letter-spacing: 1px;
+    text-shadow: 0 0 15px rgba(255, 148, 77, 0.4);
+}
+
+.cta-meet-now {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* Breadcrumbs styles */
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #777777;
+    margin-bottom: 18px;
+    font-weight: 500;
+}
+.breadcrumbs a {
+    color: #777777;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.breadcrumbs a:hover {
+    color: #333333;
+}
+.breadcrumbs i {
+    font-size: 0.7rem;
+    color: #777777;
+}
+
+/* Premium Pagination Styles */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin: 50px auto 20px auto;
+    width: 100%;
+    clear: both;
+}
+
+.page-arrow {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #000000;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+}
+
+.page-arrow:disabled {
+    color: #d1d1d1;
+    cursor: not-allowed;
+}
+
+.page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.page-num {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #000000;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.page-num.active {
+    color: #0029b3;
+}
+
+.page-num:hover:not(.active) {
+    color: #0029b3;
+    transform: scale(1.1);
 }

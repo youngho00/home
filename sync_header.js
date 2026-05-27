@@ -25,12 +25,13 @@ function getHeader(activeCategory) {
     const brandActive = activeCategory === 'brand' ? 'active' : '';
     const productsActive = activeCategory === 'products' ? 'active' : '';
     const supportActive = activeCategory === 'support' ? 'active' : '';
+    const boardActive = activeCategory === 'board' ? 'active' : '';
 
     return `
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="hoverable">HOME</a></li>
@@ -44,6 +45,7 @@ function getHeader(activeCategory) {
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger ${supportActive}" data-category="support">고객 지원</a>
                 </li>
+                <li><a href="board.html" class="hoverable ${boardActive}">팬 커뮤니티</a></li>
             </ul>
             <div class="header-right">
             </div>
@@ -128,6 +130,7 @@ files.forEach(file => {
     if (file.match(/about|news|partnership/)) activeCategory = 'brand';
     else if (file.match(/series|age|price|new|exclusive|deals|coming-soon|last-chance/)) activeCategory = 'products';
     else if (file.match(/order|shipping|assembly|faq|contact|bricks/)) activeCategory = 'support';
+    else if (file.match(/board/)) activeCategory = 'board';
 
     // 3. Insert new promo bar and header after <body>
     content = content.replace(/<body[\s\S]*?>/, (match) => {

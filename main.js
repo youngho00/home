@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastScrollY = 0, targetScroll = 0, currentScroll = 0;
 
     if (cursor && window.matchMedia("(pointer: fine)").matches) {
-        cursor.style.visibility = 'visible';
         document.addEventListener('mousemove', (e) => {
+            cursor.style.visibility = 'visible';
             mouseX = e.clientX;
             mouseY = e.clientY;
         });
@@ -274,44 +274,310 @@ document.addEventListener('DOMContentLoaded', () => {
         const msgs = promoBar.querySelectorAll('.promo-msg');
         let currentIdx = 0, isTrans = false;
 
-        if (msgs.length === 0) return;
+        if (msgs.length > 0) {
+            const showMsg = (idx, dir) => {
+                if (isTrans || msgs.length === 0) return;
+                isTrans = true;
 
-        const showMsg = (idx, dir) => {
-            if (isTrans || msgs.length === 0) return;
-            isTrans = true;
+                const prevIdx = currentIdx;
+                
+                // Prepare incoming (set start position)
+                msgs[idx].style.transition = 'none';
+                msgs[idx].style.transform = dir === 'next' ? 'translateY(-50%) translateX(100%)' : 'translateY(-50%) translateX(-100%)';
+                msgs[idx].style.opacity = '0';
+                msgs[idx].classList.add('active');
+                
+                msgs[idx].offsetHeight; // reflow
+                
+                msgs[idx].style.transition = '';
+                
+                // Outgoing
+                msgs[prevIdx].style.opacity = '0';
+                msgs[prevIdx].style.transform = dir === 'next' ? 'translateY(-50%) translateX(-100%)' : 'translateY(-50%) translateX(100%)';
+                
+                // Incoming
+                msgs[idx].style.opacity = '1';
+                msgs[idx].style.transform = 'translateY(-50%) translateX(0)';
+                
+                setTimeout(() => {
+                    msgs[prevIdx].classList.remove('active');
+                    currentIdx = idx;
+                    isTrans = false;
+                }, 600);
+            };
 
-            const prevIdx = currentIdx;
-            
-            // Prepare incoming (set start position)
-            msgs[idx].style.transition = 'none';
-            msgs[idx].style.transform = dir === 'next' ? 'translateY(-50%) translateX(100%)' : 'translateY(-50%) translateX(-100%)';
-            msgs[idx].style.opacity = '0';
-            msgs[idx].classList.add('active');
-            
-            msgs[idx].offsetHeight; // reflow
-            
-            msgs[idx].style.transition = '';
-            
-            // Outgoing
-            msgs[prevIdx].style.opacity = '0';
-            msgs[prevIdx].style.transform = dir === 'next' ? 'translateY(-50%) translateX(-100%)' : 'translateY(-50%) translateX(100%)';
-            
-            // Incoming
-            msgs[idx].style.opacity = '1';
-            msgs[idx].style.transform = 'translateY(-50%) translateX(0)';
-            
-            setTimeout(() => {
-                msgs[prevIdx].classList.remove('active');
-                currentIdx = idx;
-                isTrans = false;
-            }, 600);
-        };
+            const prev = promoBar.querySelector('#promo-prev'), next = promoBar.querySelector('#promo-next');
 
-        const prev = promoBar.querySelector('#promo-prev'), next = promoBar.querySelector('#promo-next');
+            if (prev) prev.addEventListener('click', () => showMsg((currentIdx - 1 + msgs.length) % msgs.length, 'prev'));
+            if (next) next.addEventListener('click', () => showMsg((currentIdx + 1) % msgs.length, 'next'));
 
-        if (prev) prev.addEventListener('click', () => showMsg((currentIdx - 1 + msgs.length) % msgs.length, 'prev'));
-        if (next) next.addEventListener('click', () => showMsg((currentIdx + 1) % msgs.length, 'next'));
+            setInterval(() => { if (!isTrans) showMsg((currentIdx + 1) % msgs.length, 'next'); }, 5000);
+        }
+    }
 
-        setInterval(() => { if (!isTrans) showMsg((currentIdx + 1) % msgs.length, 'next'); }, 5000);
+    // Initialize cart badge on load
+    if (window.updateCartBadge) {
+        window.updateCartBadge();
     }
 });
+
+// 8. Global Cart Logic
+let _memoryCart = [];
+window.getCartItems = function() {
+    try {
+        const localData = localStorage.getItem('brickmate_cart');
+        if (localData) {
+            _memoryCart = JSON.parse(localData) || [];
+        }
+        return _memoryCart;
+    } catch(e) {
+        return _memoryCart;
+    }
+};
+
+window.saveCartItems = function(items) {
+    _memoryCart = items;
+    try {
+        localStorage.setItem('brickmate_cart', JSON.stringify(items));
+    } catch(e) {
+        console.warn("Storage not available, using memory cart cache", e);
+    }
+    if (window.updateCartBadge) window.updateCartBadge();
+};
+
+window.addToCartGlobal = function(name, price, image) {
+    let items = window.getCartItems();
+    let existing = items.find(item => item.name === name);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        items.push({
+            name: name,
+            price: price,
+            image: image || 'p1.png',
+            quantity: 1
+        });
+    }
+    window.saveCartItems(items);
+
+    // Show toast
+    const toast = document.getElementById('cart-toast');
+    const toastMsg = document.getElementById('toast-message');
+    if (toast && toastMsg) {
+        toastMsg.textContent = `🛒 "${name}"이(가) 장바구니에 담겼습니다!`;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+};
+
+window.updateCartBadge = function() {
+    const items = window.getCartItems();
+    const totalCount = items.reduce((sum, item) => sum + item.quantity, 0);
+    
+    // Find all links containing "장바구니"
+    const navLinks = document.querySelectorAll('.nav-links a, nav a');
+    navLinks.forEach(link => {
+        if (link.textContent.trim().startsWith('장바구니')) {
+            let badge = link.querySelector('.cart-badge');
+            if (totalCount > 0) {
+                if (!badge) {
+                    badge = document.createElement('span');
+                    badge.className = 'cart-badge';
+                    // Style badge
+                    badge.style.background = '#ef4444';
+                    badge.style.color = '#ffffff';
+                    badge.style.fontSize = '0.75rem';
+                    badge.style.fontWeight = '700';
+                    badge.style.padding = '2px 7px';
+                    badge.style.borderRadius = '10px';
+                    badge.style.marginLeft = '6px';
+                    badge.style.display = 'inline-block';
+                    badge.style.verticalAlign = 'middle';
+                    badge.style.lineHeight = '1.2';
+                    link.appendChild(badge);
+                }
+                badge.textContent = totalCount;
+            } else {
+                if (badge) badge.remove();
+            }
+        }
+    });
+};
+
+// Universal Overrider: If addToCart is called, automatically scrape price and image from DOM
+window.addToCart = function(productName) {
+    const cards = document.querySelectorAll('.landmark-card, .gear-card, .product-card, .item');
+    let price = "0 원";
+    let image = "";
+    cards.forEach(card => {
+        const nameEl = card.querySelector('.card-name, .gear-name, .product-name, h3, h4');
+        if (nameEl && nameEl.textContent.trim().includes(productName)) {
+            const priceEl = card.querySelector('.card-price, .gear-price, .product-price, .price');
+            if (priceEl) price = priceEl.textContent.trim();
+            const imgEl = card.querySelector('.card-image-wrap img, .gear-img-container img, .product-image img, img');
+            if (imgEl) image = imgEl.getAttribute('src');
+        }
+    });
+
+    if (!image) {
+        // Simple search for any image with alt matching
+        const imgEl = document.querySelector(`img[alt*="${productName}"]`);
+        if (imgEl) image = imgEl.getAttribute('src');
+    }
+
+    if (window.addToCartGlobal) {
+        window.addToCartGlobal(productName, price, image);
+    }
+};
+
+// 5. Dynamic Client-Side Pagination (Max 9 cards per page)
+document.addEventListener('DOMContentLoaded', () => {
+    const grids = document.querySelectorAll('.landmark-grid');
+    grids.forEach(grid => {
+        const cards = Array.from(grid.querySelectorAll('.landmark-card'));
+        if (cards.length <= 9) return; // Do nothing if 9 or fewer cards
+
+        const itemsPerPage = 9;
+        const totalPages = Math.ceil(cards.length / itemsPerPage);
+        let currentPage = 1;
+
+        // Create pagination container
+        const paginationContainer = document.createElement('div');
+        paginationContainer.className = 'pagination-container';
+
+        // Prev arrow
+        const prevArrow = document.createElement('button');
+        prevArrow.className = 'page-arrow';
+        prevArrow.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+        prevArrow.disabled = true;
+
+        // Page numbers wrapper
+        const pageNumbers = document.createElement('div');
+        pageNumbers.className = 'page-numbers';
+
+        // Next arrow
+        const nextArrow = document.createElement('button');
+        nextArrow.className = 'page-arrow';
+        nextArrow.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+
+        // Render page numbers
+        function renderPageNumbers() {
+            pageNumbers.innerHTML = '';
+            for (let i = 1; i <= totalPages; i++) {
+                const pageNum = document.createElement('span');
+                pageNum.className = `page-num ${i === currentPage ? 'active' : ''}`;
+                pageNum.textContent = i;
+                // Add hoverable class for custom cursor compatibility
+                pageNum.classList.add('hoverable');
+                pageNum.addEventListener('click', () => {
+                    goToPage(i);
+                });
+                pageNumbers.appendChild(pageNum);
+            }
+        }
+
+        // Show active page cards and hide others
+        function displayCards() {
+            const startIdx = (currentPage - 1) * itemsPerPage;
+            const endIdx = currentPage * itemsPerPage;
+
+            cards.forEach((card, idx) => {
+                if (idx >= startIdx && idx < endIdx) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update arrow disabled states
+            prevArrow.disabled = (currentPage === 1);
+            nextArrow.disabled = (currentPage === totalPages);
+        }
+
+        function goToPage(page) {
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
+            renderPageNumbers();
+            displayCards();
+            
+            // Scroll smoothly to the top of the page
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Arrow click events
+        prevArrow.addEventListener('click', () => goToPage(currentPage - 1));
+        nextArrow.addEventListener('click', () => goToPage(currentPage + 1));
+        
+        // Add hoverable class for custom cursor compatibility
+        prevArrow.classList.add('hoverable');
+        nextArrow.classList.add('hoverable');
+
+        // Assemble and append pagination
+        paginationContainer.appendChild(prevArrow);
+        paginationContainer.appendChild(pageNumbers);
+        paginationContainer.appendChild(nextArrow);
+
+        // Append pagination container after the grid inside the section-container
+        const sectionContainer = grid.parentElement;
+        if (sectionContainer) {
+            sectionContainer.appendChild(paginationContainer);
+        }
+
+        // Initial render and display
+        renderPageNumbers();
+        displayCards();
+    });
+});
+
+
+// ─────────────────────────────────────────────
+// MOBILE HAMBURGER MENU
+// ─────────────────────────────────────────────
+(function initMobileMenu() {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    const closeBtn = document.getElementById('mobile-nav-close');
+
+    if (!menuBtn || !drawer) return;
+
+    function openDrawer() {
+        drawer.classList.add('open');
+        menuBtn.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+        drawer.classList.remove('open');
+        menuBtn.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    menuBtn.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', closeDrawer);
+
+    // 서브메뉴 토글
+    const subToggles = document.querySelectorAll('.mobile-sub-toggle');
+    subToggles.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var targetId = btn.getAttribute('data-target');
+            var subMenu = document.getElementById(targetId);
+            if (!subMenu) return;
+            var isOpen = subMenu.classList.contains('open');
+            document.querySelectorAll('.mobile-nav-sub').forEach(function(s) { s.classList.remove('open'); });
+            document.querySelectorAll('.mobile-sub-toggle').forEach(function(b) { b.classList.remove('sub-open'); });
+            if (!isOpen) {
+                subMenu.classList.add('open');
+                btn.classList.add('sub-open');
+            }
+        });
+    });
+
+    // ESC 키로 닫기
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeDrawer();
+    });
+})();

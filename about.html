@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>브랜드 소개 | YH04</title>
     <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
@@ -28,7 +29,62 @@
     </style>
 </head>
 <body class="dark-mode">
-    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor" id="cursor">
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <div class="mobile-nav-panel">
+        <div class="mobile-nav-header">
+            <span class="mobile-nav-logo">Brick Mate</span>
+            <button class="mobile-nav-close" id="mobile-nav-close">&times;</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-brand">
+                    釉뚮옖???뚭컻 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-brand">
+                    <li><a href="about.html">?뚭컻</a></li>
+                    <li><a href="news.html">愿???뚯궗</a></li>
+                    <li><a href="partnership.html">?ㅺ??ㅻ뒗 ?뚰듃?덉떗</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-products">
+                    ?쒗뭹 ?뚯떇 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-products">
+                    <li><a href="series.html">?쒕━利덈퀎 ?명듃</a></li>
+                    <li><a href="age.html">?곕졊蹂?/a></li>
+                    <li><a href="price.html">媛寃⑸퀎</a></li>
+                    <li><a href="new.html">?좎젣??/a></li>
+                    <li><a href="deals.html">?좎씤 諛??됱궗</a></li>
+                    <li><a href="coming-soon.html">異쒖떆 ?덉젙</a></li>
+                    <li><a href="last-chance.html">?⑥쥌 ?덉젙</a></li>
+                </ul>
+            </li>
+            <li><a href="companies.html">?λ컮援щ땲</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-support">
+                    怨좉컼 吏??<i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-support">
+                    <li><a href="order.html">二쇰Ц ?꾪솴 ?뺤씤</a></li>
+                    <li><a href="shipping.html">諛곗넚 諛?諛섑뭹</a></li>
+                    <li><a href="faq.html">?쇰컲?곸씤 吏덈Ц</a></li>
+                    <li><a href="contact.html">臾몄쓽?섍린</a></li>
+                    <li><a href="bricks.html">遺?랁뭹 諛?釉뚮┃</a></li>
+                </ul>
+            </li>
+            <li><a href="board.html">??而ㅻ??덊떚</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <button class="mobile-btn-login" onclick="document.getElementById('promo-open-login')?.click(); document.getElementById('mobile-nav-drawer').classList.remove('open');">濡쒓렇??/button>
+            <button class="mobile-btn-play" onclick="location.href='playzone.html'">PLAY議?/button>
+        </div>
+    </div>
+</div></div>
     <div class="promo-bar">
         <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
         <div class="promo-bar-content">
@@ -46,7 +102,7 @@
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="hoverable ">HOME</a></li>
@@ -60,11 +116,22 @@
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger " data-category="support">고객 지원</a>
                 </li>
+                <li><a href="board.html" class="hoverable ">팬 커뮤니티</a></li>
             </ul>
-            <div class="header-right">
+                <button class="mobile-menu-btn hoverable" id="mobile-menu-btn" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button><div class="header-right">
             </div>
         </nav>
     </header>
+    
+    
+    
+    
+    
+    
     
     
     
@@ -75,27 +142,77 @@
     
 
     <main>
-        <section class="on-track-hero section" style="padding-top: 150px; min-height: 100vh; background-color: #0b0b0b; display: flex; flex-direction: column; align-items: center;">
-            <div class="section-container" style="text-align: center; margin-bottom: 60px;">
-                <h1 style="font-size: 12vw; font-family: var(--font-heading); font-weight: 900; line-height: 0.8; margin: 0; text-transform: uppercase; letter-spacing: -0.5vw;">
-                    <span class="uni-special-font" style="color: var(--accent-color);">ABOUT</span><br><span class="versity-text">BRAND</span>
-                </h1>
+        <!-- Section 1: Hero Page -->
+        <section class="about-hero-section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('z.png');">
+            <div class="about-hero-content">
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs" style="margin-bottom: 25px; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 500;">
+                <a href="index.html" style="color: #cccccc; text-decoration: none; transition: color 0.2s ease;">HOME</a>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #cccccc;"></i>
+                <a href="javascript:void(0)" style="color: #cccccc; text-decoration: none;">브랜드 소개</a>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #cccccc;"></i>
+                <span style="color: #ffffff; font-weight: 700;">소개</span>
             </div>
-            
-            <div class="hero-content-wrapper" style="max-width: 1000px; padding: 0 40px; text-align: center;">
-                <p style="font-size: clamp(1.5rem, 4vw, 3rem); line-height: 1.1; font-family: var(--font-heading); font-weight: 700; color: #fff; margin-bottom: 50px;">
-                    우리는 한계를 넘어 혁신적인 솔루션을 추구하며,<br>모든 프로젝트에 <span class="uni-special-font" style="color: var(--accent-color);">열정을 쏟습니다.</span>
+<h1 class="about-hero-title">당신의 가장 다정한 조립 친구,<br><span class="highlight-yellow">브릭메이트(Brick Mate)</span></h1>
+                <p class="about-hero-subtitle">블록(Brick)으로 연결되는 우리들의 모든 순간</p>
+                <div class="about-hero-divider"></div>
+                <p class="about-hero-desc">
+                    안녕하세요. 브릭메이트입니다.<br><br>
+                    브릭메이트는 블록(Brick)과 친구(Mate)를 결합한 이름으로,<br>
+                    "아이부터 어른까지, 블록을 사랑하는 모든 이들의 든든한 친구가 되겠다는 의미"를 담고 있습니다.
                 </p>
+
+            </div>
+        </section>
+
+        <!-- Section 2: Core Philosophy Page -->
+        <section class="about-philosophy-section">
+            <div class="about-philosophy-content">
+                <h2 class="philosophy-main-title">우리에게 블록은<br><span class="outline-text">단순한 장난감 그 이상입니다.</span></h2>
                 
-                <div style="background: rgba(255,255,255,0.05); padding: 50px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1);">
-                    <p style="font-size: 1.1rem; opacity: 0.7; line-height: 1.8;">
-                        YH04는 단순한 브랜드를 넘어 기술과 예술의 경계를 허무는 여정을 이어가고 있습니다.<br>
-                        2021년 서울에서 시작된 이 여정은 이제 글로벌 무대를 향해 나아가고 있습니다.
+                <div class="philosophy-grid">
+                    <!-- Item 1 (Red Brick Style) -->
+                    <div class="philosophy-card brick-red">
+                        <span class="brick-num">첫번째</span>
+                        <p class="brick-text">아이들에게는 매일 새로운 세계를 상상하고 창의력을 쑥쑥 키워주는 첫 번째 놀이 친구가 되어줍니다.</p>
+                    </div>
+                    
+                    <!-- Item 2 (Blue Brick Style) -->
+                    <div class="philosophy-card brick-blue">
+                        <span class="brick-num">두번째</span>
+                        <p class="brick-text">어른들에게는 지친 일상에서 잠시 벗어나 오롯이 나만의 시간에 몰입하게 해주는 위로와 힐링의 취미 친구가 되어줍니다.</p>
+                    </div>
+                    
+                    <!-- Item 3 (Yellow Brick Style) -->
+                    <div class="philosophy-card brick-yellow">
+                        <span class="brick-num">세 번째</span>
+                        <p class="brick-text">가족과 연인에게는 한 조각 한 조각 함께 맞추며 소중한 추억을 쌓아 올리는 소통의 친구가 되어줍니다.</p>
+                    </div>
+                    
+                    <!-- Item 4 (Green Brick Style) -->
+                    <div class="philosophy-card brick-green">
+                        <span class="brick-num">네 번째</span>
+                        <p class="brick-text">때로는 진지한 조립가처럼, 때로는 해맑은 아이처럼. 당신이 상상하는 모든 것이 현실이 되는 그 설레는 여정에 브릭메이트가 늘 함께하겠습니다.</p>
+                    </div>
+                    
+                    <!-- Item 5 (Orange/Special Brick Style) -->
+                    <div class="philosophy-card brick-orange">
+                        <span class="brick-num-special">다섯 번째</span>
+                        <h3 class="play-with-mate">Play with your Mate!</h3>
+                        <p class="cta-meet-now">지금, 당신만의 브릭메이트를 만나보세요.</p>
+                    </div>
+                </div>
+                
+                <!-- Copyright right below the grid, outside the cards, on the black background -->
+                <div style="margin-top: 60px; text-align: center; width: 100%;">
+                    <p style="font-family: var(--font-heading), 'Outfit', 'Inter', sans-serif; font-size: 0.9rem; color: #888888; margin: 0; letter-spacing: 0.5px; font-weight: 700;">
+                        &copy; 2026 BRICK MATE. ALL RIGHTS RESERVED.
                     </p>
                 </div>
             </div>
         </section>
     </main>
+
 
                     <div class="modal-overlay" id="login-modal">
         <div class="insiders-modal-content">
@@ -173,7 +290,7 @@
         <div class="mega-menu-container">
             <div class="mega-menu-header">
                 <div class="mega-menu-logo">
-                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                    <span style="font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: #ffcc00; letter-spacing: -0.5px;">Brick Mate</span>
                 </div>
                 <nav class="mega-menu-nav">
                     <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
@@ -186,7 +303,7 @@
                 <div class="mega-category-pane" id="mega-pane-brand">
                     <ul class="mega-links-list">
                         <li><a href="about.html">소개</a></li>
-                        <li><a href="news.html">소식</a></li>
+                        <li><a href="news.html">관련 회사</a></li>
                         <li><a href="partnership.html">다가오는 파트너십</a></li>
                     </ul>
                 </div>
@@ -194,7 +311,6 @@
                     <ul class="mega-links-list">
                         <li><a href="order.html">주문 현황 확인</a></li>
                         <li><a href="shipping.html">배송 및 반품</a></li>
-                        <li><a href="assembly.html">조립 설명서 검색</a></li>
                         <li><a href="faq.html">일반적인 질문</a></li>
                         <li><a href="contact.html">문의하기</a></li>
                         <li><a href="bricks.html">부속품 및 브릭</a></li>

@@ -1,17 +1,73 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>조립 설명서 검색 | YH04 SUPPORT</title>
     <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="dark-mode">
-    <div class="custom-cursor" id="cursor"></div>
+<body class="dark-mode" style="overflow: hidden; height: 100vh; display: flex; flex-direction: column;">
+    <div class="custom-cursor" id="cursor">
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <div class="mobile-nav-panel">
+        <div class="mobile-nav-header">
+            <span class="mobile-nav-logo">Brick Mate</span>
+            <button class="mobile-nav-close" id="mobile-nav-close">&times;</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-brand">
+                    釉뚮옖???뚭컻 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-brand">
+                    <li><a href="about.html">?뚭컻</a></li>
+                    <li><a href="news.html">愿???뚯궗</a></li>
+                    <li><a href="partnership.html">?ㅺ??ㅻ뒗 ?뚰듃?덉떗</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-products">
+                    ?쒗뭹 ?뚯떇 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-products">
+                    <li><a href="series.html">?쒕━利덈퀎 ?명듃</a></li>
+                    <li><a href="age.html">?곕졊蹂?/a></li>
+                    <li><a href="price.html">媛寃⑸퀎</a></li>
+                    <li><a href="new.html">?좎젣??/a></li>
+                    <li><a href="deals.html">?좎씤 諛??됱궗</a></li>
+                    <li><a href="coming-soon.html">異쒖떆 ?덉젙</a></li>
+                    <li><a href="last-chance.html">?⑥쥌 ?덉젙</a></li>
+                </ul>
+            </li>
+            <li><a href="companies.html">?λ컮援щ땲</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-support">
+                    怨좉컼 吏??<i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-support">
+                    <li><a href="order.html">二쇰Ц ?꾪솴 ?뺤씤</a></li>
+                    <li><a href="shipping.html">諛곗넚 諛?諛섑뭹</a></li>
+                    <li><a href="faq.html">?쇰컲?곸씤 吏덈Ц</a></li>
+                    <li><a href="contact.html">臾몄쓽?섍린</a></li>
+                    <li><a href="bricks.html">遺?랁뭹 諛?釉뚮┃</a></li>
+                </ul>
+            </li>
+            <li><a href="board.html">??而ㅻ??덊떚</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <button class="mobile-btn-login" onclick="document.getElementById('promo-open-login')?.click(); document.getElementById('mobile-nav-drawer').classList.remove('open');">濡쒓렇??/button>
+            <button class="mobile-btn-play" onclick="location.href='playzone.html'">PLAY議?/button>
+        </div>
+    </div>
+</div></div>
     <div class="promo-bar">
         <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
         <div class="promo-bar-content">
@@ -29,7 +85,7 @@
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="hoverable ">HOME</a></li>
@@ -43,8 +99,13 @@
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger active" data-category="support">고객 지원</a>
                 </li>
+                <li><a href="board.html" class="hoverable ">팬 커뮤니티</a></li>
             </ul>
-            <div class="header-right">
+                <button class="mobile-menu-btn hoverable" id="mobile-menu-btn" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button><div class="header-right">
             </div>
         </nav>
     </header>
@@ -54,25 +115,47 @@
     
     
     
+    
+    
+    
+    
+    
+    
 
     
 
-    <main class="section" style="padding-top: 180px; min-height: 100vh; background-color: var(--bg-color);">
-        <div class="section-container">
-            <h1 class="section-title reveal-text">ASSEMBLY<br><span class="outline-text">GUIDES</span></h1>
-            <div class="support-content fade-in-up" style="max-width: 800px; margin-top: 50px;">
-                <h2 style="color: var(--accent-blue); margin-bottom: 20px;">조립 설명서 검색</h2>
-                <p style="font-size: 1.2rem; line-height: 1.6; opacity: 0.8; margin-bottom: 40px; color: #fff;">
+    <main class="section" style="padding-top: 50px; padding-bottom: 0; flex: 1; background-color: #ffffff; color: #000000; display: flex; flex-direction: column; min-height: 0; box-sizing: border-box;">
+        <div class="section-container" style="flex: 1; display: flex; flex-direction: column; max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box; width: 100%;">
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs" style="display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #777777; margin-top: 20px; margin-bottom: auto; font-weight: 500; flex-shrink: 0;">
+                <a href="index.html" style="color: #777777; text-decoration: none; transition: color 0.2s ease;">HOME</a>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #777777;"></i>
+                <a href="javascript:void(0)" style="color: #777777; text-decoration: none;">고객 지원</a>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #777777;"></i>
+                <span style="color: #111111; font-weight: 700;">조립 설명서 검색</span>
+            </div>
+            
+            <div class="support-content fade-in-up" style="max-width: 800px; width: 100%; margin: auto auto; text-align: left; display: flex; flex-direction: column; justify-content: center; flex-shrink: 0; padding-bottom: 40px;">
+                <h2 style="color: #0056b3; font-family: var(--font-heading), 'Outfit', sans-serif; font-weight: 900; font-size: 2.3rem; margin-bottom: 15px; letter-spacing: -0.5px;">조립 설명서 검색</h2>
+                <p style="font-size: 1.15rem; line-height: 1.6; color: #555555; margin-top: 0; margin-bottom: 35px; font-weight: 500; letter-spacing: -0.2px;">
                     제품 번호나 이름을 입력하여 디지털 조립 설명서를 검색해 보세요. 언제 어디서나 확인 가능합니다.
                 </p>
                 
-                <div style="position: relative; margin-bottom: 60px;">
-                    <input type="text" placeholder="제품 번호(예: 75192) 또는 이름으로 검색" style="width: 100%; padding: 25px 30px; background: #fff; border: 2px solid var(--accent-color); border-radius: 50px; color: #000; font-size: 1.1rem; outline: none;">
-                    <button style="position: absolute; right: 10px; top: 10px; bottom: 10px; padding: 0 40px; background: var(--accent-color); color: #000; border: none; border-radius: 40px; font-weight: 900; cursor: pointer;">검색</button>
+                <div style="position: relative; width: 100%;">
+                    <input type="text" placeholder="제품 번호(예: 75192) 또는 이름으로 검색" style="width: 100%; padding: 22px 30px; background: #ffffff; border: 2.5px solid #ffd500; border-radius: 50px; color: #111111; font-size: 1.1rem; font-family: var(--font-body); outline: none; box-sizing: border-box; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03);">
+                    <button style="position: absolute; right: 8px; top: 8px; bottom: 8px; padding: 0 35px; background: #ffd500; color: #111111; border: none; border-radius: 45px; font-weight: 900; font-family: var(--font-heading); cursor: pointer; transition: background-color 0.2s, transform 0.1s;">검색</button>
                 </div>
             </div>
         </div>
+        
+        <!-- Footer inside main for viewport-locked layout -->
+        <footer style="flex-shrink: 0; padding: 20px 0; width: 100%; text-align: center; margin-top: auto; background-color: #ffffff;">
+            <p style="font-family: var(--font-heading), 'Outfit', 'Inter', sans-serif; font-size: 0.9rem; color: #888888; margin: 0; letter-spacing: 0.5px; font-weight: 700;">
+                &copy; 2026 BRICK MATE. ALL RIGHTS RESERVED.
+            </p>
+        </footer>
     </main>
+
 
                 <div class="modal-overlay" id="login-modal">
         <div class="insiders-modal-content">
@@ -150,7 +233,7 @@
         <div class="mega-menu-container">
             <div class="mega-menu-header">
                 <div class="mega-menu-logo">
-                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                    <span style="font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: #ffcc00; letter-spacing: -0.5px;">Brick Mate</span>
                 </div>
                 <nav class="mega-menu-nav">
                     <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
@@ -163,7 +246,7 @@
                 <div class="mega-category-pane" id="mega-pane-brand">
                     <ul class="mega-links-list">
                         <li><a href="about.html">소개</a></li>
-                        <li><a href="news.html">소식</a></li>
+                        <li><a href="news.html">관련 회사</a></li>
                         <li><a href="partnership.html">다가오는 파트너십</a></li>
                     </ul>
                 </div>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 
 <head>
@@ -9,13 +9,204 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Premium Footer Styles */
+        .premium-footer {
+            background-color: #1b1b3a !important;
+            background: #1b1b3a !important;
+            color: #ffffff;
+            padding: 80px 0 40px 0;
+            font-family: var(--font-body), sans-serif;
+            margin-top: 80px;
+            clear: both;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .footer-links-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column h4 {
+            font-family: var(--font-heading), sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.98rem;
+            font-weight: 500;
+            transition: color 0.2s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-column ul li a:hover {
+            color: #ffd500;
+            transform: translateX(3px);
+        }
+
+        .footer-bottom-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .company-details p {
+            color: #ffffff;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 6px;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        .company-details p strong {
+            color: #ffffff;
+        }
+
+        .copyright-social {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 16px;
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-social-icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social-icons a {
+            color: #ffffff;
+            font-size: 1.2rem;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .footer-social-icons a:hover {
+            color: #ffd500;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-links-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-links-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+            .footer-bottom-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+            .copyright-social {
+                align-items: flex-start;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body class="home-page dark-mode">
     <div class='custom-cursor' id='cursor'></div>
+
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <div class="mobile-nav-panel">
+        <div class="mobile-nav-header">
+            <span class="mobile-nav-logo">Brick Mate</span>
+            <button class="mobile-nav-close" id="mobile-nav-close">&times;</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-brand">
+                    브랜드 소개 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-brand">
+                    <li><a href="about.html">소개</a></li>
+                    <li><a href="news.html">관련 회사</a></li>
+                    <li><a href="partnership.html">다가오는 파트너십</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-products">
+                    제품 소식 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-products">
+                    <li><a href="series.html">시리즈별 세트</a></li>
+                    <li><a href="age.html">연령별</a></li>
+                    <li><a href="price.html">가격별</a></li>
+                    <li><a href="new.html">신제품</a></li>
+                    <li><a href="deals.html">할인 및 행사</a></li>
+                    <li><a href="coming-soon.html">출시 예정</a></li>
+                    <li><a href="last-chance.html">단종 예정</a></li>
+                </ul>
+            </li>
+            <li><a href="companies.html">장바구니</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-support">
+                    고객 지원 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-support">
+                    <li><a href="order.html">주문 현황 확인</a></li>
+                    <li><a href="shipping.html">배송 및 반품</a></li>
+                    <li><a href="faq.html">일반적인 질문</a></li>
+                    <li><a href="contact.html">문의하기</a></li>
+                    <li><a href="bricks.html">부속품 및 브릭</a></li>
+                </ul>
+            </li>
+            <li><a href="board.html">팬 커뮤니티</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <button class="mobile-btn-login" onclick="document.getElementById('promo-open-login')?.click(); document.getElementById('mobile-nav-drawer').classList.remove('open');">로그인</button>
+            <button class="mobile-btn-play" onclick="location.href='playzone.html'">PLAY존</button>
+        </div>
+    </div>
+</div>
 
     <div class="promo-bar">
         <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
@@ -35,7 +226,7 @@
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="active hoverable">HOME</a></li>
@@ -49,8 +240,13 @@
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger" data-category="support">고객 지원</a>
                 </li>
+                <li><a href="board.html" class="hoverable">팬 커뮤니티</a></li>
             </ul>
-            <div class="header-right">
+                <button class="mobile-menu-btn hoverable" id="mobile-menu-btn" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button><div class="header-right">
             </div>
         </nav>
     </header>
@@ -457,65 +653,7 @@
 
         </section>
 
-        <!-- Category Grid Section -->
-        <section id="scroll-category-section" class="section dark" style="padding: 100px 0;">
-            <div class="section-container">
-                <div class="category-tabs">
-                    <button class="tab-btn active">PRODUCTS</button>
-                    <button class="tab-btn">NEWS</button>
-                </div>
-                <div class="category-grid-main">
-                    <div class="category-item" style="background-color: #e3000b;">
-                        <div class="cat-content">
-                            <span>SERIES</span>
-                            <img src="5.png" class="cat-img" alt="Series">
-                        </div>
-                    </div>
-                    <div class="category-item" style="background-color: #006cb7;">
-                        <div class="cat-content">
-                            <span>AGE</span>
-                            <img src="6.png" class="cat-img" alt="Age">
-                        </div>
-                    </div>
-                    <div class="category-item" style="background-color: #ffd500; color: #000;">
-                        <div class="cat-content">
-                            <span>PRICE</span>
-                            <img src="7.png" class="cat-img" alt="Price">
-                        </div>
-                    </div>
-                    <div class="category-item" style="background-color: #009639;">
-                        <div class="cat-content">
-                            <span>NEW</span>
-                            <img src="8.png" class="cat-img" alt="New">
-                        </div>
-                    </div>
-                    <div class="category-item" style="background-color: #e3000b;">
-                        <div class="cat-content">
-                            <span>EXCLUSIVE</span>
-                            <img src="1.png" class="cat-img" alt="Exclusive">
-                        </div>
-                    </div>
-                    <div class="category-item" style="background-color: #006cb7;">
-                        <div class="cat-content">
-                            <span>DEALS</span>
-                            <img src="2.png" class="cat-img" alt="Deals">
-                        </div>
-                    </div>
-                    <div class="category-item" style="background-color: #ffd500; color: #000;">
-                        <div class="cat-content">
-                            <span>COMING SOON</span>
-                            <img src="3.png" class="cat-img" alt="Coming Soon">
-                        </div>
-                    </div>
-                    <div class="category-item" style="background-color: #009639;">
-                        <div class="cat-content">
-                            <span>LAST CHANCE</span>
-                            <img src="4.png" class="cat-img" alt="Last Chance">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
 
         <!-- Gear Collection Section (Space 3D Edition) -->
         <section id="gear" class="section space-theme" style="padding: 70px 0 120px 0; background: #ffffff;">
@@ -641,20 +779,69 @@
             </div>
         </section>
 
-        <!-- Socials Fan Gallery Section -->
-        <section class="socials-fan-section">
-            <div class="section-container">
-                <h2 class="socials-title">FAN<br><span class="outline-text">GALLERY</span></h2>
-                <div class="socials-fan-gallery">
-                    <div class="fan-item item-1"><img src="1.png" alt="Social 1"></div>
-                    <div class="fan-item item-2"><img src="2.png" alt="Social 2"></div>
-                    <div class="fan-item item-3"><img src="3.png" alt="Social 3"></div>
-                    <div class="fan-item item-4"><img src="4.png" alt="Social 4"></div>
-                    <div class="fan-item item-5"><img src="5.png" alt="Social 5"></div>
+</main>
+
+            <!-- Footer -->
+            <footer class="premium-footer">
+                <div class="footer-container">
+                    <div class="footer-links-grid">
+                        <div class="footer-column">
+                            <h4>브랜드소개</h4>
+                            <ul>
+                                <li><a href="about.html">소개</a></li>
+                                <li><a href="news.html">관련 회사</a></li>
+                                <li><a href="partnership.html">다가오는 파트너십</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>제품소식</h4>
+                            <ul>
+                                <li><a href="series.html">시리즈별 세트</a></li>
+                                <li><a href="age.html">연령별</a></li>
+                                <li><a href="price.html">가격별</a></li>
+                                <li><a href="new.html">신제품</a></li>
+                                <li><a href="deals.html">할인 및 행사</a></li>
+                                <li><a href="coming-soon.html">출시 예정</a></li>
+                                <li><a href="last-chance.html">단종 예정</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>장바구니</h4>
+                            <ul>
+                                <li><a href="companies.html">장바구니 바로가기</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>고객지원</h4>
+                            <ul>
+                                <li><a href="order.html">주문 현황 확인</a></li>
+                                <li><a href="shipping.html">배송 및 반품</a></li>
+                                <li><a href="faq.html">일반적인 질문</a></li>
+                                <li><a href="contact.html">문의하기</a></li>
+                                <li><a href="bricks.html">부속품 및 브릭</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>팬커뮤니티</h4>
+                            <ul>
+                                <li><a href="board.html">팬 커뮤니티 홈</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-bottom-info" style="display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 50px; width: 100%;">
+                        <div class="company-details" style="text-align: center; width: 100%;">
+                            <p style="text-align: center; color: #ffffff; font-size: 0.85rem; line-height: 1.6; margin-bottom: 6px; font-weight: 500;"><strong>(주)브릭메이트</strong> | 대표 : 황영호 | 전화번호 : 010-1234-5678</p>
+                            <p style="text-align: center; color: #ffffff; font-size: 0.85rem; line-height: 1.6; margin-bottom: 6px; font-weight: 500;">서울특별시 강남구 강남대로 382, 브릭타워 5층 | 사업자등록번호: 123-34-56789</p>
+                            <p style="text-align: center; color: #ffffff; font-size: 0.85rem; line-height: 1.6; margin-bottom: 6px; font-weight: 500;">고객센터: 1544-1234 (평일 09:00 ~ 18:00, 주말/공휴일 휴무) | 이메일: brickmate1234@gmail.com</p>
+                        </div>
+                        <div class="copyright-wrap" style="width: 100%; text-align: center; margin-top: 0px;">
+                            <p class="copyright" style="text-align: center; margin: 0; font-size: 0.85rem; color: #ffffff; font-weight: 700; letter-spacing: 0.5px;">&copy; 2026 BRICK MATE. ALL RIGHTS RESERVED.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </footer>
+
 
     <!-- Modals (Standardized) -->
                 <div class="modal-overlay" id="login-modal">
@@ -733,8 +920,7 @@
         <div class="mega-menu-container">
             <div class="mega-menu-header">
                 <div class="mega-menu-logo">
-                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg"
-                        alt="LEGO" class="lego-square-logo">
+                    <span style="font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: #ffcc00; letter-spacing: -0.5px;">Brick Mate</span>
                 </div>
                 <nav class="mega-menu-nav">
                     <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
@@ -747,7 +933,7 @@
                 <div class="mega-category-pane" id="mega-pane-brand">
                     <ul class="mega-links-list">
                         <li><a href="about.html">소개</a></li>
-                        <li><a href="news.html">소식</a></li>
+                        <li><a href="news.html">관련 회사</a></li>
                         <li><a href="partnership.html">다가오는 파트너십</a></li>
                     </ul>
                 </div>
@@ -755,7 +941,6 @@
                     <ul class="mega-links-list">
                         <li><a href="order.html">주문 현황 확인</a></li>
                         <li><a href="shipping.html">배송 및 반품</a></li>
-                        <li><a href="assembly.html">조립 설명서 검색</a></li>
                         <li><a href="faq.html">일반적인 질문</a></li>
                         <li><a href="contact.html">문의하기</a></li>
                         <li><a href="bricks.html">부속품 및 브릭</a></li>

@@ -1,48 +1,151 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOARD | YH04</title>
+    <title>소통하기 | YH04</title>
     <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .board-container {
-            max-width: 1000px;
-            margin: 150px auto;
+            max-width: 1200px;
+            margin: 20px auto;
             padding: 0 20px;
         }
         .board-header {
-            margin-bottom: 50px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .board-header .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            line-height: 1.2;
+            text-transform: none;
+            margin-bottom: 10px;
+        }
+        .board-header .outline-text {
+            background-color: transparent !important;
+            color: inherit !important;
+            padding: 0 !important;
+            display: inline !important;
+        }
+        .board-header p {
+            margin-top: 5px;
+            font-size: 1.05rem;
+            opacity: 0.7;
+        }
+        .board-content-layout {
+            display: flex;
+            gap: 50px;
+            align-items: start;
+            margin-top: 45px;
+        }
+        .comment-form-wrapper {
+            flex: 1.25;
+            min-width: 320px;
+        }
+        .comment-list-wrapper {
+            flex: 1.75;
+            min-width: 320px;
+        }
+        .comment-list-header {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #111111;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-heading), 'Outfit', sans-serif;
+        }
+        .comment-list-header i {
+            color: var(--accent-color, #ffdf00);
+        }
+        @media (min-width: 992px) {
+            body.no-scroll-page {
+                overflow: hidden !important;
+                height: 100vh;
+            }
+            body.no-scroll-page main.board-container {
+                height: calc(100vh - 160px);
+                display: flex;
+                flex-direction: column;
+                overflow: hidden !important;
+                margin: 15px auto;
+            }
+            body.no-scroll-page .board-content-layout {
+                flex: 1;
+                overflow: hidden;
+                height: calc(100% - 80px);
+                margin-top: 30px;
+            }
+            body.no-scroll-page .comment-form-wrapper {
+                height: 100%;
+                overflow: visible;
+            }
+            body.no-scroll-page .comment-list-wrapper {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+            }
+            body.no-scroll-page .comment-list {
+                flex: 1;
+                overflow-y: auto;
+                padding-right: 15px;
+            }
+        }
+        @media (max-width: 991px) {
+            .board-content-layout {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .comment-form-wrapper, .comment-list-wrapper {
+                width: 100%;
+                min-width: 0;
+            }
         }
         .comment-form {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 18px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
         }
-        .comment-form h3 { margin-bottom: 20px; color: var(--accent-color); }
+        .comment-form h3 { margin-bottom: 20px; color: #111111; font-weight: 900; }
         .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; opacity: 0.7; font-size: 0.9rem; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 700; color: #222222; font-size: 0.95rem; }
         .form-group input, .form-group textarea {
             width: 100%;
-            padding: 12px;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            border-radius: 8px;
+            padding: 14px;
+            background: #fdfdfd;
+            border: 1.5px solid rgba(0, 0, 0, 0.12);
+            color: #111111;
+            border-radius: 10px;
             font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .form-group textarea {
+            resize: none;
+            height: 180px;
+        }
+        .form-group input::placeholder, .form-group textarea::placeholder {
+            color: #888888;
+            opacity: 0.8;
         }
         .form-group input:focus, .form-group textarea:focus {
-            border-color: var(--accent-color);
+            border-color: var(--accent-color, #ffdf00);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
             outline: none;
+            color: #111111;
         }
         .submit-btn {
-            background: var(--accent-color);
+            background: var(--accent-color, #ffdf00);
             color: black;
             border: none;
             padding: 15px 30px;
@@ -59,24 +162,277 @@
             gap: 20px;
         }
         .comment-item {
-            background: rgba(255,255,255,0.03);
+            background: #ffffff;
             padding: 25px;
             border-radius: 12px;
-            border-left: 4px solid var(--accent-color);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-left: 4px solid var(--accent-color, #ffdf00);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
         }
         .comment-meta {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 10px;
             font-size: 0.85rem;
-            opacity: 0.6;
+            color: #666666;
         }
-        .comment-author { font-weight: 700; color: white; opacity: 1; }
-        .comment-body { line-height: 1.6; }
+        .comment-meta-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .comment-author { font-weight: 700; color: #111111; }
+        .comment-body { line-height: 1.6; color: #333333; word-break: break-all; }
+        
+        /* Action buttons for 수정 / 삭제 */
+        .comment-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .action-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #888888;
+            transition: all 0.2s ease;
+        }
+        .action-btn:hover {
+            transform: translateY(-1px);
+        }
+        .action-btn.edit-btn:hover {
+            color: #0056b3;
+        }
+        .action-btn.delete-btn:hover {
+            color: #dc3545;
+        }
+
+        /* Inline editor styling */
+        .inline-edit-box {
+            margin-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+        .edit-textarea {
+            width: 100%;
+            height: 90px;
+            padding: 10px 12px;
+            background: #fafafa;
+            border: 1.5px solid rgba(0, 0, 0, 0.12);
+            color: #111111;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            resize: vertical;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+        .edit-textarea:focus {
+            border-color: var(--accent-color, #ffdf00);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
+            outline: none;
+        }
+        .inline-edit-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+        .inline-btn {
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .inline-btn.save-btn {
+            background: var(--accent-color, #ffdf00);
+            color: black;
+        }
+        .inline-btn.save-btn:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+        .inline-btn.cancel-btn {
+            background: #e0e0e0;
+            color: #333333;
+        }
+        .inline-btn.cancel-btn:hover {
+            background: #d5d5d5;
+            transform: scale(1.05);
+        }
+
+        /* Replies Section Styling */
+        .reply-container {
+            border-top: 1px dashed rgba(0, 0, 0, 0.08);
+            margin-top: 18px;
+            padding-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .reply-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .reply-item {
+            background: #f9f9f9;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-color, #ffdf00);
+            font-size: 0.9rem;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.01);
+        }
+        .reply-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            color: #777777;
+            margin-bottom: 6px;
+        }
+        .reply-author { font-weight: 700; color: #111111; }
+        .reply-body { line-height: 1.5; color: #444444; word-break: break-all; }
+        
+        .reply-form {
+            display: flex;
+            gap: 8px;
+            margin-top: 5px;
+            align-items: center;
+        }
+        .reply-author-input {
+            width: 85px;
+            padding: 8px 10px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 6px;
+            font-size: 0.82rem;
+            background: #fafafa;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+            color: #111111;
+        }
+        .reply-author-input:focus {
+            border-color: var(--accent-color, #ffdf00);
+            background: #ffffff;
+            outline: none;
+        }
+        .reply-message-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 6px;
+            font-size: 0.82rem;
+            background: #fafafa;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+            color: #111111;
+        }
+        .reply-message-input:focus {
+            border-color: var(--accent-color, #ffdf00);
+            background: #ffffff;
+            outline: none;
+        }
+        .reply-submit-btn {
+            background: var(--accent-color, #ffdf00);
+            border: none;
+            color: black;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .reply-submit-btn:hover {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+        .comment-image-hover:hover {
+            transform: scale(1.015);
+            filter: brightness(1.04);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        @keyframes skeleton-pulse {
+            0% { opacity: 0.55; }
+            50% { opacity: 0.95; }
+            100% { opacity: 0.55; }
+        }
+        .skeleton-item {
+            animation: skeleton-pulse 1.4s infinite ease-in-out !important;
+        }
     </style>
 </head>
-<body class="dark-mode">
-    <div class="custom-cursor" id="cursor"></div>
+<body class="dark-mode no-scroll-page">
+    <div class="custom-cursor" id="cursor">
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <div class="mobile-nav-panel">
+        <div class="mobile-nav-header">
+            <span class="mobile-nav-logo">Brick Mate</span>
+            <button class="mobile-nav-close" id="mobile-nav-close">&times;</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-brand">
+                    釉뚮옖???뚭컻 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-brand">
+                    <li><a href="about.html">?뚭컻</a></li>
+                    <li><a href="news.html">愿???뚯궗</a></li>
+                    <li><a href="partnership.html">?ㅺ??ㅻ뒗 ?뚰듃?덉떗</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-products">
+                    ?쒗뭹 ?뚯떇 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-products">
+                    <li><a href="series.html">?쒕━利덈퀎 ?명듃</a></li>
+                    <li><a href="age.html">?곕졊蹂?/a></li>
+                    <li><a href="price.html">媛寃⑸퀎</a></li>
+                    <li><a href="new.html">?좎젣??/a></li>
+                    <li><a href="deals.html">?좎씤 諛??됱궗</a></li>
+                    <li><a href="coming-soon.html">異쒖떆 ?덉젙</a></li>
+                    <li><a href="last-chance.html">?⑥쥌 ?덉젙</a></li>
+                </ul>
+            </li>
+            <li><a href="companies.html">?λ컮援щ땲</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-support">
+                    怨좉컼 吏??<i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-support">
+                    <li><a href="order.html">二쇰Ц ?꾪솴 ?뺤씤</a></li>
+                    <li><a href="shipping.html">諛곗넚 諛?諛섑뭹</a></li>
+                    <li><a href="faq.html">?쇰컲?곸씤 吏덈Ц</a></li>
+                    <li><a href="contact.html">臾몄쓽?섍린</a></li>
+                    <li><a href="bricks.html">遺?랁뭹 諛?釉뚮┃</a></li>
+                </ul>
+            </li>
+            <li><a href="board.html">??而ㅻ??덊떚</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <button class="mobile-btn-login" onclick="document.getElementById('promo-open-login')?.click(); document.getElementById('mobile-nav-drawer').classList.remove('open');">濡쒓렇??/button>
+            <button class="mobile-btn-play" onclick="location.href='playzone.html'">PLAY議?/button>
+        </div>
+    </div>
+</div></div>
     <div class="promo-bar">
         <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
         <div class="promo-bar-content">
@@ -94,7 +450,7 @@
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="hoverable ">HOME</a></li>
@@ -108,11 +464,22 @@
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger " data-category="support">고객 지원</a>
                 </li>
+                <li><a href="board.html" class="hoverable active">팬 커뮤니티</a></li>
             </ul>
-            <div class="header-right">
+                <button class="mobile-menu-btn hoverable" id="mobile-menu-btn" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button><div class="header-right">
             </div>
         </nav>
     </header>
+    
+    
+    
+    
+    
+    
     
     
     
@@ -123,30 +490,91 @@
     
 
     <main class="board-container">
-        <div class="board-header">
-            <h1 class="section-title">GUEST<br><span class="outline-text">BOARD</span></h1>
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs" style="display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #777777; margin-top: 20px; margin-bottom: 15px; font-weight: 500;">
+            <a href="index.html" style="color: #777777; text-decoration: none; transition: color 0.2s ease;">HOME</a>
+            <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #777777;"></i>
+            <span style="color: #111111; font-weight: 700;">팬 커뮤니티</span>
+        </div>
+<div class="board-header">
+            <h1 class="section-title">소통<span class="outline-text">하기</span></h1>
             <p>생각을 나누고 다른 사람들과 소통하세요.</p>
         </div>
 
-        <section class="comment-form">
-            <h3>글쓰기</h3>
-            <form id="boardForm">
-                <div class="form-group">
-                    <label>이름</label>
-                    <input type="text" id="author" placeholder="이름을 입력하세요" required>
-                </div>
-                <div class="form-group">
-                    <label>내용</label>
-                    <textarea id="message" rows="4" placeholder="메시지를 입력하세요..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn hoverable">게시하기</button>
-            </form>
-        </section>
+        <div class="board-content-layout">
+            <!-- Left Side: Interactive Writing Form -->
+            <div class="comment-form-wrapper">
+                <section class="comment-form">
+                    <h3>글쓰기</h3>
+                    <form id="boardForm">
+                        <div class="form-group">
+                            <label>이름</label>
+                            <input type="text" id="author" placeholder="이름을 입력하세요" required>
+                        </div>
+                        <div class="form-group">
+                            <label>내용</label>
+                            <textarea id="message" rows="4" placeholder="메시지를 입력하세요..." required></textarea>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                            <button type="submit" class="submit-btn hoverable">게시하기</button>
+                            <button type="button" id="imageBtn" class="submit-btn hoverable" style="display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-image"></i> 이미지 추가
+                            </button>
+                            <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                        </div>
+                        
+                        <!-- Image Preview Box -->
+                        <div id="imagePreviewContainer" style="display: none; margin-top: 15px; position: relative; width: 100px; height: 100px; border-radius: 10px; overflow: hidden; border: 1.5px solid rgba(0, 0, 0, 0.12); background: #fafafa; box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
+                            <img id="imagePreview" src="" style="width: 100%; height: 100%; object-fit: cover;">
+                            <button type="button" id="removeImageBtn" style="position: absolute; top: 5px; right: 5px; background: rgba(0,0,0,0.6); color: white; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s ease;">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </form>
+                </section>
+            </div>
 
-        <section class="comment-list" id="commentList">
-            <!-- Comments will be loaded here -->
-        </section>
+            <!-- Right Side: Posted Articles Feed -->
+            <div class="comment-list-wrapper">
+                <h3 class="comment-list-header"><i class="fa-solid fa-comments"></i> 게시글 목록</h3>
+                <section class="comment-list" id="commentList">
+                    <!-- 기본 스켈레톤 UI (데이터 로딩 전 레이아웃 깨짐/흔들림 및 늘어지는 현상 방지) -->
+                    <div class="comment-item skeleton-item" style="height: 140px; border-left-color: #dddddd; background: rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 12px; padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 5px 15px rgba(0,0,0,0.02);">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="width: 100px; height: 16px; background: rgba(255,255,255,0.1); border-radius: 4px;"></div>
+                            <div style="width: 60px; height: 14px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                        </div>
+                        <div style="width: 80%; height: 16px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                        <div style="width: 50%; height: 16px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                    </div>
+                    <div class="comment-item skeleton-item" style="height: 140px; border-left-color: #dddddd; background: rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 12px; padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 5px 15px rgba(0,0,0,0.02);">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="width: 80px; height: 16px; background: rgba(255,255,255,0.1); border-radius: 4px;"></div>
+                            <div style="width: 60px; height: 14px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                        </div>
+                        <div style="width: 90%; height: 16px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                        <div style="width: 40%; height: 16px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                    </div>
+                    <div class="comment-item skeleton-item" style="height: 140px; border-left-color: #dddddd; background: rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 12px; padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 5px 15px rgba(0,0,0,0.02);">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="width: 120px; height: 16px; background: rgba(255,255,255,0.1); border-radius: 4px;"></div>
+                            <div style="width: 60px; height: 14px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                        </div>
+                        <div style="width: 75%; height: 16px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                        <div style="width: 60%; height: 16px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Footer (고정 영역 내부 하단 배치) -->
+        <footer style="padding: 15px 0; margin-top: 15px; width: 100%; text-align: center; flex-shrink: 0;">
+            <p style="font-family: var(--font-heading), 'Outfit', 'Inter', sans-serif; font-size: 0.9rem; color: #888888; margin: 0; letter-spacing: 0.5px; font-weight: 700;">
+                &copy; 2026 BRICK MATE. ALL RIGHTS RESERVED.
+            </p>
+        </footer>
     </main>
+
 
                 <div class="modal-overlay" id="login-modal">
         <div class="insiders-modal-content">
@@ -224,7 +652,7 @@
         <div class="mega-menu-container">
             <div class="mega-menu-header">
                 <div class="mega-menu-logo">
-                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                    <span style="font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: #ffcc00; letter-spacing: -0.5px;">Brick Mate</span>
                 </div>
                 <nav class="mega-menu-nav">
                     <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
@@ -237,7 +665,7 @@
                 <div class="mega-category-pane" id="mega-pane-brand">
                     <ul class="mega-links-list">
                         <li><a href="about.html">소개</a></li>
-                        <li><a href="news.html">소식</a></li>
+                        <li><a href="news.html">관련 회사</a></li>
                         <li><a href="partnership.html">다가오는 파트너십</a></li>
                     </ul>
                 </div>
@@ -245,7 +673,6 @@
                     <ul class="mega-links-list">
                         <li><a href="order.html">주문 현황 확인</a></li>
                         <li><a href="shipping.html">배송 및 반품</a></li>
-                        <li><a href="assembly.html">조립 설명서 검색</a></li>
                         <li><a href="faq.html">일반적인 질문</a></li>
                         <li><a href="contact.html">문의하기</a></li>
                         <li><a href="bricks.html">부속품 및 브릭</a></li>
@@ -279,43 +706,697 @@
         </div>
     </div>
 
+    <!-- Firebase SDK v8 CDNs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
     <script src="main.js?v=1.1"></script>
     <script>
         const boardForm = document.getElementById('boardForm');
         const commentList = document.getElementById('commentList');
 
-        function loadComments() {
-            const comments = JSON.parse(localStorage.getItem('yh04_comments') || '[]');
-            commentList.innerHTML = comments.length ? '' : '<p style="opacity: 0.5; text-align: center;">아직 게시물이 없습니다. 첫 번째 주인공이 되어보세요!</p>';
+        // Safe HTML escaping helper
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Format raw message to include line breaks and safety
+        function formatMessage(str) {
+            return escapeHtml(str).replace(/\n/g, '<br>');
+        }
+
+        // Generate unique ID for LocalStorage comments
+        function generateUniqueId() {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+        }
+
+        // ==========================================
+        // DUAL-ENGINE PERSISTENCE SYSTEM
+        // ==========================================
+        
+        // Paste your Firebase Config below
+        const firebaseConfig = {
+            apiKey: "AIzaSyARs1m4bU1paMV9k8EkepeqiaUg0xYwAOk",
+            authDomain: "brickmate-community.firebaseapp.com",
+            databaseURL: "https://brickmate-community-default-rtdb.firebaseio.com",
+            projectId: "brickmate-community",
+            storageBucket: "brickmate-community.firebasestorage.app",
+            messagingSenderId: "139741124692",
+            appId: "1:139741124692:web:37531bdf54c2df5a6375c1"
+        };
+
+        let db = null;
+        let isFirebaseActive = false;
+
+        // Try to initialize Firebase
+        if (typeof firebase !== 'undefined' && firebaseConfig.apiKey !== "YOUR_API_KEY") {
+            try {
+                firebase.initializeApp(firebaseConfig);
+                db = firebase.database();
+                isFirebaseActive = true;
+                console.log("Firebase Realtime Database successfully initialized.");
+            } catch (err) {
+                console.warn("Failed to initialize Firebase. Falling back to LocalStorage.", err);
+            }
+        } else {
+            console.log("Firebase credentials not configured. Operating in LocalStorage fallback mode.");
+        }
+
+        // Storage Engine abstraction
+        const StorageEngine = {
+            onCommentsChange(callback) {
+                if (isFirebaseActive && db) {
+                    let hasReceivedData = false;
+                    
+                    // 3.5-second fallback timer: if Singapore DB is slow or unreachable, recover gracefully
+                    const connectionTimeout = setTimeout(() => {
+                        if (!hasReceivedData) {
+                            console.warn("Firebase connection timeout. Automatically switching to LocalStorage mode.");
+                            isFirebaseActive = false;
+                            StorageEngine.onCommentsChange(callback);
+                        }
+                    }, 3500);
+
+                    // Firebase Real-time Listener
+                    db.ref('comments').on('value', (snapshot) => {
+                        hasReceivedData = true;
+                        clearTimeout(connectionTimeout);
+                        
+                        const data = snapshot.val();
+                        const commentsList = [];
+                        if (data) {
+                            Object.keys(data).forEach(key => {
+                                const comment = data[key];
+                                if (comment.replies) {
+                                    let updatedReplies = false;
+                                    comment.replies = comment.replies.map(r => {
+                                        if (!r.id) {
+                                            r.id = generateUniqueId();
+                                            updatedReplies = true;
+                                        }
+                                        return r;
+                                    });
+                                    if (updatedReplies) {
+                                        db.ref(`comments/${key}`).update({ replies: comment.replies });
+                                    }
+                                }
+                                commentsList.push({
+                                    id: key,
+                                    ...comment
+                                });
+                            });
+                        }
+                        // 최신 데이터 로컬 캐시 동기화 (Cache Sync)
+                        localStorage.setItem('yh04_comments', JSON.stringify(commentsList));
+                        callback(commentsList);
+                    }, (error) => {
+                        hasReceivedData = true;
+                        clearTimeout(connectionTimeout);
+                        
+                        console.warn("Firebase permission denied or access error. Automatically switching to LocalStorage mode.", error);
+                        alert("파이어베이스 연결 권한이 없거나 규칙(Rules)이 잠겨 있습니다. 실시간 연동을 비활성화하고 브라우저 내부 로컬 저장소(LocalStorage) 모드로 자동 전환합니다.\n\n해결 방법: 파이어베이스 콘솔의 Realtime Database ➡️ '규칙(Rules)' 탭에서 규칙이 아래와 같이 '.read: true, .write: true'로 설정되어 있는지 다시 확인하고 [게시]를 눌러주세요!\n\n{\n  \"rules\": {\n    \".read\": \"true\",\n    \".write\": \"true\"\n  }\n}");
+                        isFirebaseActive = false;
+                        StorageEngine.onCommentsChange(callback);
+                    });
+                } else {
+                    // LocalStorage Listener fallback
+                    const loadLocal = () => {
+                        const localData = JSON.parse(localStorage.getItem('yh04_comments') || '[]');
+                        // Check if loaded local comments lack unique ID and assign one for structural consistency
+                        let updated = false;
+                        const verifiedLocal = localData.map(c => {
+                            if (!c.id) {
+                                c.id = generateUniqueId();
+                                updated = true;
+                            }
+                            if (c.replies) {
+                                c.replies = c.replies.map(r => {
+                                    if (!r.id) {
+                                        r.id = generateUniqueId();
+                                        updated = true;
+                                    }
+                                    return r;
+                                });
+                            }
+                            return c;
+                        });
+                        if (updated) {
+                            localStorage.setItem('yh04_comments', JSON.stringify(verifiedLocal));
+                        }
+                        callback(verifiedLocal);
+                    };
+                    
+                    loadLocal();
+                    
+                    // Simple interval check to mock dynamic update across multiple local tabs
+                    window.addEventListener('storage', (e) => {
+                        if (e.key === 'yh04_comments') {
+                            loadLocal();
+                        }
+                    });
+                    
+                    // Attach global triggering method for updates
+                    this._triggerLocalUpdate = loadLocal;
+                }
+            },
+
+            addComment(author, message, image, callback) {
+                let realCallback = callback;
+                let realImage = image;
+                if (typeof image === 'function') {
+                    realCallback = image;
+                    realImage = "";
+                }
+
+                const commentData = {
+                    author,
+                    message,
+                    image: realImage || "",
+                    date: new Date().toISOString(),
+                    replies: []
+                };
+
+                if (isFirebaseActive && db) {
+                    db.ref('comments').push(commentData)
+                      .then(() => { if(realCallback) realCallback(); })
+                      .catch(err => {
+                          console.error("Firebase write error:", err);
+                          alert("파이어베이스 쓰기 권한이 없습니다. 규칙(Rules)을 확인해 주세요. 우선 임시로 브라우저 로컬 저장소에 저장합니다.");
+                          isFirebaseActive = false;
+                          StorageEngine.addComment(author, message, realImage, realCallback);
+                      });
+                } else {
+                    const localData = JSON.parse(localStorage.getItem('yh04_comments') || '[]');
+                    commentData.id = generateUniqueId();
+                    localData.push(commentData);
+                    localStorage.setItem('yh04_comments', JSON.stringify(localData));
+                    if (this._triggerLocalUpdate) this._triggerLocalUpdate();
+                    if(realCallback) realCallback();
+                }
+            },
+
+            updateComment(id, newMessage, callback) {
+                if (isFirebaseActive && db) {
+                    db.ref(`comments/${id}`).update({ message: newMessage })
+                      .then(() => { if(callback) callback(); })
+                      .catch(err => {
+                          console.error("Firebase update error:", err);
+                          isFirebaseActive = false;
+                          StorageEngine.updateComment(id, newMessage, callback);
+                      });
+                } else {
+                    const localData = JSON.parse(localStorage.getItem('yh04_comments') || '[]');
+                    const comment = localData.find(c => c.id === id);
+                    if (comment) {
+                        comment.message = newMessage;
+                        localStorage.setItem('yh04_comments', JSON.stringify(localData));
+                        if (this._triggerLocalUpdate) this._triggerLocalUpdate();
+                    }
+                    if(callback) callback();
+                }
+            },
+
+            deleteComment(id, callback) {
+                if (isFirebaseActive && db) {
+                    db.ref(`comments/${id}`).remove()
+                      .then(() => { if(callback) callback(); })
+                      .catch(err => {
+                          console.error("Firebase delete error:", err);
+                          isFirebaseActive = false;
+                          StorageEngine.deleteComment(id, callback);
+                      });
+                } else {
+                    const localData = JSON.parse(localStorage.getItem('yh04_comments') || '[]');
+                    const filtered = localData.filter(c => c.id !== id);
+                    localStorage.setItem('yh04_comments', JSON.stringify(filtered));
+                    if (this._triggerLocalUpdate) this._triggerLocalUpdate();
+                    if(callback) callback();
+                }
+            },
+
+            addReply(commentId, author, message, callback) {
+                const newReply = {
+                    id: generateUniqueId(),
+                    author,
+                    message,
+                    date: new Date().toISOString()
+                };
+                if (isFirebaseActive && db) {
+                    // First read current replies array
+                    db.ref(`comments/${commentId}`).once('value').then((snapshot) => {
+                        const comment = snapshot.val();
+                        if (comment) {
+                            const replies = comment.replies || [];
+                            replies.push(newReply);
+                            db.ref(`comments/${commentId}`).update({ replies })
+                              .then(() => { if(callback) callback(); })
+                              .catch(err => {
+                                  console.error("Firebase addReply update error:", err);
+                                  isFirebaseActive = false;
+                                  StorageEngine.addReply(commentId, author, message, callback);
+                              });
+                        }
+                    }).catch(err => {
+                        console.error("Firebase addReply read error:", err);
+                        isFirebaseActive = false;
+                        StorageEngine.addReply(commentId, author, message, callback);
+                    });
+                } else {
+                    const localData = JSON.parse(localStorage.getItem('yh04_comments') || '[]');
+                    const comment = localData.find(c => c.id === commentId);
+                    if (comment) {
+                        if (!comment.replies) {
+                            comment.replies = [];
+                        }
+                        comment.replies.push(newReply);
+                        localStorage.setItem('yh04_comments', JSON.stringify(localData));
+                        if (this._triggerLocalUpdate) this._triggerLocalUpdate();
+                    }
+                    if(callback) callback();
+                }
+            },
+
+            editReply(commentId, replyId, newMessage, callback) {
+                if (isFirebaseActive && db) {
+                    db.ref(`comments/${commentId}`).once('value').then((snapshot) => {
+                        const comment = snapshot.val();
+                        if (comment) {
+                            const replies = comment.replies || [];
+                            const reply = replies.find(r => r.id === replyId);
+                            if (reply) {
+                                reply.message = newMessage;
+                                db.ref(`comments/${commentId}`).update({ replies })
+                                  .then(() => { if(callback) callback(); });
+                            }
+                        }
+                    });
+                } else {
+                    const localData = JSON.parse(localStorage.getItem('yh04_comments') || '[]');
+                    const comment = localData.find(c => c.id === commentId);
+                    if (comment) {
+                        const replies = comment.replies || [];
+                        const reply = replies.find(r => r.id === replyId);
+                        if (reply) {
+                            reply.message = newMessage;
+                            localStorage.setItem('yh04_comments', JSON.stringify(localData));
+                            if (this._triggerLocalUpdate) this._triggerLocalUpdate();
+                        }
+                    }
+                    if(callback) callback();
+                }
+            },
+
+            deleteReply(commentId, replyId, callback) {
+                if (isFirebaseActive && db) {
+                    db.ref(`comments/${commentId}`).once('value').then((snapshot) => {
+                        const comment = snapshot.val();
+                        if (comment) {
+                            const replies = comment.replies || [];
+                            const filtered = replies.filter(r => r.id !== replyId);
+                            db.ref(`comments/${commentId}`).update({ replies: filtered })
+                              .then(() => { if(callback) callback(); });
+                        }
+                    });
+                } else {
+                    const localData = JSON.parse(localStorage.getItem('yh04_comments') || '[]');
+                    const comment = localData.find(c => c.id === commentId);
+                    if (comment) {
+                        if (comment.replies) {
+                            comment.replies = comment.replies.filter(r => r.id !== replyId);
+                            localStorage.setItem('yh04_comments', JSON.stringify(localData));
+                            if (this._triggerLocalUpdate) this._triggerLocalUpdate();
+                        }
+                    }
+                    if(callback) callback();
+                }
+            }
+        };
+
+        // Cache for all loaded comments
+        let allComments = [];
+
+        // UI rendering list trigger
+        function renderCommentsUI(comments) {
+            allComments = comments;
+            commentList.innerHTML = comments.length ? '' : '<p style="opacity: 0.6; text-align: center; color: #333333;">아직 게시물이 없습니다. 첫 번째 주인공이 되어보세요!</p>';
             
-            comments.slice().reverse().forEach(comment => {
+            // Sort by date (descending) to show newest comments first
+            const sortedComments = comments.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            sortedComments.forEach(comment => {
                 const item = document.createElement('div');
                 item.className = 'comment-item';
+                
+                const replies = comment.replies || [];
+                let repliesHtml = '';
+                
+                replies.forEach(reply => {
+                    repliesHtml += `
+                        <div class="reply-item" id="reply-item-${reply.id || ''}">
+                            <div class="reply-meta">
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span class="reply-author">${escapeHtml(reply.author)}</span>
+                                    <span style="opacity: 0.7; font-size: 0.75rem;">${new Date(reply.date).toLocaleDateString()}</span>
+                                </div>
+                                <div class="reply-actions" style="display: flex; gap: 8px;">
+                                    <button class="action-btn edit-btn hoverable" style="font-size: 0.72rem; gap: 2px;" onclick="editReply('${comment.id}', '${reply.id || ''}')">
+                                        <i class="fa-solid fa-pen-to-square"></i> 수정
+                                    </button>
+                                    <button class="action-btn delete-btn hoverable" style="font-size: 0.72rem; gap: 2px;" onclick="deleteReply('${comment.id}', '${reply.id || ''}')">
+                                        <i class="fa-solid fa-trash-can"></i> 삭제
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="reply-body" id="reply-body-${reply.id || ''}">${formatMessage(reply.message)}</div>
+                        </div>
+                    `;
+                });
+                
+                let imageHtml = '';
+                if (comment.image) {
+                    imageHtml = `
+                        <div style="margin-top: 15px; max-width: 100%; border-radius: 10px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); cursor: pointer;" onclick="viewLightbox('${comment.image}')">
+                            <img src="${comment.image}" style="width: 100%; max-height: 380px; object-fit: cover; display: block; transition: all 0.3s ease;" class="comment-image-hover">
+                        </div>
+                    `;
+                }
+                
                 item.innerHTML = `
                     <div class="comment-meta">
-                        <span class="comment-author">${comment.author}</span>
-                        <span>${new Date(comment.date).toLocaleDateString()}</span>
+                        <div class="comment-meta-left">
+                            <span class="comment-author">${escapeHtml(comment.author)}</span>
+                            <span style="opacity: 0.6; font-size: 0.8rem;">${new Date(comment.date).toLocaleDateString()}</span>
+                        </div>
+                        <div class="comment-actions">
+                            <button class="action-btn edit-btn hoverable" onclick="editComment('${comment.id}')">
+                                <i class="fa-solid fa-pen-to-square"></i> 수정
+                            </button>
+                            <button class="action-btn delete-btn hoverable" onclick="deleteComment('${comment.id}')">
+                                <i class="fa-solid fa-trash-can"></i> 삭제
+                            </button>
+                        </div>
                     </div>
-                    <div class="comment-body">${comment.message}</div>
+                    <div class="comment-body" id="comment-body-${comment.id}">${formatMessage(comment.message)}</div>
+                    ${imageHtml}
+                    
+                    <!-- Replies / Comments Section -->
+                    <div class="reply-container">
+                        <div class="reply-list" id="reply-list-${comment.id}">
+                            ${repliesHtml}
+                        </div>
+                        <form class="reply-form" onsubmit="addReply(event, '${comment.id}')">
+                            <input type="text" class="reply-author-input" id="reply-author-${comment.id}" placeholder="이름" required>
+                            <input type="text" class="reply-message-input" id="reply-msg-${comment.id}" placeholder="댓글을 남겨보세요..." required>
+                            <button type="submit" class="reply-submit-btn hoverable">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
                 `;
                 commentList.appendChild(item);
             });
         }
 
+        // Image Attachment UI Bindings
+        const imageBtn = document.getElementById('imageBtn');
+        const imageInput = document.getElementById('imageInput');
+        const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+        const imagePreview = document.getElementById('imagePreview');
+        const removeImageBtn = document.getElementById('removeImageBtn');
+        let selectedImageBase64 = "";
+
+        if (imageBtn && imageInput) {
+            imageBtn.addEventListener('click', () => imageInput.click());
+            
+            imageInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    if (file.size > 1.5 * 1024 * 1024) {
+                        alert("이미지 용량은 최대 1.5MB까지만 업로드 가능합니다.");
+                        imageInput.value = "";
+                        return;
+                    }
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        selectedImageBase64 = event.target.result;
+                        imagePreview.src = selectedImageBase64;
+                        imagePreviewContainer.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            removeImageBtn.addEventListener('click', () => {
+                selectedImageBase64 = "";
+                imagePreview.src = "";
+                imagePreviewContainer.style.display = 'none';
+                imageInput.value = "";
+            });
+        }
+
+        // Form submission handling
         boardForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const author = document.getElementById('author').value;
-            const message = document.getElementById('message').value;
+            const author = document.getElementById('author').value.trim();
+            const message = document.getElementById('message').value.trim();
             
-            const comments = JSON.parse(localStorage.getItem('yh04_comments') || '[]');
-            comments.push({ author, message, date: new Date().toISOString() });
-            localStorage.setItem('yh04_comments', JSON.stringify(comments));
+            if (!author || !message) return;
             
-            boardForm.reset();
-            loadComments();
+            StorageEngine.addComment(author, message, selectedImageBase64, () => {
+                boardForm.reset();
+                selectedImageBase64 = "";
+                imagePreview.src = "";
+                imagePreviewContainer.style.display = 'none';
+                imageInput.value = "";
+            });
         });
 
-        loadComments();
+        // Add a reply
+        function addReply(event, commentId) {
+            event.preventDefault();
+            const authorInput = document.getElementById(`reply-author-${commentId}`);
+            const msgInput = document.getElementById(`reply-msg-${commentId}`);
+            
+            const author = authorInput.value.trim();
+            const message = msgInput.value.trim();
+            
+            if (!author || !message) return;
+            
+            StorageEngine.addReply(commentId, author, message, () => {
+                // Input forms are cleared automatically upon UI re-render
+            });
+        }
+
+        // Inline Comment Editor Trigger
+        function editComment(id) {
+            const comment = allComments.find(c => c.id === id);
+            if (!comment) return;
+            
+            const bodyDiv = document.getElementById(`comment-body-${id}`);
+            if (!bodyDiv) return;
+            
+            // Prevent duplicate editors
+            if (bodyDiv.querySelector('.inline-edit-box')) return;
+            
+            bodyDiv.innerHTML = `
+                <div class="inline-edit-box">
+                    <textarea class="edit-textarea" id="edit-textarea-${id}">${escapeHtml(comment.message)}</textarea>
+                    <div class="inline-edit-buttons">
+                        <button class="inline-btn save-btn hoverable" onclick="saveComment('${id}')">저장</button>
+                        <button class="inline-btn cancel-btn hoverable" onclick="cancelEdit('${id}')">취소</button>
+                    </div>
+                </div>
+            `;
+            
+            const textarea = document.getElementById(`edit-textarea-${id}`);
+            if (textarea) {
+                textarea.focus();
+                // Move cursor to the end
+                const val = textarea.value;
+                textarea.value = '';
+                textarea.value = val;
+            }
+        }
+
+        // Save inline edit
+        function saveComment(id) {
+            const textarea = document.getElementById(`edit-textarea-${id}`);
+            if (!textarea) return;
+            
+            const newMessage = textarea.value.trim();
+            if (!newMessage) {
+                alert('내용을 입력해 주세요.');
+                return;
+            }
+            
+            StorageEngine.updateComment(id, newMessage);
+        }
+
+        // Cancel inline edit
+        function cancelEdit(id) {
+            renderCommentsUI(allComments);
+        }
+
+        // Delete comment
+        function deleteComment(id) {
+            if (confirm('정말로 이 게시글을 삭제하시겠습니까?')) {
+                StorageEngine.deleteComment(id);
+            }
+        }
+
+        // Inline Reply Editor Trigger
+        function editReply(commentId, replyId) {
+            const comment = allComments.find(c => c.id === commentId);
+            if (!comment || !comment.replies) return;
+            const reply = comment.replies.find(r => r.id === replyId);
+            if (!reply) return;
+            
+            const bodyDiv = document.getElementById(`reply-body-${replyId}`);
+            if (!bodyDiv) return;
+            
+            // Prevent duplicate editors
+            if (bodyDiv.querySelector('.inline-edit-box')) return;
+            
+            bodyDiv.innerHTML = `
+                <div class="inline-edit-box" style="margin-top: 6px;">
+                    <textarea class="edit-textarea" id="edit-reply-textarea-${replyId}" style="min-height: 80px; font-size: 0.85rem; padding: 8px;">${escapeHtml(reply.message)}</textarea>
+                    <div class="inline-edit-buttons">
+                        <button class="inline-btn save-btn hoverable" style="padding: 4px 10px; font-size: 0.78rem;" onclick="saveReply('${commentId}', '${replyId}')">저장</button>
+                        <button class="inline-btn cancel-btn hoverable" style="padding: 4px 10px; font-size: 0.78rem;" onclick="cancelReplyEdit()">취소</button>
+                    </div>
+                </div>
+            `;
+            
+            const textarea = document.getElementById(`edit-reply-textarea-${replyId}`);
+            if (textarea) {
+                textarea.focus();
+                // Move cursor to the end
+                const val = textarea.value;
+                textarea.value = '';
+                textarea.value = val;
+            }
+        }
+
+        // Save inline reply edit
+        function saveReply(commentId, replyId) {
+            const textarea = document.getElementById(`edit-reply-textarea-${replyId}`);
+            if (!textarea) return;
+            
+            const newMessage = textarea.value.trim();
+            if (!newMessage) {
+                alert('내용을 입력해 주세요.');
+                return;
+            }
+            
+            StorageEngine.editReply(commentId, replyId, newMessage);
+        }
+
+        // Cancel inline reply edit
+        function cancelReplyEdit() {
+            renderCommentsUI(allComments);
+        }
+
+        // Delete reply
+        function deleteReply(commentId, replyId) {
+            if (confirm('정말로 이 댓글을 삭제하시겠습니까?')) {
+                StorageEngine.deleteReply(commentId, replyId);
+            }
+        }
+
+        // Setup simple Lightbox triggers inside board.html
+        function viewLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            if (lightbox && lightboxImg) {
+                lightboxImg.src = src;
+                lightbox.style.display = 'flex';
+                lightbox.style.opacity = '1';
+                lightbox.style.pointerEvents = 'auto';
+            }
+        }
+        
+        const closeBtn = document.getElementById('lightbox-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                const lightbox = document.getElementById('lightbox');
+                if (lightbox) {
+                    lightbox.style.display = 'none';
+                    lightbox.style.opacity = '0';
+                    lightbox.style.pointerEvents = 'none';
+                }
+            });
+        }
+        
+        const lightboxOverlay = document.getElementById('lightbox');
+        if (lightboxOverlay) {
+            lightboxOverlay.addEventListener('click', (e) => {
+                if (e.target.id === 'lightbox') {
+                    lightboxOverlay.style.display = 'none';
+                    lightboxOverlay.style.opacity = '0';
+                    lightboxOverlay.style.pointerEvents = 'none';
+                }
+            });
+        }
+
+        // Setup Skeleton UI Helper
+        function renderSkeletonUI() {
+            commentList.innerHTML = `
+                <div class="comment-item skeleton-item" style="height: 140px; border-left-color: #dddddd; background: rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 12px; padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 5px 15px rgba(0,0,0,0.02);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="width: 100px; height: 16px; background: rgba(255,255,255,0.1); border-radius: 4px;"></div>
+                        <div style="width: 60px; height: 14px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                    </div>
+                    <div style="width: 80%; height: 16px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                    <div style="width: 50%; height: 16px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                </div>
+                <div class="comment-item skeleton-item" style="height: 140px; border-left-color: #dddddd; background: rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 12px; padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 5px 15px rgba(0,0,0,0.02);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="width: 80px; height: 16px; background: rgba(255,255,255,0.1); border-radius: 4px;"></div>
+                        <div style="width: 60px; height: 14px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                    </div>
+                    <div style="width: 90%; height: 16px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                    <div style="width: 40%; height: 16px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                </div>
+                <div class="comment-item skeleton-item" style="height: 140px; border-left-color: #dddddd; background: rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 12px; padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 5px 15px rgba(0,0,0,0.02);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="width: 120px; height: 16px; background: rgba(255,255,255,0.1); border-radius: 4px;"></div>
+                        <div style="width: 60px; height: 14px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                    </div>
+                    <div style="width: 75%; height: 16px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                    <div style="width: 60%; height: 16px; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                </div>
+            `;
+        }
+
+        // Cache-First: 로컬 캐시가 존재할 시 즉각(0ms) 화면에 렌더링
+        const cachedComments = localStorage.getItem('yh04_comments');
+        let initialRendered = false;
+        if (cachedComments) {
+            try {
+                const parsed = JSON.parse(cachedComments);
+                if (parsed && parsed.length > 0) {
+                    renderCommentsUI(parsed);
+                    initialRendered = true;
+                }
+            } catch (e) {
+                console.warn("Failed to parse cached comments", e);
+            }
+        }
+
+        if (!initialRendered) {
+            renderSkeletonUI();
+        }
+
+        // Initialize real-time tracking
+        StorageEngine.onCommentsChange((comments) => {
+            renderCommentsUI(comments);
+        });
     </script>
 </body>
 </html>

@@ -1,17 +1,140 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>최신 소식 | YH04</title>
+    <title>관련 회사 | Brick Mate</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            background-color: #f9f9f9;
+            padding: 25px 25px;
+            border-radius: 16px;
+            border: 1px solid #eef0f2;
+            width: 100%;
+            max-width: 370px;
+            min-height: 130px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+        .logo-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: #ffd500;
+            background-color: #ffffff;
+        }
+        .company-logo {
+            max-width: 130px;
+            height: auto;
+            border-radius: 8px;
+            filter: grayscale(10%) contrast(95%);
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+        .logo-wrapper h3 {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: #111111;
+            font-weight: 700;
+            margin: 0;
+            white-space: nowrap;
+        }
+        .logo-wrapper:hover .company-logo {
+            transform: scale(1.05);
+        }
+        .company-link {
+            color: #777777;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: #eceeef;
+            text-decoration: none;
+        }
+        .company-link:hover {
+            color: #ffffff;
+            transform: scale(1.15);
+        }
+        .company-link.website:hover {
+            background-color: #0070e0;
+        }
+        .company-link.instagram:hover {
+            background-color: #e1306c;
+        }
+        .company-link.youtube:hover {
+            background-color: #ff0000;
+        }
+    </style>
 </head>
-<body class="dark-mode">
-    <div class="custom-cursor" id="cursor"></div>
+<body class="dark-mode no-scroll-page">
+    <div class="custom-cursor" id="cursor">
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <div class="mobile-nav-panel">
+        <div class="mobile-nav-header">
+            <span class="mobile-nav-logo">Brick Mate</span>
+            <button class="mobile-nav-close" id="mobile-nav-close">&times;</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-brand">
+                    釉뚮옖???뚭컻 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-brand">
+                    <li><a href="about.html">?뚭컻</a></li>
+                    <li><a href="news.html">愿???뚯궗</a></li>
+                    <li><a href="partnership.html">?ㅺ??ㅻ뒗 ?뚰듃?덉떗</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-products">
+                    ?쒗뭹 ?뚯떇 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-products">
+                    <li><a href="series.html">?쒕━利덈퀎 ?명듃</a></li>
+                    <li><a href="age.html">?곕졊蹂?/a></li>
+                    <li><a href="price.html">媛寃⑸퀎</a></li>
+                    <li><a href="new.html">?좎젣??/a></li>
+                    <li><a href="deals.html">?좎씤 諛??됱궗</a></li>
+                    <li><a href="coming-soon.html">異쒖떆 ?덉젙</a></li>
+                    <li><a href="last-chance.html">?⑥쥌 ?덉젙</a></li>
+                </ul>
+            </li>
+            <li><a href="companies.html">?λ컮援щ땲</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-support">
+                    怨좉컼 吏??<i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-support">
+                    <li><a href="order.html">二쇰Ц ?꾪솴 ?뺤씤</a></li>
+                    <li><a href="shipping.html">諛곗넚 諛?諛섑뭹</a></li>
+                    <li><a href="faq.html">?쇰컲?곸씤 吏덈Ц</a></li>
+                    <li><a href="contact.html">臾몄쓽?섍린</a></li>
+                    <li><a href="bricks.html">遺?랁뭹 諛?釉뚮┃</a></li>
+                </ul>
+            </li>
+            <li><a href="board.html">??而ㅻ??덊떚</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <button class="mobile-btn-login" onclick="document.getElementById('promo-open-login')?.click(); document.getElementById('mobile-nav-drawer').classList.remove('open');">濡쒓렇??/button>
+            <button class="mobile-btn-play" onclick="location.href='playzone.html'">PLAY議?/button>
+        </div>
+    </div>
+</div></div>
     <div class="promo-bar">
         <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
         <div class="promo-bar-content">
@@ -29,7 +152,7 @@
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="hoverable ">HOME</a></li>
@@ -43,8 +166,13 @@
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger " data-category="support">고객 지원</a>
                 </li>
+                <li><a href="board.html" class="hoverable ">팬 커뮤니티</a></li>
             </ul>
-            <div class="header-right">
+                <button class="mobile-menu-btn hoverable" id="mobile-menu-btn" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button><div class="header-right">
             </div>
         </nav>
     </header>
@@ -54,25 +182,103 @@
     
     
     
+    
+    
+    
+    
+    
+    
 
     
 
-    <main class="section" style="padding-top: 150px; min-height: 100vh; background-color: #0b0b0b;">
-        <div class="section-container">
-            <h1 style="font-size: 5rem; font-family: var(--font-heading); font-weight: 900; color: #fff; margin-bottom: 50px;">최신 소식</h1>
-            <div class="news-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <!-- News Item 1 -->
-                <div class="news-card" style="background: rgba(255,255,255,0.05); border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-                    <img src="news1.png" alt="News 1" style="width: 100%; height: 200px; object-fit: cover;">
-                    <div style="padding: 25px;">
-                        <span style="color: var(--accent-color); font-weight: 700; font-size: 0.9rem;">2024.05.15</span>
-                        <h3 style="color: #fff; margin: 15px 0; font-size: 1.5rem;">새로운 콜라보레이션 공개</h3>
-                        <p style="color: rgba(255,255,255,0.6); line-height: 1.6;">세계적인 아티스트와 함께하는 특별한 프로젝트가 곧 시작됩니다.</p>
+    <main class="section" style="padding-top: 40px; height: calc(100vh - 120px); background-color: #ffffff; display: flex; align-items: flex-start; overflow: hidden;">
+        <div class="section-container" style="max-width: 1200px; margin: 0 auto; padding: 0 40px; text-align: left; display: flex; flex-direction: column; justify-content: space-between; height: 100%; width: 100%;">
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs" style="display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #777777; margin-bottom: 25px; font-weight: 500;">
+                <a href="index.html" style="color: #777777; text-decoration: none; transition: color 0.2s ease;">HOME</a>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #777777;"></i>
+                <a href="javascript:void(0)" style="color: #777777; text-decoration: none;">브랜드 소개</a>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #777777;"></i>
+                <span style="color: #111111; font-weight: 700;">관련 회사</span>
+            </div>
+<div>
+                <h1 style="font-size: 3.5rem; font-family: var(--font-heading); font-weight: 900; color: #111111; margin-bottom: 40px; padding-bottom: 15px;">관련 회사</h1>
+                
+                <!-- 관련 회사 로고 세로 정렬 컨테이너 -->
+                <div class="company-logos-container" style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px; margin-top: 20px; width: 100%;">
+                    
+                    <!-- 브릭링크 카드 및 외부 링크 배치 (흰색 배경 영역) -->
+                    <div style="display: flex; align-items: center; gap: 20px; width: 100%; max-width: 500px;">
+                        <div class="logo-wrapper">
+                            <img src="logo1.png" alt="Logo 1" class="company-logo">
+                            <div>
+                                <h3>브릭링크</h3>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center; flex-shrink: 0;">
+                            <a href="https://www.bricklink.com/v2/main.page" target="_blank" class="company-link website" title="공식 웹사이트" style="width: 36px; height: 36px; font-size: 1.15rem;">
+                                <i class="fas fa-globe"></i>
+                            </a>
+                            <a href="https://www.instagram.com/bricklink/" target="_blank" class="company-link instagram" title="인스타그램" style="width: 36px; height: 36px; font-size: 1.15rem;">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
                     </div>
+                    
+                    <!-- 레고랜드 코리아 리조트 카드 및 외부 링크 배치 (흰색 배경 영역) -->
+                    <div style="display: flex; align-items: center; gap: 20px; width: 100%; max-width: 500px;">
+                        <div class="logo-wrapper">
+                            <img src="logo2.png" alt="Logo 2" class="company-logo">
+                            <div>
+                                <h3 style="white-space: normal; line-height: 1.2;"><span style="white-space: nowrap;">레고랜드 코리아</span><br>리조트</h3>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center; flex-shrink: 0;">
+                            <a href="https://www.legoland.kr/" target="_blank" class="company-link website" title="레고랜드 코리아 리조트 공식 웹사이트" style="width: 36px; height: 36px; font-size: 1.15rem;">
+                                <i class="fas fa-globe"></i>
+                            </a>
+                            <a href="https://www.instagram.com/legolandkorearesort/?hl=ko" target="_blank" class="company-link instagram" title="레고랜드 코리아 리조트 인스타그램" style="width: 36px; height: 36px; font-size: 1.15rem;">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- LEGO 카드 및 외부 링크 배치 (흰색 배경 영역) -->
+                    <div style="display: flex; align-items: center; gap: 20px; width: 100%; max-width: 580px;">
+                        <div class="logo-wrapper">
+                            <img src="logo3.png" alt="Logo 3" class="company-logo">
+                            <div>
+                                <h3>LEGO</h3>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center; flex-shrink: 0;">
+                            <a href="https://www.lego.com/ko-kr" target="_blank" class="company-link website" title="레고 공식 쇼핑몰" style="width: 36px; height: 36px; font-size: 1.15rem;">
+                                <i class="fas fa-globe"></i>
+                            </a>
+                            <a href="https://www.instagram.com/legokorea_official/" target="_blank" class="company-link instagram" title="레고 코리아 인스타그램" style="width: 36px; height: 36px; font-size: 1.15rem;">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.youtube.com/TheLEGOGroup" target="_blank" class="company-link youtube" title="레고 공식 유튜브" style="width: 36px; height: 36px; font-size: 1.15rem;">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://www.instagram.com/lego/" target="_blank" class="company-link instagram" title="레고 글로벌 인스타그램" style="width: 36px; height: 36px; font-size: 1.15rem;">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
+            
+            <!-- Footer (고정 영역 내부 하단 배치) -->
+            <footer style="padding: 25px 0; width: 100%; text-align: center; clear: both;">
+                <p style="font-family: var(--font-heading), 'Outfit', 'Inter', sans-serif; font-size: 0.9rem; color: #888888; margin: 0; letter-spacing: 0.5px; font-weight: 700;">
+                    &copy; 2026 BRICK MATE. ALL RIGHTS RESERVED.
+                </p>
+            </footer>
         </div>
     </main>
+
 
                 <div class="modal-overlay" id="login-modal">
         <div class="insiders-modal-content">
@@ -150,7 +356,7 @@
         <div class="mega-menu-container">
             <div class="mega-menu-header">
                 <div class="mega-menu-logo">
-                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                    <span style="font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: #ffcc00; letter-spacing: -0.5px;">Brick Mate</span>
                 </div>
                 <nav class="mega-menu-nav">
                     <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
@@ -163,7 +369,7 @@
                 <div class="mega-category-pane" id="mega-pane-brand">
                     <ul class="mega-links-list">
                         <li><a href="about.html">소개</a></li>
-                        <li><a href="news.html">소식</a></li>
+                        <li><a href="news.html">관련 회사</a></li>
                         <li><a href="partnership.html">다가오는 파트너십</a></li>
                     </ul>
                 </div>
@@ -171,7 +377,6 @@
                     <ul class="mega-links-list">
                         <li><a href="order.html">주문 현황 확인</a></li>
                         <li><a href="shipping.html">배송 및 반품</a></li>
-                        <li><a href="assembly.html">조립 설명서 검색</a></li>
                         <li><a href="faq.html">일반적인 질문</a></li>
                         <li><a href="contact.html">문의하기</a></li>
                         <li><a href="bricks.html">부속품 및 브릭</a></li>

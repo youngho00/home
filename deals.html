@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -6,12 +6,68 @@
     <title>할인 및 행사 | YH04 PRODUCTS</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="dark-mode">
-    <div class="custom-cursor" id="cursor"></div>
+<body class="dark-mode" style="height: 100vh; display: flex; flex-direction: column; overflow: hidden; background-color: #ffffff; margin: 0;">
+    <div class="custom-cursor" id="cursor">
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <div class="mobile-nav-panel">
+        <div class="mobile-nav-header">
+            <span class="mobile-nav-logo">Brick Mate</span>
+            <button class="mobile-nav-close" id="mobile-nav-close">&times;</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-brand">
+                    釉뚮옖???뚭컻 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-brand">
+                    <li><a href="about.html">?뚭컻</a></li>
+                    <li><a href="news.html">愿???뚯궗</a></li>
+                    <li><a href="partnership.html">?ㅺ??ㅻ뒗 ?뚰듃?덉떗</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-products">
+                    ?쒗뭹 ?뚯떇 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-products">
+                    <li><a href="series.html">?쒕━利덈퀎 ?명듃</a></li>
+                    <li><a href="age.html">?곕졊蹂?/a></li>
+                    <li><a href="price.html">媛寃⑸퀎</a></li>
+                    <li><a href="new.html">?좎젣??/a></li>
+                    <li><a href="deals.html">?좎씤 諛??됱궗</a></li>
+                    <li><a href="coming-soon.html">異쒖떆 ?덉젙</a></li>
+                    <li><a href="last-chance.html">?⑥쥌 ?덉젙</a></li>
+                </ul>
+            </li>
+            <li><a href="companies.html">?λ컮援щ땲</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-support">
+                    怨좉컼 吏??<i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-support">
+                    <li><a href="order.html">二쇰Ц ?꾪솴 ?뺤씤</a></li>
+                    <li><a href="shipping.html">諛곗넚 諛?諛섑뭹</a></li>
+                    <li><a href="faq.html">?쇰컲?곸씤 吏덈Ц</a></li>
+                    <li><a href="contact.html">臾몄쓽?섍린</a></li>
+                    <li><a href="bricks.html">遺?랁뭹 諛?釉뚮┃</a></li>
+                </ul>
+            </li>
+            <li><a href="board.html">??而ㅻ??덊떚</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <button class="mobile-btn-login" onclick="document.getElementById('promo-open-login')?.click(); document.getElementById('mobile-nav-drawer').classList.remove('open');">濡쒓렇??/button>
+            <button class="mobile-btn-play" onclick="location.href='playzone.html'">PLAY議?/button>
+        </div>
+    </div>
+</div></div>
     <div class="promo-bar">
         <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
         <div class="promo-bar-content">
@@ -29,7 +85,7 @@
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="hoverable ">HOME</a></li>
@@ -43,8 +99,13 @@
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger " data-category="support">고객 지원</a>
                 </li>
+                <li><a href="board.html" class="hoverable ">팬 커뮤니티</a></li>
             </ul>
-            <div class="header-right">
+                <button class="mobile-menu-btn hoverable" id="mobile-menu-btn" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button><div class="header-right">
             </div>
         </nav>
     </header>
@@ -54,20 +115,49 @@
     
     
     
+    
+    
+    
+    
+    
+    
 
     
 
-    <main class="section" style="padding-top: 150px; min-height: 100vh; background-color: #0b0b0b;">
-        <div class="section-container">
-            <h1 style="font-size: 5rem; font-family: var(--font-heading); font-weight: 900; color: #fff; margin-bottom: 50px;">할인 및 행사</h1>
-            <div class="deals-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <div style="background: linear-gradient(135deg, #ff0000, #ff6600); padding: 50px; border-radius: 30px; text-align: center; color: #fff;" class="hoverable">
-                    <h2 style="font-size: 3rem; font-weight: 900; margin-bottom: 10px;">UP TO 50%</h2>
-                    <p style="font-size: 1.2rem; font-weight: 700;">시즌 오프 세일 진행 중</p>
+    <main class="section" style="display: flex; flex-direction: column; flex: 1; padding-top: 40px; background-color: #ffffff; padding-bottom: 40px; overflow-y: auto; min-height: 0;">
+        <div class="section-container" style="max-width: 1400px; margin: 0 auto; padding: 0 40px; width: 100%; flex: 1; display: flex; flex-direction: column;">
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs" style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #777777; margin-bottom: 24px; font-weight: 500;">
+                <a href="index.html" style="color: #777777; text-decoration: none; transition: color 0.2s ease;">HOME</a>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #777777;"></i>
+                <a href="javascript:void(0)" style="color: #777777; text-decoration: none;">제품 소식</a>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #777777;"></i>
+                <span style="color: #111111; font-weight: 700;">할인 및 행사</span>
+            </div>
+            <h1 style="font-size: 3rem; font-family: var(--font-heading); font-weight: 800; color: #111; margin-bottom: 40px; text-align: left; letter-spacing: -1.5px;">할인 및 행사</h1>
+            <div style="background: #f8fafc; padding: 100px 60px; border-radius: 30px; border: 1px solid #e2e8f0; text-align: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02); margin: auto 0;">
+                <h2 style="color: #e27022; font-size: 2rem; margin-bottom: 30px; font-weight: 800; font-family: var(--font-heading); line-height: 1.4;">상반기 베스트 제품, 상상 못 한 가격으로 곧 찾아옵니다.</h2>
+                <p style="color: #555555; font-size: 1.3rem; line-height: 1.8; max-width: 700px; margin: 0 auto; font-weight: 700;">
+                    단 며칠간의 기적, 카운트다운 시작!
+                </p>
+                <div id="countdown-timer" style="font-size: 2.2rem; font-family: 'Outfit', 'Inter', sans-serif; font-weight: 900; color: #111; margin-top: 35px; letter-spacing: -0.5px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                    <span style="color: #e27022; margin-right: 10px;">D-DAY</span>
+                    <span id="days-val" style="color: #111;">00</span>일 
+                    <span id="hours-val" style="color: #111;">00</span>시간 
+                    <span id="mins-val" style="color: #111;">00</span>분 
+                    <span id="secs-val" style="color: #e27022; text-shadow: 0 0 10px rgba(226, 112, 34, 0.1);">00</span>초
                 </div>
             </div>
         </div>
     </main>
+
+            <!-- Footer -->
+            <footer style="margin-top: auto; padding: 25px 0;  width: 100%; text-align: center; clear: both; background-color: #ffffff;">
+                <p style="font-family: var(--font-heading), 'Outfit', 'Inter', sans-serif; font-size: 0.9rem; color: #888888; margin: 0; letter-spacing: 0.5px; font-weight: 700;">
+                    &copy; 2026 BRICK MATE. ALL RIGHTS RESERVED.
+                </p>
+            </footer>
+
 
                 <div class="modal-overlay" id="login-modal">
         <div class="insiders-modal-content">
@@ -145,7 +235,7 @@
         <div class="mega-menu-container">
             <div class="mega-menu-header">
                 <div class="mega-menu-logo">
-                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                    <span style="font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: #ffcc00; letter-spacing: -0.5px;">Brick Mate</span>
                 </div>
                 <nav class="mega-menu-nav">
                     <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
@@ -158,7 +248,7 @@
                 <div class="mega-category-pane" id="mega-pane-brand">
                     <ul class="mega-links-list">
                         <li><a href="about.html">소개</a></li>
-                        <li><a href="news.html">소식</a></li>
+                        <li><a href="news.html">관련 회사</a></li>
                         <li><a href="partnership.html">다가오는 파트너십</a></li>
                     </ul>
                 </div>
@@ -166,7 +256,6 @@
                     <ul class="mega-links-list">
                         <li><a href="order.html">주문 현황 확인</a></li>
                         <li><a href="shipping.html">배송 및 반품</a></li>
-                        <li><a href="assembly.html">조립 설명서 검색</a></li>
                         <li><a href="faq.html">일반적인 질문</a></li>
                         <li><a href="contact.html">문의하기</a></li>
                         <li><a href="bricks.html">부속품 및 브릭</a></li>
@@ -201,5 +290,42 @@
     </div>
 
     <script src="main.js?v=1.1"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const targetDate = new Date("2026-06-23T00:00:00").getTime();
+            
+            function updateTimer() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                const timerEl = document.getElementById("countdown-timer");
+                if (!timerEl) return;
+                
+                if (distance < 0) {
+                    timerEl.innerHTML = "<span style='color: #e27022;'>이벤트가 종료되었습니다.</span>";
+                    clearInterval(timerInterval);
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                const daysVal = document.getElementById("days-val");
+                const hoursVal = document.getElementById("hours-val");
+                const minsVal = document.getElementById("mins-val");
+                const secsVal = document.getElementById("secs-val");
+                
+                if (daysVal) daysVal.textContent = String(days).padStart(2, '0');
+                if (hoursVal) hoursVal.textContent = String(hours).padStart(2, '0');
+                if (minsVal) minsVal.textContent = String(minutes).padStart(2, '0');
+                if (secsVal) secsVal.textContent = String(seconds).padStart(2, '0');
+            }
+            
+            updateTimer();
+            const timerInterval = setInterval(updateTimer, 1000);
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,525 @@
+/* ===================================================
+   BRICK MATE — MOBILE RESPONSIVE STYLESHEET
+   Applies only on screens ≤ 768px (mobile/tablet)
+   PC styles in style.css remain completely untouched.
+   =================================================== */
+
+/* ─── 1. 햄버거 버튼 (PC에서 숨김, 모바일에서 표시) ─── */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    gap: 5px;
+    z-index: 1200;
+    position: relative;
+}
+.mobile-menu-btn span {
+    display: block;
+    width: 24px;
+    height: 2.5px;
+    background: #000;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+.mobile-menu-btn.open span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+.mobile-menu-btn.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.mobile-menu-btn.open span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* ─── 2. 모바일 드로어 메뉴 ─── */
+.mobile-nav-drawer {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1100;
+}
+.mobile-nav-drawer.open {
+    display: block;
+}
+.mobile-nav-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+.mobile-nav-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 320px;
+    height: 100%;
+    background: #fff;
+    box-shadow: -4px 0 24px rgba(0,0,0,0.18);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.mobile-nav-drawer.open .mobile-nav-panel {
+    transform: translateX(0);
+}
+.mobile-nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    background: #FFCF00;
+    border-bottom: 2px solid rgba(0,0,0,0.08);
+}
+.mobile-nav-logo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #000;
+    letter-spacing: -1px;
+}
+.mobile-nav-close {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #000;
+    line-height: 1;
+    padding: 0;
+}
+.mobile-nav-links {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    flex: 1;
+}
+.mobile-nav-links li a,
+.mobile-nav-links li button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 22px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #111;
+    text-decoration: none;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    text-align: left;
+}
+.mobile-nav-links li a:hover,
+.mobile-nav-links li button:hover {
+    background: #fff8e1;
+    color: #006CB7;
+}
+.mobile-nav-sub {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #f9f9f9;
+    display: none;
+}
+.mobile-nav-sub.open { display: block; }
+.mobile-nav-sub li a {
+    padding: 11px 32px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #444;
+    text-transform: none;
+    border-bottom: 1px solid #ebebeb;
+}
+.mobile-nav-sub li a:hover {
+    color: #006CB7;
+    background: #f0f7ff;
+}
+.mobile-nav-chevron {
+    font-size: 0.7rem;
+    transition: transform 0.2s;
+}
+.mobile-nav-links li button.sub-open .mobile-nav-chevron {
+    transform: rotate(90deg);
+}
+.mobile-nav-footer {
+    padding: 16px 22px;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 10px;
+}
+.mobile-nav-footer button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+}
+.mobile-btn-login {
+    background: #006CB7;
+    color: #fff;
+}
+.mobile-btn-play {
+    background: #FFCF00;
+    color: #000;
+}
+
+
+/* ===================================================
+   MEDIA QUERY — 768px 이하 (모바일)
+   =================================================== */
+@media (max-width: 768px) {
+
+    /* ─── 커스텀 커서 숨김 (터치 기기) ─── */
+    .custom-cursor { display: none !important; }
+
+    /* ─── 프로모 바 ─── */
+    .promo-bar {
+        height: 44px !important;
+        font-size: 0.78rem !important;
+    }
+    .playzone-btn {
+        display: none !important;
+    }
+    .promo-login-btn {
+        display: none !important;
+    }
+    .promo-bar-content {
+        max-width: 100% !important;
+    }
+
+    /* ─── 헤더 ─── */
+    header {
+        height: 56px !important;
+        padding: 0 16px !important;
+        top: 44px !important;
+    }
+    .home-page header {
+        height: 56px !important;
+        top: 44px !important;
+    }
+    .logo, .logo-norris {
+        font-size: 1.3rem !important;
+    }
+
+    /* PC 네비 숨김 */
+    .nav-links { display: none !important; }
+    .header-right { display: none !important; }
+
+    /* 햄버거 버튼 표시 */
+    .mobile-menu-btn { display: flex !important; }
+
+    /* nav 레이아웃 조정 */
+    nav {
+        justify-content: space-between !important;
+    }
+
+    /* ─── 메가 메뉴 (모바일에서 완전 숨김) ─── */
+    .mega-menu-overlay { display: none !important; }
+
+    /* ─── 히어로 섹션 (index.html) ─── */
+    .hero {
+        padding: 20px 20px 40px !important;
+        min-height: auto !important;
+        height: auto !important;
+    }
+    .hero-layout-combined {
+        max-width: 100% !important;
+        margin-top: 0 !important;
+    }
+    .hero-main-logo {
+        width: 90vw !important;
+    }
+    .hero-marquee-container { display: none !important; }
+
+    /* ─── 섹션 공통 ─── */
+    .section {
+        padding: 60px 20px !important;
+        min-height: auto !important;
+    }
+    .section-title {
+        font-size: clamp(2rem, 8vw, 3rem) !important;
+    }
+
+    /* ─── landmark / 제품 카드 그리드 ─── */
+    .products-grid,
+    .cards-grid,
+    .landmark-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    /* ─── landmark-card ─── */
+    .landmark-card {
+        flex-direction: column !important;
+        width: 100% !important;
+        min-width: unset !important;
+    }
+    .landmark-card img {
+        width: 100% !important;
+        height: 200px !important;
+        object-fit: cover !important;
+    }
+
+    /* ─── 시리즈 페이지 카드 행 ─── */
+    .series-row,
+    .series-cards-row {
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+
+    /* ─── 페이지네이션 ─── */
+    .pagination-container {
+        gap: 12px !important;
+        margin: 30px auto 10px auto !important;
+    }
+    .page-num {
+        font-size: 1.1rem !important;
+    }
+    .page-arrow {
+        font-size: 1.3rem !important;
+    }
+
+    /* ─── 브레드크럼 ─── */
+    .breadcrumbs {
+        font-size: 0.78rem !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+    }
+
+    /* ─── contact.html 전용 ─── */
+    .contact-wrap {
+        padding: 0 16px !important;
+    }
+    .contact-cards-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+    .contact-icons-row {
+        gap: 20px !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+    .contact-title {
+        font-size: 1.5rem !important;
+    }
+    .contact-breadcrumbs {
+        padding: 10px 16px !important;
+        font-size: 0.78rem !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+    }
+    /* contact 페이지 고정 해제 (모바일은 스크롤 허용) */
+    .contact-page-fixed html,
+    .contact-page-fixed body {
+        overflow: auto !important;
+        height: auto !important;
+    }
+    .contact-page-fixed main.section {
+        overflow: auto !important;
+        height: auto !important;
+        min-height: auto !important;
+    }
+    .contact-page-fixed footer {
+        position: relative !important;
+    }
+
+    /* ─── FAQ 페이지 ─── */
+    .faq-grid,
+    .help-cards-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ─── price.html / age pages ─── */
+    .price-section,
+    .age-section {
+        padding: 20px 16px !important;
+    }
+
+    /* ─── 나이별/가격별 필터 버튼 ─── */
+    .filter-tabs,
+    .price-tabs,
+    .age-tabs {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        justify-content: center !important;
+    }
+    .filter-tab,
+    .price-tab,
+    .age-tab {
+        font-size: 0.82rem !important;
+        padding: 8px 14px !important;
+    }
+
+    /* ─── 시리즈별 세트 페이지 ─── */
+    .series-hero {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 30px 20px !important;
+    }
+    .series-hero img {
+        width: 80% !important;
+        max-width: 300px !important;
+        margin: 0 auto !important;
+    }
+
+    /* ─── board.html 커뮤니티 ─── */
+    .board-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ─── companies.html 장바구니 ─── */
+    .cart-table {
+        font-size: 0.82rem !important;
+    }
+    .cart-table th,
+    .cart-table td {
+        padding: 8px 6px !important;
+    }
+
+    /* ─── 모달 ─── */
+    .insiders-modal-content {
+        flex-direction: column !important;
+        width: 92vw !important;
+        max-height: 88vh !important;
+        overflow-y: auto !important;
+    }
+    .insiders-left-col,
+    .insiders-right-col {
+        width: 100% !important;
+        padding: 20px !important;
+    }
+
+    /* ─── 푸터 ─── */
+    footer {
+        position: relative !important;
+        padding: 16px 0 !important;
+        font-size: 0.78rem !important;
+    }
+
+    /* ─── 버튼 최소 터치 크기 ─── */
+    button, a {
+        min-height: 36px;
+    }
+
+    /* ─── 프로모 메시지 줄바꿈 허용 ─── */
+    .promo-msg {
+        white-space: normal !important;
+        font-size: 0.75rem !important;
+        text-align: center !important;
+    }
+
+    /* ─── contact 페이지: 고정 레이아웃 해제 ─── */
+    /* contact.html 인라인 style 덮어쓰기 */
+    main.section[style] {
+        height: auto !important;
+        overflow: visible !important;
+        display: block !important;
+    }
+
+    /* contact.html 전용 고정 해제 */
+    html, body {
+        overflow: auto !important;
+        height: auto !important;
+    }
+    main.section {
+        height: auto !important;
+        overflow: visible !important;
+    }
+    footer {
+        position: relative !important;
+        bottom: auto !important;
+    }
+
+    /* ─── 시리즈 rides 등 개별 페이지 히어로 ─── */
+    .page-hero-section {
+        min-height: 220px !important;
+        padding: 30px 20px !important;
+    }
+    .page-hero-section h1 {
+        font-size: clamp(1.6rem, 6vw, 2.4rem) !important;
+    }
+
+    /* ─── about / news / partnership ─── */
+    .two-col-layout {
+        flex-direction: column !important;
+        gap: 24px !important;
+    }
+    .two-col-layout > * {
+        width: 100% !important;
+    }
+
+    /* ─── order / shipping 페이지 ─── */
+    .order-steps,
+    .shipping-info {
+        flex-direction: column !important;
+    }
+
+    /* ─── 이미지 오버플로 방지 ─── */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* ─── 수평 스크롤 섹션 (index 히어로) 모바일 비활성화 ─── */
+    .horizontal-scroll-container {
+        height: auto !important;
+    }
+    .horizontal-sticky-wrapper {
+        position: relative !important;
+        height: auto !important;
+        overflow-x: auto !important;
+    }
+    .horizontal-content-belt {
+        flex-direction: column !important;
+        padding: 20px !important;
+        gap: 20px !important;
+        transform: none !important;
+    }
+    .horizontal-item {
+        width: 100% !important;
+        align-self: auto !important;
+        margin: 0 !important;
+    }
+}
+
+/* ─── 태블릿 (769px ~ 1024px) ─── */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .mobile-menu-btn { display: none !important; }
+
+    header {
+        padding: 0 24px !important;
+    }
+    .nav-links {
+        gap: 8px !important;
+    }
+    .nav-links a {
+        padding: 10px 18px !important;
+        font-size: 0.9rem !important;
+    }
+    .products-grid,
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .contact-cards-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}

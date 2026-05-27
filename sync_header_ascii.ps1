@@ -3,6 +3,7 @@ $productsTxt = [char]0xC81C + [char]0xD488 + " " + [char]0xC18C + [char]0xC2DD
 $supportTxt = [char]0xACE0 + [char]0xAC1D + " " + [char]0xC9C0 + [char]0xC6D0
 $loginTxt = [char]0xB85C + [char]0xADF8 + [char]0xC778
 $cartTxt = [char]0xC7A5 + [char]0xBC14 + [char]0xAD6C + [char]0xB2C8
+$boardTxt = [char]0xD32C + " " + [char]0xCEE4 + [char]0xBBA4 + [char]0xB2C8 + [char]0xD2F0
 
 # Promo messages (corrected typos from the old script)
 $p1 = "6" + [char]0xB9CC + [char]0xC6D0 + " " + [char]0xC774 + [char]0xC0C1 + " " + [char]0xC8FC + [char]0xBB38 + [char]0xC2DC + " " + [char]0xBB34 + [char]0xB8CC + " " + [char]0xBC30 + [char]0xC1A1 + "!"
@@ -34,6 +35,7 @@ function Get-Header($activeCategory) {
     $brandActive = if ($activeCategory -eq "brand") { "active" } else { "" }
     $productsActive = if ($activeCategory -eq "products") { "active" } else { "" }
     $supportActive = if ($activeCategory -eq "support") { "active" } else { "" }
+    $boardActive = if ($activeCategory -eq "board") { "active" } else { "" }
 
     return @"
     <header id="header">
@@ -53,6 +55,7 @@ function Get-Header($activeCategory) {
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger $supportActive" data-category="support">$supportTxt</a>
                 </li>
+                <li><a href="board.html" class="hoverable $boardActive">$boardTxt</a></li>
             </ul>
             <div class="header-right">
             </div>
@@ -71,6 +74,7 @@ foreach ($file in $files) {
     if ($file.Name -match "about|news|partnership") { $activeCategory = "brand" }
     elseif ($file.Name -match "series|age|price|new|exclusive|deals|coming-soon|last-chance") { $activeCategory = "products" }
     elseif ($file.Name -match "order|shipping|assembly|faq|contact|bricks") { $activeCategory = "support" }
+    elseif ($file.Name -match "board") { $activeCategory = "board" }
     
     # 1. Clean up old/corrupted promo-bar and headers completely
     $content = $content -replace '(?s)<div class="custom-cursor" id="cursor"></div>', ''

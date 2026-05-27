@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -6,12 +6,185 @@
     <title>문의하기 | YH04 SUPPORT</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html, body {
+            overflow: hidden !important;
+            height: 100vh !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        main.section {
+            height: calc(100vh - 130px) !important;
+            overflow: hidden !important;
+            display: block !important;
+            background-color: #ffffff !important;
+        }
+        .contact-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px 0 40px;
+        }
+        .contact-breadcrumbs {
+            padding: 12px 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #777777;
+            font-weight: 500;
+        }
+        .contact-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #111;
+            margin: 0 0 24px 0;
+            font-family: var(--font-heading);
+            text-align: center;
+        }
+        .contact-icons-row {
+            display: flex;
+            gap: 36px;
+            justify-content: center;
+            align-items: flex-start;
+            margin-bottom: 28px;
+            padding: 0 0 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .icon-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: transform 0.2s;
+        }
+        .icon-wrapper:hover .icon-circle {
+            transform: translateY(-4px);
+        }
+        .icon-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #111;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .contact-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .contact-card {
+            display: block;
+            border: 1px solid #e0e0e0;
+            padding: 20px 22px;
+            text-decoration: none;
+            color: #111;
+            transition: all 0.2s;
+            background: #fff;
+            border-radius: 2px;
+        }
+        .contact-card:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-color: #bbb;
+        }
+        .contact-card h3 {
+            font-size: 1rem;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            color: #111;
+        }
+        .contact-card p {
+            font-size: 0.875rem;
+            color: #555;
+            line-height: 1.55;
+            margin: 0;
+        }
+        footer {
+            position: fixed !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            background-color: #ffffff !important;
+            padding: 10px 0 !important;
+            margin: 0 !important;
+            z-index: 999 !important;
+            border-top: none !important;
+        }
+    </style>
 </head>
 <body class="dark-mode">
-    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor" id="cursor">
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <div class="mobile-nav-panel">
+        <div class="mobile-nav-header">
+            <span class="mobile-nav-logo">Brick Mate</span>
+            <button class="mobile-nav-close" id="mobile-nav-close">&times;</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-brand">
+                    釉뚮옖???뚭컻 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-brand">
+                    <li><a href="about.html">?뚭컻</a></li>
+                    <li><a href="news.html">愿???뚯궗</a></li>
+                    <li><a href="partnership.html">?ㅺ??ㅻ뒗 ?뚰듃?덉떗</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-products">
+                    ?쒗뭹 ?뚯떇 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-products">
+                    <li><a href="series.html">?쒕━利덈퀎 ?명듃</a></li>
+                    <li><a href="age.html">?곕졊蹂?/a></li>
+                    <li><a href="price.html">媛寃⑸퀎</a></li>
+                    <li><a href="new.html">?좎젣??/a></li>
+                    <li><a href="deals.html">?좎씤 諛??됱궗</a></li>
+                    <li><a href="coming-soon.html">異쒖떆 ?덉젙</a></li>
+                    <li><a href="last-chance.html">?⑥쥌 ?덉젙</a></li>
+                </ul>
+            </li>
+            <li><a href="companies.html">?λ컮援щ땲</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-support">
+                    怨좉컼 吏??<i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-support">
+                    <li><a href="order.html">二쇰Ц ?꾪솴 ?뺤씤</a></li>
+                    <li><a href="shipping.html">諛곗넚 諛?諛섑뭹</a></li>
+                    <li><a href="faq.html">?쇰컲?곸씤 吏덈Ц</a></li>
+                    <li><a href="contact.html">臾몄쓽?섍린</a></li>
+                    <li><a href="bricks.html">遺?랁뭹 諛?釉뚮┃</a></li>
+                </ul>
+            </li>
+            <li><a href="board.html">??而ㅻ??덊떚</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <button class="mobile-btn-login" onclick="document.getElementById('promo-open-login')?.click(); document.getElementById('mobile-nav-drawer').classList.remove('open');">濡쒓렇??/button>
+            <button class="mobile-btn-play" onclick="location.href='playzone.html'">PLAY議?/button>
+        </div>
+    </div>
+</div></div>
     <div class="promo-bar">
         <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
         <div class="promo-bar-content">
@@ -29,7 +202,7 @@
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="hoverable ">HOME</a></li>
@@ -43,146 +216,89 @@
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger active" data-category="support">고객 지원</a>
                 </li>
+                <li><a href="board.html" class="hoverable ">팬 커뮤니티</a></li>
             </ul>
-            <div class="header-right">
+                <button class="mobile-menu-btn hoverable" id="mobile-menu-btn" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button><div class="header-right">
             </div>
         </nav>
     </header>
-    
-    
-    
-    
-    
-    
 
-    
-
-    <main class="section" style="padding-top: 0; background-color: #ffffff; color: #000; display: block; margin-top: 0;">
-        <style>
-            .contact-card {
-                display: block; border: 1px solid #ddd; padding: 30px; text-decoration: none; color: #111; transition: all 0.2s; background: #fff;
-            }
-            .contact-card:hover {
-                box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-color: #bbb;
-            }
-            .icon-circle {
-                width: 65px; height: 65px; background: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s;
-            }
-            .icon-wrapper:hover .icon-circle {
-                transform: translateY(-5px);
-            }
-        </style>
-
-        <!-- Hero Section -->
-        <div style="background-color: #ffffff; padding: 70px 20px 20px; display: flex; justify-content: center; align-items: center; position: relative;">
-            <div style="text-align: center; z-index: 1;">
-                <h1 style="font-size: 2.2rem; font-weight: 900; color: #111; margin-bottom: 40px; font-family: var(--font-heading);">어떻게 도와드릴까요?</h1>
-                <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;">
-                    <a href="#" class="icon-wrapper" style="display: flex; flex-direction: column; align-items: center; gap: 15px; cursor: pointer; text-decoration: none;">
-                        <div class="icon-circle"><i class="fas fa-cube" style="font-size: 1.6rem; color: #e3000f;"></i></div>
-                        <span style="font-size: 0.9rem; font-weight: 700; color: #111;">누락 브릭</span>
-                    </a>
-                    <a href="order.html" class="icon-wrapper" style="display: flex; flex-direction: column; align-items: center; gap: 15px; cursor: pointer; text-decoration: none;">
-                        <div class="icon-circle"><i class="fas fa-box-open" style="font-size: 1.6rem; color: #0057b7;"></i></div>
-                        <span style="font-size: 0.9rem; font-weight: 700; color: #111;">주문 현황</span>
-                    </a>
-                    <a href="shipping.html" class="icon-wrapper" style="display: flex; flex-direction: column; align-items: center; gap: 15px; cursor: pointer; text-decoration: none;">
-                        <div class="icon-circle"><i class="fas fa-truck" style="font-size: 1.6rem; color: #00852b;"></i></div>
-                        <span style="font-size: 0.9rem; font-weight: 700; color: #111; text-align: center;">배송, 반품 및<br>취소</span>
-                    </a>
-                    <a href="assembly.html" class="icon-wrapper" style="display: flex; flex-direction: column; align-items: center; gap: 15px; cursor: pointer; text-decoration: none;">
-                        <div class="icon-circle"><i class="fas fa-book" style="font-size: 1.6rem; color: #ff6900;"></i></div>
-                        <span style="font-size: 0.9rem; font-weight: 700; color: #111;">조립설명서</span>
-                    </a>
-                    <a href="contact-form.html" class="icon-wrapper" style="display: flex; flex-direction: column; align-items: center; gap: 15px; cursor: pointer; text-decoration: none;">
-                        <div class="icon-circle"><i class="far fa-envelope" style="font-size: 1.6rem; color: #8b008b;"></i></div>
-                        <span style="font-size: 0.9rem; font-weight: 700; color: #111;">연락처</span>
-                    </a>
-                </div>
-            </div>
+    <main class="section">
+        <!-- Breadcrumbs: top-left -->
+        <div class="contact-breadcrumbs">
+            <a href="index.html" style="color: #777777; text-decoration: none;">HOME</a>
+            <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #777777;"></i>
+            <a href="javascript:void(0)" style="color: #777777; text-decoration: none;">고객 지원</a>
+            <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #777777;"></i>
+            <span style="color: #111111; font-weight: 700;">문의하기</span>
         </div>
 
-        <!-- Cards Grid Section -->
-        <div style="max-width: 1100px; margin: 0 auto; padding: 60px 40px; background-color: #fff;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        <div class="contact-wrap">
+
+            <!-- Title -->
+            <h1 class="contact-title">어떻게 도와드릴까요?</h1>
+
+            <!-- Icons Row -->
+            <div class="contact-icons-row">
+                <a href="#" class="icon-wrapper">
+                    <div class="icon-circle"><i class="fas fa-cube" style="font-size: 1.5rem; color: #e3000f;"></i></div>
+                    <span class="icon-label">누락 브릭</span>
+                </a>
+                <a href="order.html" class="icon-wrapper">
+                    <div class="icon-circle"><i class="fas fa-box-open" style="font-size: 1.5rem; color: #0057b7;"></i></div>
+                    <span class="icon-label">주문 현황</span>
+                </a>
+                <a href="shipping.html" class="icon-wrapper">
+                    <div class="icon-circle"><i class="fas fa-truck" style="font-size: 1.5rem; color: #00852b;"></i></div>
+                    <span class="icon-label">배송, 반품 및<br>취소</span>
+                </a>
+                <a href="contact-form.html" class="icon-wrapper">
+                    <div class="icon-circle"><i class="far fa-envelope" style="font-size: 1.5rem; color: #8b008b;"></i></div>
+                    <span class="icon-label">연락처</span>
+                </a>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="contact-cards-grid">
                 <a href="order.html" class="contact-card">
-                    <h3 style="font-size: 1.1rem; font-weight: 900; margin-bottom: 15px;">주문 현황</h3>
-                    <p style="font-size: 0.95rem; color: #555; line-height: 1.6; margin: 0;">주문하신 제품을 아직 받지 못하셨나요? 배송현황을 빠르고 쉽게 확인해 보세요.</p>
+                    <h3>주문 현황</h3>
+                    <p>주문하신 제품을 아직 받지 못하셨나요? 배송현황을 빠르고 쉽게 확인해 보세요.</p>
                 </a>
                 <a href="shipping.html" class="contact-card">
-                    <h3 style="font-size: 1.1rem; font-weight: 900; margin-bottom: 15px;">배송, 반품 및 취소</h3>
-                    <p style="font-size: 0.95rem; color: #555; line-height: 1.6; margin: 0;">배송, 지연, 반품 및 취소에 대해 알아보세요.</p>
+                    <h3>배송, 반품 및 취소</h3>
+                    <p>배송, 지연, 반품 및 취소에 대해 알아보세요.</p>
                 </a>
                 <a href="#" class="contact-card">
-                    <h3 style="font-size: 1.1rem; font-weight: 900; margin-bottom: 15px;">누락 브릭</h3>
-                    <p style="font-size: 0.95rem; color: #555; line-height: 1.6; margin: 0;">바퀴나 날개가 누락되었나요? 즉시 새 부품을 보내드릴게요.</p>
-                </a>
-                <a href="assembly.html" class="contact-card">
-                    <h3 style="font-size: 1.1rem; font-weight: 900; margin-bottom: 15px;">조립설명서</h3>
-                    <p style="font-size: 0.95rem; color: #555; line-height: 1.6; margin: 0;">이전 세트부터 최신 세트까지 수천 가지 제품의 디지털 조립설명서를 다운 받아 보세요.</p>
+                    <h3>누락 브릭</h3>
+                    <p>바퀴나 날개가 누락되었나요? 즉시 새 부품을 보내드릴게요.</p>
                 </a>
                 <a href="#" class="contact-card">
-                    <h3 style="font-size: 1.1rem; font-weight: 900; margin-bottom: 15px;">파손 브릭</h3>
-                    <p style="font-size: 0.95rem; color: #555; line-height: 1.6; margin: 0;">교체 부품을 무료로 요청할 수 있어요.</p>
+                    <h3>파손 브릭</h3>
+                    <p>교체 부품을 무료로 요청할 수 있어요.</p>
                 </a>
-                <a href="#" class="contact-card">
-                    <h3 style="font-size: 1.1rem; font-weight: 900; margin-bottom: 15px;">주제별 도우미</h3>
-                    <p style="font-size: 0.95rem; color: #555; line-height: 1.6; margin: 0;">더 궁금한 것이 있으세요? 주제별 Q&A를 찾아보세요.</p>
-                </a>
-                <a href="#" class="contact-card">
-                    <h3 style="font-size: 1.1rem; font-weight: 900; margin-bottom: 15px;">레고 스토어 찾기</h3>
-                    <p style="font-size: 0.95rem; color: #555; line-height: 1.6; margin: 0;">가까운 LEGO 매장을 찾아 예정된 이벤트에 대해 알아보세요.</p>
-                </a>
-                <a href="#" class="contact-card">
-                    <h3 style="font-size: 1.1rem; font-weight: 900; margin-bottom: 15px;">장치 가이드</h3>
-                    <p style="font-size: 0.95rem; color: #555; line-height: 1.6; margin: 0;">사용하시는 핸드폰, 태블릿 또는 콘솔에서 어떤 앱이 지원되는지 이 가이드를 통해 알아보세요.</p>
+                <a href="faq.html" class="contact-card">
+                    <h3>주제별 도우미</h3>
+                    <p>더 궁금한 것이 있으세요? 주제별 Q&A를 찾아보세요.</p>
                 </a>
                 <a href="contact-form.html" class="contact-card">
-                    <h3 style="font-size: 1.1rem; font-weight: 900; margin-bottom: 15px;">연락처</h3>
-                    <p style="font-size: 0.95rem; color: #555; line-height: 1.6; margin: 0;">레고 전문가에게 문의하세요.</p>
+                    <h3>연락처</h3>
+                    <p>레고 전문가에게 문의하세요.</p>
                 </a>
             </div>
         </div>
-
-        <!-- Search Section -->
-        <div style="background-color: #fff; padding: 20px 40px 80px; text-align: center; max-width: 900px; margin: 0 auto;">
-            <h2 style="font-size: 1.4rem; font-weight: 900; color: #111; margin-bottom: 30px;">도움말 항목 검색</h2>
-            
-            <div style="position: relative; max-width: 750px; margin: 0 auto 30px;">
-                <input type="text" placeholder="예: 조립 설명서" style="width: 100%; padding: 16px 60px 16px 25px; font-size: 1rem; border: 1px solid #ccc; border-radius: 50px; outline: none; box-sizing: border-box;">
-                <button style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background-color: #fce300; border: none; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: background-color 0.2s;">
-                    <i class="fas fa-search" style="color: #111; font-size: 1.1rem;"></i>
-                </button>
-            </div>
-            
-            <button style="background: transparent; border: 1px solid #0057b7; color: #0057b7; padding: 12px 30px; border-radius: 25px; font-weight: 700; cursor: pointer; font-size: 0.9rem; transition: background-color 0.2s; outline: none;" onmouseover="this.style.backgroundColor='#f0f8ff'" onmouseout="this.style.backgroundColor='transparent'">
-                모든 주제 찾아보기
-            </button>
-        </div>
-
-        <!-- Blue Banner Section -->
-        <div style="background-color: #8dbde3; padding: 50px 40px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 80px;">
-            <img src="https://www.lego.com/cdn/cs/set-v2/assets/blte279184511d73909/Customer-Service-Character-Mobile.png" alt="LEGO Expert" style="height: 250px; object-fit: contain;">
-            <div style="text-align: right; color: #111;">
-                <h2 style="font-size: 2.2rem; font-weight: 900; margin-bottom: 15px; margin-top: 0;">도움이 더 필요하세요?</h2>
-                <p style="font-size: 1rem; margin-bottom: 35px; color: #111;">친절한 레고 전문가에게 연락하세요.</p>
-                <button onclick="location.href='contact-form.html'" style="background-color: #111; color: #fff; border: none; padding: 15px 30px; border-radius: 25px; font-weight: 900; font-size: 1.05rem; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                    연락처 <i class="fas fa-chevron-right" style="margin-left: 8px; font-size: 0.8rem;"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Footer Info Section -->
-        <div style="background-color: #fff; padding: 80px 40px; text-align: center; max-width: 800px; margin: 0 auto; color: #111;">
-            <h3 style="font-size: 1.2rem; font-weight: 900; margin-bottom: 25px; margin-top: 0;">저희가 고객님의 데이터를 안전하게 보관하는 방법</h3>
-            <p style="font-size: 0.9rem; color: #555; line-height: 1.8; margin-bottom: 25px;">
-                당사는 귀하의 개인 정보를 주의, 신뢰 및 존중으로 취급하기 위해 최선을 다하고 있습니다. 우리는 관행과 정책에<br>투명성을 제공하기 위해 개인 정보 보호 정책을 만들었습니다.
-            </p>
-            <a href="#" style="color: #111; text-decoration: none; font-weight: 900; font-size: 0.95rem; display: inline-flex; align-items: center; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
-                <span style="border-bottom: 1px solid #111; padding-bottom: 2px;">더 알아보기</span> <i class="fas fa-chevron-right" style="margin-left: 8px; font-size: 0.75rem;"></i>
-            </a>
-        </div>
     </main>
+
+            <!-- Footer -->
+            <footer style="margin-top: 60px; padding: 25px 0;  width: 100%; text-align: center; clear: both;">
+                <p style="font-family: var(--font-heading), 'Outfit', 'Inter', sans-serif; font-size: 0.9rem; color: #888888; margin: 0; letter-spacing: 0.5px; font-weight: 700;">
+                    &copy; 2026 BRICK MATE. ALL RIGHTS RESERVED.
+                </p>
+            </footer>
+
 
                 <div class="modal-overlay" id="login-modal">
         <div class="insiders-modal-content">
@@ -260,7 +376,7 @@
         <div class="mega-menu-container">
             <div class="mega-menu-header">
                 <div class="mega-menu-logo">
-                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                    <span style="font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: #ffcc00; letter-spacing: -0.5px;">Brick Mate</span>
                 </div>
                 <nav class="mega-menu-nav">
                     <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
@@ -273,7 +389,7 @@
                 <div class="mega-category-pane" id="mega-pane-brand">
                     <ul class="mega-links-list">
                         <li><a href="about.html">소개</a></li>
-                        <li><a href="news.html">소식</a></li>
+                        <li><a href="news.html">관련 회사</a></li>
                         <li><a href="partnership.html">다가오는 파트너십</a></li>
                     </ul>
                 </div>
@@ -281,7 +397,6 @@
                     <ul class="mega-links-list">
                         <li><a href="order.html">주문 현황 확인</a></li>
                         <li><a href="shipping.html">배송 및 반품</a></li>
-                        <li><a href="assembly.html">조립 설명서 검색</a></li>
                         <li><a href="faq.html">일반적인 질문</a></li>
                         <li><a href="contact.html">문의하기</a></li>
                         <li><a href="bricks.html">부속품 및 브릭</a></li>

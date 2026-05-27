@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -6,12 +6,140 @@
     <title>배송 및 반품 | YH04 SUPPORT</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html, body {
+            overflow: hidden !important;
+            height: 100vh !important;
+        }
+        main.section {
+            height: calc(100vh - 130px) !important;
+            overflow-y: auto !important;
+        }
+        .section-container {
+            padding-bottom: 180px !important;
+        }
+        footer {
+            position: fixed !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            background-color: #ffffff !important;
+            padding: 20px 0 !important;
+            margin: 0 !important;
+            z-index: 999 !important;
+            border-top: none !important;
+        }
+        
+        /* Card styles */
+        .shipping-item-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px 30px;
+            margin-bottom: 16px;
+            text-decoration: none;
+            color: #1a202c;
+            font-weight: 700;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02), 0 2px 4px -1px rgba(0,0,0,0.02);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .shipping-item-card.hoverable {
+            cursor: pointer;
+        }
+        .shipping-item-card:hover {
+            transform: translateY(-2px);
+            border-color: #006CB7; /* Lego Blue Accent */
+            box-shadow: 0 10px 15px -3px rgba(0, 108, 183, 0.1), 0 4px 6px -2px rgba(0, 108, 183, 0.05);
+        }
+        .shipping-item-card i {
+            color: #a0aec0;
+            transition: all 0.2s ease;
+        }
+        .shipping-item-card:hover i {
+            color: #006CB7;
+        }
+
+        /* Accordion CSS for original view */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details > summary i {
+            transition: transform 0.3s ease;
+        }
+        details[open] > summary i {
+            transform: rotate(180deg);
+        }
+    </style>
 </head>
 <body class="dark-mode">
-    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor" id="cursor">
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <div class="mobile-nav-panel">
+        <div class="mobile-nav-header">
+            <span class="mobile-nav-logo">Brick Mate</span>
+            <button class="mobile-nav-close" id="mobile-nav-close">&times;</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-brand">
+                    釉뚮옖???뚭컻 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-brand">
+                    <li><a href="about.html">?뚭컻</a></li>
+                    <li><a href="news.html">愿???뚯궗</a></li>
+                    <li><a href="partnership.html">?ㅺ??ㅻ뒗 ?뚰듃?덉떗</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-products">
+                    ?쒗뭹 ?뚯떇 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-products">
+                    <li><a href="series.html">?쒕━利덈퀎 ?명듃</a></li>
+                    <li><a href="age.html">?곕졊蹂?/a></li>
+                    <li><a href="price.html">媛寃⑸퀎</a></li>
+                    <li><a href="new.html">?좎젣??/a></li>
+                    <li><a href="deals.html">?좎씤 諛??됱궗</a></li>
+                    <li><a href="coming-soon.html">異쒖떆 ?덉젙</a></li>
+                    <li><a href="last-chance.html">?⑥쥌 ?덉젙</a></li>
+                </ul>
+            </li>
+            <li><a href="companies.html">?λ컮援щ땲</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-support">
+                    怨좉컼 吏??<i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-support">
+                    <li><a href="order.html">二쇰Ц ?꾪솴 ?뺤씤</a></li>
+                    <li><a href="shipping.html">諛곗넚 諛?諛섑뭹</a></li>
+                    <li><a href="faq.html">?쇰컲?곸씤 吏덈Ц</a></li>
+                    <li><a href="contact.html">臾몄쓽?섍린</a></li>
+                    <li><a href="bricks.html">遺?랁뭹 諛?釉뚮┃</a></li>
+                </ul>
+            </li>
+            <li><a href="board.html">??而ㅻ??덊떚</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <button class="mobile-btn-login" onclick="document.getElementById('promo-open-login')?.click(); document.getElementById('mobile-nav-drawer').classList.remove('open');">濡쒓렇??/button>
+            <button class="mobile-btn-play" onclick="location.href='playzone.html'">PLAY議?/button>
+        </div>
+    </div>
+</div></div>
     <div class="promo-bar">
         <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
         <div class="promo-bar-content">
@@ -29,7 +157,7 @@
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="hoverable ">HOME</a></li>
@@ -43,89 +171,120 @@
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger active" data-category="support">고객 지원</a>
                 </li>
+                <li><a href="board.html" class="hoverable ">팬 커뮤니티</a></li>
             </ul>
-            <div class="header-right">
+                <button class="mobile-menu-btn hoverable" id="mobile-menu-btn" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button><div class="header-right">
             </div>
         </nav>
     </header>
-    
-    
-    
-    
-    
-    
 
-    
-
-    <main class="section" style="padding-top: 50px; background-color: #ffffff; padding-bottom: 100px; color: #000; margin-top: 0; display: block;">
-        <style>
-            details > summary {
-                list-style: none;
-            }
-            details > summary::-webkit-details-marker {
-                display: none;
-            }
-            details > summary i {
-                transition: transform 0.3s ease;
-            }
-            details[open] > summary i {
-                transform: rotate(180deg);
-            }
-        </style>
-        <div class="section-container" style="max-width: 1000px; margin: 0 auto; padding: 0 40px;">
-            <div style="text-align: center; margin-top: 0; margin-bottom: 80px;">
-                <h1 style="font-size: 1.8rem; font-family: var(--font-heading); font-weight: 900; margin-top: 0; margin-bottom: 20px;">배송 관련 질문과 답변을 확인하세요.</h1>
-                <p style="font-size: 0.85rem; color: #333;">택배 보관함 으로는 배송이 불가하오니, 자택 또는 직장의 전체 주소를 입력해 주시기 바랍니다.</p>
-            </div>
-            
-            <div class="faq-list" style="border-top: 1px solid #ebebeb;">
+    <main class="section" style="padding-top: 30px; background-color: #ffffff; padding-bottom: 100px; color: #000; margin-top: 0; display: block;">
+        
+        <!-- original-faq-view (shown when no type query is present) -->
+        <div id="original-faq-view" style="display: none;">
+            <div class="section-container" style="max-width: 900px; margin: 0 auto; padding: 0 40px;">
+                <!-- Breadcrumbs -->
+                <div class="breadcrumbs" style="display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #777777; margin-top: 18px; margin-bottom: 18px; font-weight: 500;">
+                    <a href="index.html" style="color: #777777; text-decoration: none; transition: color 0.2s ease;">HOME</a>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #777777;"></i>
+                    <a href="javascript:void(0)" style="color: #777777; text-decoration: none;">고객 지원</a>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #777777;"></i>
+                    <span style="color: #111111; font-weight: 700;">배송 및 반품</span>
+                </div>
+                <div style="text-align: center; margin-top: 0; margin-bottom: 50px;">
+                    <h1 style="font-size: 1.8rem; font-family: var(--font-heading); font-weight: 900; margin-top: 0; margin-bottom: 20px;">배송 관련 질문과 답변을 확인하세요.</h1>
+                    <p style="font-size: 0.85rem; color: #333;">택배 보관함 으로는 배송이 불가하오니, 자택 또는 직장의 전체 주소를 입력해 주시기 바랍니다.</p>
+                </div>
                 
-                <!-- FAQ Item 1 -->
-                <details style="border-bottom: 1px solid #ebebeb; padding: 25px 0;">
-                    <summary style="font-size: 1.05rem; font-weight: 900; display: flex; justify-content: space-between; align-items: center; cursor: pointer; outline: none; color: #111;">
-                        배송은 무료인가요?
-                        <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #111;"></i>
-                    </summary>
-                    <div style="padding-top: 20px; font-size: 0.85rem; color: #333; line-height: 1.8;">
-                        <p style="margin-bottom: 15px;">배송료는 다음과 같이 적용됩니다.</p>
-                        <ul style="list-style-type: disc; padding-left: 20px;">
-                            <li style="margin-bottom: 8px;">주문 금액이 ₩60,000 미만인 경우: ₩3,000.</li>
-                            <li>주문 금액이 ₩60,000 이상인 경우: 무료.</li>
-                        </ul>
-                    </div>
-                </details>
+                <div class="faq-list" style="border-top: 1px solid #ebebeb;">
+                    <!-- FAQ Item 1 -->
+                    <details style="border-bottom: 1px solid #ebebeb; padding: 25px 0;">
+                        <summary style="font-size: 1.05rem; font-weight: 900; display: flex; justify-content: space-between; align-items: center; cursor: pointer; outline: none; color: #111;">
+                            배송은 무료인가요?
+                            <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #111;"></i>
+                        </summary>
+                        <div style="padding-top: 20px; font-size: 0.85rem; color: #333; line-height: 1.8;">
+                            <p style="margin-bottom: 15px;">배송료는 다음과 같이 적용됩니다.</p>
+                            <ul style="list-style-type: disc; padding-left: 20px;">
+                                <li style="margin-bottom: 8px;">주문 금액이 ₩60,000 미만인 경우: ₩3,000.</li>
+                                <li>주문 금액이 ₩60,000 이상인 경우: 무료.</li>
+                            </ul>
+                        </div>
+                    </details>
 
-                <!-- FAQ Item 2 -->
-                <details style="border-bottom: 1px solid #ebebeb; padding: 25px 0;">
-                    <summary style="font-size: 1.05rem; font-weight: 900; display: flex; justify-content: space-between; align-items: center; cursor: pointer; outline: none; color: #111;">
-                        배송 기간은 얼마나 소요되나요?
-                        <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #111;"></i>
-                    </summary>
-                    <div style="padding-top: 20px; font-size: 0.85rem; color: #333; line-height: 1.8;">
-                        <p style="margin-bottom: 15px;">배송은 영업일 (월-금 / 주말 및 공휴일 제외) 기준 2~3일이 소요됩니다.</p>
-                        <p style="margin-bottom: 15px;">도서지역 배송은 조금 더 소요될 수 있습니다.</p>
-                        <p>배송 지역의 악천후, 자연 재해, 또는 예상치 못한 상황으로 인해 배송 기간이 길어질 수 있습니다. 이 점 양해 부탁드립니다.</p>
-                    </div>
-                </details>
+                    <!-- FAQ Item 2 -->
+                    <details style="border-bottom: 1px solid #ebebeb; padding: 25px 0;">
+                        <summary style="font-size: 1.05rem; font-weight: 900; display: flex; justify-content: space-between; align-items: center; cursor: pointer; outline: none; color: #111;">
+                            배송 기간은 얼마나 소요되나요?
+                            <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #111;"></i>
+                        </summary>
+                        <div style="padding-top: 20px; font-size: 0.85rem; color: #333; line-height: 1.8;">
+                            <p style="margin-bottom: 15px;">배송은 영업일 (월-금 / 주말 및 공휴일 제외) 기준 2~3일이 소요됩니다.</p>
+                            <p style="margin-bottom: 15px;">도서지역 배송은 조금 더 소요될 수 있습니다.</p>
+                            <p>배송 지역의 악천후, 자연 재해, 또는 예상치 못한 상황으로 인해 배송 기간이 길어질 수 있습니다. 이 점 양해 부탁드립니다.</p>
+                        </div>
+                    </details>
 
-                <!-- FAQ Item 3 -->
-                <details style="border-bottom: 1px solid #ebebeb; padding: 25px 0;">
-                    <summary style="font-size: 1.05rem; font-weight: 900; display: flex; justify-content: space-between; align-items: center; cursor: pointer; outline: none; color: #111;">
-                        주문을 수정하거나 취소할 수 있나요?
-                        <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #111;"></i>
-                    </summary>
-                    <div style="padding-top: 20px; font-size: 0.85rem; color: #333; line-height: 1.8;">
-                        <p style="margin-bottom: 15px;">주문하신 상품은 '배송 준비 중' 상태가 되기 전까지 취소할 수 있습니다. 배송 현황은 '내 주문' 페이지에서 확인할 수 있습니다.</p>
-                        <p style="margin-bottom: 15px;">주문한 모든 상품의 상태가 아직 '배송 준비 중'이 아닌 경우, 주문을 취소하려면 '내 주문 관리'를 선택하세요. 그런 다음 '주문 취소'를 클릭하고 나머지 단계를 완료합니다. 그럼 주문 과정이 완료됩니다.</p>
-                        <p>주문 내역에 신주문 또는 백오더 제품만 포함되는 경우에는 예상 배송일 5일(영업일 기준) 전까지 취소할 수 있습니다.</p>
-                    </div>
-                </details>
-
+                    <!-- FAQ Item 3 -->
+                    <details style="border-bottom: 1px solid #ebebeb; padding: 25px 0;">
+                        <summary style="font-size: 1.05rem; font-weight: 900; display: flex; justify-content: space-between; align-items: center; cursor: pointer; outline: none; color: #111;">
+                            주문을 수정하거나 취소할 수 있나요?
+                            <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #111;"></i>
+                        </summary>
+                        <div style="padding-top: 20px; font-size: 0.85rem; color: #333; line-height: 1.8;">
+                            <p style="margin-bottom: 15px;">주문하신 상품은 '배송 준비 중' 상태가 되기 전까지 취소할 수 있습니다. 배송 현황은 '내 주문' 페이지에서 확인할 수 있습니다.</p>
+                            <p style="margin-bottom: 15px;">주문한 모든 상품의 상태가 아직 '배송 준비 중'이 아닌 경우, 주문을 취소하려면 '내 주문 관리'를 선택하세요. 그런 다음 '주문 취소'를 클릭하고 나머지 단계를 완료합니다. 그럼 주문 과정이 완료됩니다.</p>
+                            <p>주문 내역에 신주문 또는 백오더 제품만 포함되는 경우에는 예상 배송일 5일(영업일 기준) 전까지 취소할 수 있습니다.</p>
+                        </div>
+                    </details>
+                </div>
             </div>
         </div>
+
+        <!-- card-list-view (shown when type query is present) -->
+        <div id="card-list-view" style="display: none;">
+            <div class="section-container" style="max-width: 900px; margin: 0 auto; padding: 0 40px;">
+                <!-- Breadcrumbs -->
+                <div class="breadcrumbs" style="display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #777777; margin-top: 18px; margin-bottom: 40px; font-weight: 500;">
+                    <a href="index.html" style="color: #777777; text-decoration: none; transition: color 0.2s ease;">HOME</a>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #777777;"></i>
+                    <a href="javascript:void(0)" style="color: #777777; text-decoration: none;">고객 지원</a>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #777777;"></i>
+                    <span id="breadcrumb-title" style="color: #111111; font-weight: 700;">배송</span>
+                </div>
+
+                <!-- Go Back Link -->
+                <div style="margin-bottom: 30px; text-align: left;">
+                    <a href="faq.html" style="display: inline-flex; align-items: center; gap: 8px; color: #111; text-decoration: none; font-weight: 700; font-size: 1rem; border-bottom: 2px solid transparent; transition: all 0.2s;" onmouseover="this.style.borderBottomColor='#111'" onmouseout="this.style.borderBottomColor='transparent'">
+                        <i class="fas fa-chevron-left" style="font-size: 0.8rem;"></i> 뒤로 가기
+                    </a>
+                </div>
+
+                <!-- Title -->
+                <div style="text-align: left; margin-bottom: 40px;">
+                    <h1 id="page-title" style="font-size: 2.2rem; font-family: var(--font-heading); font-weight: 900; color: #111; margin: 0;">배송</h1>
+                </div>
+
+                <div id="cards-container">
+                    <!-- Dynamically populated cards based on type -->
+                </div>
+            </div>
+        </div>
+
     </main>
 
-                <div class="modal-overlay" id="login-modal">
+    <!-- Footer -->
+    <footer style="margin-top: 60px; padding: 25px 0;  width: 100%; text-align: center; clear: both;">
+        <p style="font-family: var(--font-heading), 'Outfit', 'Inter', sans-serif; font-size: 0.9rem; color: #888888; margin: 0; letter-spacing: 0.5px; font-weight: 700;">
+            &copy; 2026 BRICK MATE. ALL RIGHTS RESERVED.
+        </p>
+    </footer>
+
+    <div class="modal-overlay" id="login-modal">
         <div class="insiders-modal-content">
             <button class="insiders-modal-close" id="close-login">&times;</button>
             <div class="insiders-modal-body">
@@ -196,12 +355,11 @@
         </div>
     </div>
 
-
     <div class="mega-menu-overlay" id="mega-menu">
         <div class="mega-menu-container">
             <div class="mega-menu-header">
                 <div class="mega-menu-logo">
-                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                    <span style="font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: #ffcc00; letter-spacing: -0.5px;">Brick Mate</span>
                 </div>
                 <nav class="mega-menu-nav">
                     <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
@@ -214,7 +372,7 @@
                 <div class="mega-category-pane" id="mega-pane-brand">
                     <ul class="mega-links-list">
                         <li><a href="about.html">소개</a></li>
-                        <li><a href="news.html">소식</a></li>
+                        <li><a href="news.html">관련 회사</a></li>
                         <li><a href="partnership.html">다가오는 파트너십</a></li>
                     </ul>
                 </div>
@@ -222,7 +380,6 @@
                     <ul class="mega-links-list">
                         <li><a href="order.html">주문 현황 확인</a></li>
                         <li><a href="shipping.html">배송 및 반품</a></li>
-                        <li><a href="assembly.html">조립 설명서 검색</a></li>
                         <li><a href="faq.html">일반적인 질문</a></li>
                         <li><a href="contact.html">문의하기</a></li>
                         <li><a href="bricks.html">부속품 및 브릭</a></li>
@@ -237,7 +394,6 @@
                             <li><a href="new.html">신제품</a></li>
                         </ul>
                         <ul class="mega-links-list">
-
                             <li><a href="deals.html">할인 및 행사</a></li>
                             <li><a href="coming-soon.html">출시 예정</a></li>
                             <li><a href="last-chance.html">단종 예정</a></li>
@@ -257,5 +413,141 @@
     </div>
 
     <script src="main.js?v=1.1"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const type = urlParams.get('type');
+            
+            const originalView = document.getElementById('original-faq-view');
+            const cardListView = document.getElementById('card-list-view');
+            
+            if (!type) {
+                // Show original FAQ accordion view
+                originalView.style.display = 'block';
+                cardListView.style.display = 'none';
+                document.title = '배송 및 반품 | YH04 SUPPORT';
+            } else {
+                // Show new dynamic Card view
+                originalView.style.display = 'none';
+                cardListView.style.display = 'block';
+                
+                const titleEl = document.getElementById('page-title');
+                const breadcrumbEl = document.getElementById('breadcrumb-title');
+                const container = document.getElementById('cards-container');
+                
+                let titleText = '배송';
+                let items = [];
+                
+                if (type === 'returns') {
+                    titleText = '반품';
+                    items = [
+                        '손상되었거나 잘못된 주문품',
+                        'Brick Mate 주문 반품'
+                    ];
+                } else {
+                    titleText = '배송';
+                    items = [
+                        '주문상품의 전체 또는 일부 누락',
+                        '손상되었거나 잘못된 주문품',
+                        '배송, 반품 및 취소',
+                        '배송 기간',
+                        'LEGO.com 주문 배송 조회하기'
+                    ];
+                }
+                
+                titleEl.textContent = titleText;
+                breadcrumbEl.textContent = titleText;
+                document.title = `${titleText} | YH04 SUPPORT`;
+                
+                container.innerHTML = items.map((item, index) => {
+                    const isOmission = item === '주문상품의 전체 또는 일부 누락';
+                    const isReturn = item === 'Brick Mate 주문 반품';
+                    const isDamaged = item === '손상되었거나 잘못된 주문품';
+                    const isExpandable = isOmission || isReturn || isDamaged;
+                    
+                    let detailsHtml = '';
+                    if (isOmission) {
+                        detailsHtml = `
+                            <div class="card-details-content" style="max-height: 0; overflow: hidden; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); width: 100%; font-size: 0.92rem; font-weight: 500; color: #4a5568; line-height: 1.8; margin-top: 0; padding-top: 0; border-top: 1px solid transparent;">
+                                <div style="padding: 20px 0 10px 0;">
+                                    <p style="margin-bottom: 12px;"><strong>Brick Mate</strong>는 모든 주문서의 완벽한 배송을 위해서 최선을 다하고 있지만, 주문 명세의 전부 또는 일부가 누락되었다면 죄송합니다.</p>
+                                    <p style="margin-bottom: 12px;">때때로 주문이 여러 상자로 나뉘어 배송되는 때도 있습니다. 따라서 누락되었다고 생각하시는 상품이 아직 배송 중일 수도 있습니다. 배송 상태를 확인하려면 <a href="order.html" class="hoverable" style="color: #006CB7; font-weight: 700; text-decoration: underline;">주문현황 페이지</a>를 참조하세요.</p>
+                                    <p style="margin-bottom: 0;">만약 해결되지 않는다면 <a href="contact-form.html" class="hoverable" style="color: #006CB7; font-weight: 700; text-decoration: underline;">연락해 주세요</a>. 문제가 해결될 수 있도록 기꺼이 도와드리겠습니다!</p>
+                                </div>
+                            </div>
+                        `;
+                    } else if (isReturn) {
+                        detailsHtml = `
+                            <div class="card-details-content" style="max-height: 0; overflow: hidden; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); width: 100%; font-size: 0.92rem; font-weight: 500; color: #4a5568; line-height: 1.8; margin-top: 0; padding-top: 0; border-top: 1px solid transparent;">
+                                <div style="padding: 20px 0 10px 0;">
+                                    <p style="margin-bottom: 12px;">주문이 완전히 만족스럽지 않은 경우, 소포를 받은 날로부터 7일 이내에 무료로 반품하실 수 있습니다.</p>
+                                    <p style="margin-bottom: 12px;">주문을 반품하려면 이메일을 보내거나 <a href="contact-form.html" class="hoverable" style="color: #006CB7; font-weight: 700; text-decoration: underline;">전화</a> 해 주세요.</p>
+                                    <p style="margin-bottom: 12px;">택배기사가 귀하의 집으로 와서 제품을 수거하도록 요청하겠습니다.</p>
+                                    <p style="margin-bottom: 12px;">모든 반품은 밀봉된 상자에 넣어 안전하게 포장되었는지 확인하세요.</p>
+                                    <p style="margin-bottom: 0;">상품이 반송된 후 1~2일 이내에 환불 처리가 시작됩니다. 환불 금액이 은행에 도착하는 데 최대 14일이 걸릴 수 있습니다.</p>
+                                </div>
+                            </div>
+                        `;
+                    } else if (isDamaged) {
+                        detailsHtml = `
+                            <div class="card-details-content" style="max-height: 0; overflow: hidden; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); width: 100%; font-size: 0.92rem; font-weight: 500; color: #4a5568; line-height: 1.8; margin-top: 0; padding-top: 0; border-top: 1px solid transparent;">
+                                <div style="padding: 20px 0 10px 0;">
+                                    <p style="margin-bottom: 12px;">저희는 모든 주문이 안전히 배송될 수 있도록 주의를 기울입니다. 고객님께서 주문하신 것과 다른 물건을 받으셨거나 혹은 주문의 일부가 손상되었다면 정말 죄송하다는 말씀드립니다. 문제를 바로잡을 수 있도록 신속히 도와드리겠습니다.</p>
+                                    <p style="margin-bottom: 12px;">물건을 반품하시고 환불을 받기를 원하시면 <strong>'Brick Mate 주문 반품'</strong> 을 참조하고 안내사항을 따라주세요. 과정은 매우 간단합니다.</p>
+                                    <p style="margin-bottom: 0;">물건을 교환하기를 원하시면, <a href="contact-form.html" class="hoverable" style="color: #006CB7; font-weight: 700; text-decoration: underline;">문의하기</a> 를 통해 연락주시면 신속히 도와드리겠습니다!</p>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    
+                    return `
+                        <div class="shipping-item-card hoverable ${isExpandable ? 'expandable' : ''}" data-index="${index}">
+                            <div class="card-header-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; cursor: pointer;">
+                                <span>${item}</span>
+                                <i class="fas fa-chevron-right" style="transition: transform 0.3s ease;"></i>
+                            </div>
+                            ${detailsHtml}
+                        </div>
+                    `;
+                }).join('');
+                
+                // Accordion Logic for expandable cards
+                const expandables = container.querySelectorAll('.expandable');
+                expandables.forEach(card => {
+                    const header = card.querySelector('.card-header-row');
+                    const content = card.querySelector('.card-details-content');
+                    const chevron = card.querySelector('.fa-chevron-right');
+                    
+                    header.addEventListener('click', () => {
+                        const isOpen = card.classList.contains('expanded');
+                        if (isOpen) {
+                            card.classList.remove('expanded');
+                            content.style.maxHeight = '0';
+                            content.style.paddingTop = '0';
+                            content.style.marginTop = '0';
+                            content.style.borderTopColor = 'transparent';
+                            chevron.style.transform = 'rotate(0deg)';
+                        } else {
+                            card.classList.add('expanded');
+                            content.style.maxHeight = '500px';
+                            content.style.marginTop = '15px';
+                            content.style.borderTopColor = '#e2e8f0';
+                            chevron.style.transform = 'rotate(90deg)';
+                        }
+                    });
+                });
+            }
+            
+            // Re-bind hoverables for custom cursor if present
+            const hoverables = document.querySelectorAll('.hoverable');
+            const cursor = document.getElementById('cursor');
+            if (cursor && hoverables) {
+                hoverables.forEach(el => {
+                    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+                });
+            }
+        });
+    </script>
 </body>
 </html>

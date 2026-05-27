@@ -23,12 +23,13 @@ function Get-Header($activeCategory) {
     $brandActive = if ($activeCategory -eq "brand") { "active" } else { "" }
     $productsActive = if ($activeCategory -eq "products") { "active" } else { "" }
     $supportActive = if ($activeCategory -eq "support") { "active" } else { "" }
+    $boardActive = if ($activeCategory -eq "board") { "active" } else { "" }
 
     return @"
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="hoverable $homeActive">HOME</a></li>
@@ -42,6 +43,7 @@ function Get-Header($activeCategory) {
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger $supportActive" data-category="support">고객 지원</a>
                 </li>
+                <li><a href="board.html" class="hoverable $boardActive">팬 커뮤니티</a></li>
             </ul>
             <div class="header-right">
             </div>
@@ -119,6 +121,7 @@ foreach ($file in $files) {
     if ($file.Name -match "about|news|partnership") { $activeCategory = "brand" }
     elseif ($file.Name -match "series|age|price|new|exclusive|deals|coming-soon|last-chance") { $activeCategory = "products" }
     elseif ($file.Name -match "order|shipping|assembly|faq|contact|bricks") { $activeCategory = "support" }
+    elseif ($file.Name -match "board") { $activeCategory = "board" }
     
     $content = $content -replace '<link rel="stylesheet" href="style.css">', '<link rel="stylesheet" href="style.css?v=1.1">'
     

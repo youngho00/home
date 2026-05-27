@@ -1,17 +1,330 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>신제품 | YH04 PRODUCTS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Breadcrumbs styles */
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #777777;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+        .breadcrumbs a {
+            color: #777777;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .breadcrumbs a:hover {
+            color: #0077ff;
+        }
+        .breadcrumbs i {
+            font-size: 0.7rem;
+        }
+
+        /* Shopping Grid styles */
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .landmark-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 680px) {
+            .landmark-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Product Card styles */
+        .landmark-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        }
+
+        .landmark-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        /* Tag styled exactly like screenshot */
+        .retiring-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e6f2ff;
+            color: #0056b3;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 4px;
+            z-index: 2;
+            letter-spacing: -0.3px;
+            border: 1px solid rgba(0, 86, 179, 0.15);
+        }
+
+        .new-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e6f2ff;
+            color: #0056b3;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 4px;
+            z-index: 2;
+            letter-spacing: -0.3px;
+            border: 1px solid rgba(0, 86, 179, 0.15);
+        }
+
+        /* Image section with perfect centering */
+        .card-image-wrap {
+            width: 100%;
+            aspect-ratio: 1.15 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .card-image-wrap img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .landmark-card:hover .card-image-wrap img {
+            transform: scale(1.06);
+        }
+
+        /* Stats Row */
+        .card-stats {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: #555555;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card-stats span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-stats i {
+            font-size: 0.9rem;
+        }
+
+        /* Name */
+        .card-name {
+            font-family: var(--font-heading), sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 8px;
+            line-height: 1.35;
+        }
+
+        /* Price */
+        .card-price {
+            font-family: var(--font-body), sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 24px;
+        }
+
+        /* Buttons Row */
+        .card-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* Add to Cart button matching warm orange capsule exactly */
+        .btn-cart-add {
+            flex-grow: 1;
+            height: 48px;
+            background: #e27022;
+            color: #ffffff;
+            border: none;
+            border-radius: 24px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 10px rgba(226, 112, 34, 0.15);
+        }
+
+        .btn-cart-add:hover {
+            background: #ca5f18;
+        }
+
+        .btn-cart-add:active {
+            transform: scale(0.98);
+        }
+
+        /* Sold Out button (Red outline) */
+        .btn-sold-out {
+            flex-grow: 1;
+            height: 48px;
+            background: transparent;
+            color: #d11a2a;
+            border: 1.5px solid #e2b0b5;
+            border-radius: 24px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: not-allowed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        /* Premium Toast Notification */
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1e293b;
+            color: #ffffff;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 9999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            color: #10b981;
+            font-size: 1.2rem;
+        }
+
+        /* Cart Badge */
+        .cart-badge {
+            background: #ef4444;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 10px;
+            margin-left: 6px;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1.2;
+        }
+    </style>
 </head>
 <body class="dark-mode">
-    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor" id="cursor">
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <div class="mobile-nav-panel">
+        <div class="mobile-nav-header">
+            <span class="mobile-nav-logo">Brick Mate</span>
+            <button class="mobile-nav-close" id="mobile-nav-close">&times;</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-brand">
+                    釉뚮옖???뚭컻 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-brand">
+                    <li><a href="about.html">?뚭컻</a></li>
+                    <li><a href="news.html">愿???뚯궗</a></li>
+                    <li><a href="partnership.html">?ㅺ??ㅻ뒗 ?뚰듃?덉떗</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-products">
+                    ?쒗뭹 ?뚯떇 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-products">
+                    <li><a href="series.html">?쒕━利덈퀎 ?명듃</a></li>
+                    <li><a href="age.html">?곕졊蹂?/a></li>
+                    <li><a href="price.html">媛寃⑸퀎</a></li>
+                    <li><a href="new.html">?좎젣??/a></li>
+                    <li><a href="deals.html">?좎씤 諛??됱궗</a></li>
+                    <li><a href="coming-soon.html">異쒖떆 ?덉젙</a></li>
+                    <li><a href="last-chance.html">?⑥쥌 ?덉젙</a></li>
+                </ul>
+            </li>
+            <li><a href="companies.html">?λ컮援щ땲</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-support">
+                    怨좉컼 吏??<i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-support">
+                    <li><a href="order.html">二쇰Ц ?꾪솴 ?뺤씤</a></li>
+                    <li><a href="shipping.html">諛곗넚 諛?諛섑뭹</a></li>
+                    <li><a href="faq.html">?쇰컲?곸씤 吏덈Ц</a></li>
+                    <li><a href="contact.html">臾몄쓽?섍린</a></li>
+                    <li><a href="bricks.html">遺?랁뭹 諛?釉뚮┃</a></li>
+                </ul>
+            </li>
+            <li><a href="board.html">??而ㅻ??덊떚</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <button class="mobile-btn-login" onclick="document.getElementById('promo-open-login')?.click(); document.getElementById('mobile-nav-drawer').classList.remove('open');">濡쒓렇??/button>
+            <button class="mobile-btn-play" onclick="location.href='playzone.html'">PLAY議?/button>
+        </div>
+    </div>
+</div></div>
     <div class="promo-bar">
         <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
         <div class="promo-bar-content">
@@ -29,7 +342,7 @@
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="hoverable ">HOME</a></li>
@@ -43,8 +356,13 @@
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger " data-category="support">고객 지원</a>
                 </li>
+                <li><a href="board.html" class="hoverable ">팬 커뮤니티</a></li>
             </ul>
-            <div class="header-right">
+                <button class="mobile-menu-btn hoverable" id="mobile-menu-btn" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button><div class="header-right">
             </div>
         </nav>
     </header>
@@ -54,25 +372,384 @@
     
     
     
-
     
 
-    <main class="section" style="padding-top: 150px; min-height: 100vh; background-color: #0b0b0b;">
-        <div class="section-container">
-            <h1 style="font-size: 5rem; font-family: var(--font-heading); font-weight: 900; color: #fff; margin-bottom: 50px;">신제품</h1>
-            <div class="gear-grid-v2">
-                <div class="gear-card hoverable">
-                    <div class="gear-img-container">
-                        <img src="1.png" alt="New Product" class="primary-img">
+    <main class="section" style="padding-top: 30px; min-height: 100vh; background-color: #ffffff; padding-bottom: 120px;">
+        <div class="section-container" style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
+            
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs">
+                <a href="index.html">HOME</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="javascript:void(0)">제품 소식</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span style="color: #111111; font-weight: 700;">신제품</span>
+            </div>
+
+            <h1 style="font-size: 3rem; font-family: var(--font-heading); font-weight: 800; color: #111; margin-bottom: 10px; text-align: left; letter-spacing: -1.5px;">신제품</h1>
+            <p style="font-size: 1.05rem; color: #555555; margin-bottom: 40px; text-align: left; font-weight: 500;">각 시리즈에서 엄선된 가장 최신의 신제품들을 만나보세요.</p>
+            
+            <!-- Grid -->
+            <div class="landmark-grid">
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="an3.png" alt="피너츠: 스누피 하우스">
                     </div>
-                    <div class="notch">
-                        <span>NEW</span>
-                        <span>2024</span>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 964</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
+                    </div>
+                    <h3 class="card-name">피너츠: 스누피 하우스</h3>
+                    <div class="card-price">124,900원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('피너츠: 스누피 하우스')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="an4.png" alt="피카츄와 몬스터볼">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 2050</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.6</span>
+                    </div>
+                    <h3 class="card-name">피카츄와 몬스터볼</h3>
+                    <div class="card-price">279,900원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('피카츄와 몬스터볼')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="p1.png" alt="클림트 - 키스">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
+                        <span><i class="fa-solid fa-cubes"></i> 3897</span>
+                    </div>
+                    <h3 class="card-name">클림트 - 키스</h3>
+                    <div class="card-price">329,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-sold-out" disabled>일시품절</button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="p2.png" alt="베르메르 - 진주 귀걸이를 한 소녀">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
+                        <span><i class="fa-solid fa-cubes"></i> 1862</span>
+                    </div>
+                    <h3 class="card-name">베르메르 - 진주 귀걸이를 한 소녀</h3>
+                    <div class="card-price">179,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-sold-out" disabled>일시품절</button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="p3.png" alt="칸딘스키 - 동심원들과의 사각형들">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
+                        <span><i class="fa-solid fa-cubes"></i> 1532</span>
+                    </div>
+                    <h3 class="card-name">칸딘스키 - 동심원들과의 사각형들</h3>
+                    <div class="card-price">139,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('칸딘스키 - 동심원들과의 사각형들')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="k2.png" alt="브릭 크록스">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 14+</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 3.7</span>
+                        <span><i class="fa-solid fa-cubes"></i> 0</span>
+                    </div>
+                    <h3 class="card-name">브릭 크록스</h3>
+                    <div class="card-price">279,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-sold-out" disabled>일시품절</button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="k5.png" alt="브릭 자전거">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 10+</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.5</span>
+                        <span><i class="fa-solid fa-cubes"></i> 587</span>
+                    </div>
+                    <h3 class="card-name">브릭 자전거</h3>
+                    <div class="card-price">89,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('브릭 자전거')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="c.png" alt="남산 서울타워">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 16+</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
+                        <span><i class="fa-solid fa-cubes"></i> 2937</span>
+                    </div>
+                    <h3 class="card-name">남산 서울타워</h3>
+                    <div class="card-price">249,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('남산 서울타워')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="g.png" alt="예수상">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
+                        <span><i class="fa-solid fa-cubes"></i> 3982</span>
+                    </div>
+                    <h3 class="card-name">예수상</h3>
+                    <div class="card-price">349,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('예수상')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="h.png" alt="오페라 하우스">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 5.0</span>
+                        <span><i class="fa-solid fa-cubes"></i> 3761</span>
+                    </div>
+                    <h3 class="card-name">오페라 하우스</h3>
+                    <div class="card-price">249,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('오페라 하우스')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="j2.png" alt="라이프가드">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 6+</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
+                        <span><i class="fa-solid fa-cubes"></i> 7</span>
+                    </div>
+                    <h3 class="card-name">라이프가드</h3>
+                    <div class="card-price">5,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('라이프가드')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="j3.png" alt="축구선수">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 6+</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
+                        <span><i class="fa-solid fa-cubes"></i> 5</span>
+                    </div>
+                    <h3 class="card-name">축구선수</h3>
+                    <div class="card-price">6,400 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('축구선수')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="j5.png" alt="수영선수">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 6+</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
+                        <span><i class="fa-solid fa-cubes"></i> 7</span>
+                    </div>
+                    <h3 class="card-name">수영선수</h3>
+                    <div class="card-price">6,400 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('수영선수')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="mu1.png" alt="바이올린">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 16+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 1827</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
+                    </div>
+                    <h3 class="card-name">바이올린</h3>
+                    <div class="card-price">278,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('바이올린')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="mu5.png" alt="드럼">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 8+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 458</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.6</span>
+                    </div>
+                    <h3 class="card-name">드럼</h3>
+                    <div class="card-price">51,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-sold-out" disabled>일시품절</button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="pl1.png" alt="무지개 열기구">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 9+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 457</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.9</span>
+                    </div>
+                    <h3 class="card-name">무지개 열기구</h3>
+                    <div class="card-price">65,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('무지개 열기구')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="pl2.png" alt="테마파크 회전목마">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 16+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 2153</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.8</span>
+                    </div>
+                    <h3 class="card-name">테마파크 회전목마</h3>
+                    <div class="card-price">329,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-sold-out" disabled>일시품절</button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="pl5.png" alt="해적 후룸라이드">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 18+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 5897</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 5.0</span>
+                    </div>
+                    <h3 class="card-name">해적 후룸라이드</h3>
+                    <div class="card-price">435,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-sold-out" disabled>일시품절</button>
+                    </div>
+                </div>
+
+                <div class="landmark-card hoverable">
+                    <span class="new-tag">신제품</span>
+                    <div class="card-image-wrap">
+                        <img src="z6.png" alt="건설 중장비">
+                    </div>
+                    <div class="card-stats">
+                        <span><i class="fa-solid fa-cake-candles"></i> 9+</span>
+                        <span><i class="fa-solid fa-cubes"></i> 287</span>
+                        <span><i class="fa-solid fa-star" style="color: #ffb300;"></i> 4.7</span>
+                    </div>
+                    <h3 class="card-name">건설 중장비</h3>
+                    <div class="card-price">32,900 원</div>
+                    <div class="card-actions">
+                        <button class="btn-cart-add hoverable" onclick="addToCart('건설 중장비')">
+                            <i class="fa-solid fa-bag-shopping"></i> 장바구니 담기
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+</main>
+
+            <!-- Footer -->
+            <footer style="margin-top: 60px; padding: 25px 0;  width: 100%; text-align: center; clear: both;">
+                <p style="font-family: var(--font-heading), 'Outfit', 'Inter', sans-serif; font-size: 0.9rem; color: #888888; margin: 0; letter-spacing: 0.5px; font-weight: 700;">
+                    &copy; 2026 BRICK MATE. ALL RIGHTS RESERVED.
+                </p>
+            </footer>
+
 
                 <div class="modal-overlay" id="login-modal">
         <div class="insiders-modal-content">
@@ -150,7 +827,7 @@
         <div class="mega-menu-container">
             <div class="mega-menu-header">
                 <div class="mega-menu-logo">
-                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                    <span style="font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: #ffcc00; letter-spacing: -0.5px;">Brick Mate</span>
                 </div>
                 <nav class="mega-menu-nav">
                     <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
@@ -163,7 +840,7 @@
                 <div class="mega-category-pane" id="mega-pane-brand">
                     <ul class="mega-links-list">
                         <li><a href="about.html">소개</a></li>
-                        <li><a href="news.html">소식</a></li>
+                        <li><a href="news.html">관련 회사</a></li>
                         <li><a href="partnership.html">다가오는 파트너십</a></li>
                     </ul>
                 </div>
@@ -171,7 +848,6 @@
                     <ul class="mega-links-list">
                         <li><a href="order.html">주문 현황 확인</a></li>
                         <li><a href="shipping.html">배송 및 반품</a></li>
-                        <li><a href="assembly.html">조립 설명서 검색</a></li>
                         <li><a href="faq.html">일반적인 질문</a></li>
                         <li><a href="contact.html">문의하기</a></li>
                         <li><a href="bricks.html">부속품 및 브릭</a></li>
@@ -205,6 +881,23 @@
         </div>
     </div>
 
+    <!-- Toast -->
+    <div class="toast-notification" id="cart-toast">
+        <i class="fa-solid fa-circle-check toast-icon"></i>
+        <span id="toast-message">장바구니에 상품이 담겼습니다.</span>
+    </div>
+
     <script src="main.js?v=1.1"></script>
+    <script>
+        document.querySelectorAll('.card-image-wrap img').forEach(img => {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', function() {
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-img');
+                lightboxImg.src = this.src;
+                lightbox.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -6,12 +6,68 @@
     <title>주문 현황 확인 | YH04 SUPPORT</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="dark-mode">
-    <div class="custom-cursor" id="cursor"></div>
+<body class="dark-mode" style="overflow: hidden; height: 100vh; display: flex; flex-direction: column;">
+    <div class="custom-cursor" id="cursor">
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <div class="mobile-nav-panel">
+        <div class="mobile-nav-header">
+            <span class="mobile-nav-logo">Brick Mate</span>
+            <button class="mobile-nav-close" id="mobile-nav-close">&times;</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-brand">
+                    釉뚮옖???뚭컻 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-brand">
+                    <li><a href="about.html">?뚭컻</a></li>
+                    <li><a href="news.html">愿???뚯궗</a></li>
+                    <li><a href="partnership.html">?ㅺ??ㅻ뒗 ?뚰듃?덉떗</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-products">
+                    ?쒗뭹 ?뚯떇 <i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-products">
+                    <li><a href="series.html">?쒕━利덈퀎 ?명듃</a></li>
+                    <li><a href="age.html">?곕졊蹂?/a></li>
+                    <li><a href="price.html">媛寃⑸퀎</a></li>
+                    <li><a href="new.html">?좎젣??/a></li>
+                    <li><a href="deals.html">?좎씤 諛??됱궗</a></li>
+                    <li><a href="coming-soon.html">異쒖떆 ?덉젙</a></li>
+                    <li><a href="last-chance.html">?⑥쥌 ?덉젙</a></li>
+                </ul>
+            </li>
+            <li><a href="companies.html">?λ컮援щ땲</a></li>
+            <li>
+                <button class="mobile-sub-toggle" data-target="sub-support">
+                    怨좉컼 吏??<i class="fa-solid fa-chevron-right mobile-nav-chevron"></i>
+                </button>
+                <ul class="mobile-nav-sub" id="sub-support">
+                    <li><a href="order.html">二쇰Ц ?꾪솴 ?뺤씤</a></li>
+                    <li><a href="shipping.html">諛곗넚 諛?諛섑뭹</a></li>
+                    <li><a href="faq.html">?쇰컲?곸씤 吏덈Ц</a></li>
+                    <li><a href="contact.html">臾몄쓽?섍린</a></li>
+                    <li><a href="bricks.html">遺?랁뭹 諛?釉뚮┃</a></li>
+                </ul>
+            </li>
+            <li><a href="board.html">??而ㅻ??덊떚</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <button class="mobile-btn-login" onclick="document.getElementById('promo-open-login')?.click(); document.getElementById('mobile-nav-drawer').classList.remove('open');">濡쒓렇??/button>
+            <button class="mobile-btn-play" onclick="location.href='playzone.html'">PLAY議?/button>
+        </div>
+    </div>
+</div></div>
     <div class="promo-bar">
         <button class="playzone-btn hoverable" onclick="location.href='playzone.html'">PLAY존</button>
         <div class="promo-bar-content">
@@ -29,7 +85,7 @@
     <header id="header">
         <nav>
             <div class="logo-norris hoverable" onclick="location.href='index.html'">
-                HWANG<br>YOUNGHO
+                Brick Mate
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="hoverable ">HOME</a></li>
@@ -43,8 +99,13 @@
                 <li class="nav-item-mega">
                     <a href="javascript:void(0)" class="hoverable mega-trigger active" data-category="support">고객 지원</a>
                 </li>
+                <li><a href="board.html" class="hoverable ">팬 커뮤니티</a></li>
             </ul>
-            <div class="header-right">
+                <button class="mobile-menu-btn hoverable" id="mobile-menu-btn" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button><div class="header-right">
             </div>
         </nav>
     </header>
@@ -54,17 +115,27 @@
     
     
     
+    
+    
+    
+    
+    
+    
 
     
 
-    <main class="section" style="padding-top: 50px; padding-bottom: 120px; min-height: 100vh; background-color: #ffffff; color: #000000; display: block;">
+    <main class="section" style="padding-top: 50px; padding-bottom: 0; flex: 1; background-color: #ffffff; color: #000000; display: flex; flex-direction: column; overflow-y: auto; min-height: 0;">
         <style>
             .order-status-container {
-                max-width: 680px;
+                max-width: 1200px;
                 margin: 0 auto;
                 padding: 0 40px;
                 font-family: var(--font-body);
                 color: #000000;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                box-sizing: border-box;
             }
             .order-status-title {
                 font-size: 2.3rem;
@@ -125,26 +196,295 @@
             }
             .order-status-btn {
                 width: 100%;
-                padding: 20px;
-                font-size: 1.25rem;
-                font-family: var(--font-body);
+                border: 2.5px solid #0056b3; /* Sleek outline blue */
+                color: #0056b3;
+                background-color: transparent;
+                border-radius: 50px;
+                padding: 15px 30px;
                 font-weight: 700;
-                color: #ffffff;
-                background-color: #0080ff;
-                border: none;
-                border-radius: 40px;
+                font-size: 1.05rem;
+                font-family: var(--font-body);
                 cursor: pointer;
-                text-align: center;
-                transition: background-color 0.2s ease, transform 0.1s ease;
+                transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+                outline: none;
                 margin-top: 10px;
+                display: block;
+                text-align: center;
+                box-sizing: border-box;
             }
             .order-status-btn:hover {
-                background-color: #3b9cff;
+                background-color: #0056b3;
+                color: #ffffff;
+                box-shadow: 0 8px 20px rgba(0, 86, 179, 0.2);
+                transform: translateY(-2px);
             }
             .order-status-btn:active {
-                transform: scale(0.99);
+                transform: translateY(0);
             }
+            /* Side-by-side layout styles */
+            .order-status-layout {
+                display: flex;
+                gap: 40px;
+                justify-content: center;
+                align-items: stretch;
+                margin-top: auto;
+                margin-bottom: auto;
+                width: 100%;
+            }
+            .order-status-left {
+                flex: 1.1;
+                max-width: 550px;
+            }
+            .order-status-right {
+                flex: 0.9;
+                max-width: 500px;
+                min-width: 320px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Order Status Form Card styling */
+            .order-status-form-card {
+                position: relative;
+                width: 100%;
+                background-color: #ffffff; /* pure white inside */
+                border: 1px solid rgba(0, 0, 0, 0.08);
+                border-radius: 40px;
+                padding: 40px;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.03);
+                box-sizing: border-box;
+                font-family: var(--font-body);
+                height: 520px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: left;
+            }
+
+            /* Insiders Benefit Card styling */
+            .insiders-benefit-card {
+                position: relative;
+                width: 100%;
+                background-color: #ffffff; /* pure white inside */
+                border: 1px solid rgba(0, 0, 0, 0.08);
+                border-radius: 40px;
+                padding: 40px;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.03);
+                overflow: hidden;
+                box-sizing: border-box;
+                font-family: var(--font-body);
+                height: 520px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: left;
+            }
+            .card-content-inner {
+                position: relative;
+                z-index: 5; /* Keep above decorative shapes */
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                justify-content: space-between;
+            }
+            /* Logo Brand Area */
+            .insiders-brand-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .brickmate-logo-block {
+                background-color: #E3000B; /* Lego Red */
+                color: #ffffff;
+                font-family: var(--font-heading), 'Outfit', sans-serif;
+                font-weight: 900;
+                font-style: italic;
+                font-size: 1.15rem;
+                padding: 5px 10px;
+                border-radius: 4px;
+                letter-spacing: -0.5px;
+                box-shadow: 0 3px 6px rgba(227, 0, 11, 0.2);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .insiders-logo-text {
+                font-family: var(--font-heading), 'Outfit', sans-serif;
+                font-weight: 900;
+                font-size: 1.8rem;
+                color: #111111;
+                letter-spacing: -0.8px;
+                text-transform: uppercase;
+            }
+            .insiders-card-title {
+                font-family: var(--font-heading), 'Outfit', sans-serif;
+                font-weight: 700;
+                font-size: 1.65rem;
+                color: #111111;
+                margin-top: 15px;
+                margin-bottom: 20px;
+                letter-spacing: -0.5px;
+            }
+            /* Benefit List */
+            .insiders-benefit-list {
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+                margin-bottom: 30px;
+            }
+            .insiders-benefit-row {
+                display: flex;
+                align-items: center;
+                gap: 18px;
+            }
+            .insiders-diamond-badge {
+                width: 38px;
+                height: 38px;
+                background-color: #d12c2c; /* Red diamond */
+                color: #ffffff;
+                font-weight: 700;
+                font-size: 1.1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transform: rotate(45deg);
+                border-radius: 6px;
+                flex-shrink: 0;
+                box-shadow: 0 4px 10px rgba(209, 44, 44, 0.25);
+            }
+            .insiders-diamond-badge span {
+                transform: rotate(-45deg); /* Counter rotate content */
+                display: block;
+            }
+            .insiders-star-badge {
+                width: 38px;
+                height: 38px;
+                background-color: #4b2a8f; /* Purple star box */
+                color: #ffffff;
+                font-size: 1.15rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%; /* Rounded Star */
+                flex-shrink: 0;
+                box-shadow: 0 4px 10px rgba(75, 42, 143, 0.25);
+            }
+            .insiders-benefit-row-desc {
+                font-size: 0.95rem;
+                line-height: 1.45;
+                color: #333333;
+                font-weight: 500;
+                margin: 0;
+                letter-spacing: -0.3px;
+            }
+            /* Sign Up Pill Button */
+            .insiders-signup-pill {
+                width: 100%;
+                border: 2.5px solid #0056b3; /* Sleek outline blue */
+                color: #0056b3;
+                background-color: transparent;
+                border-radius: 50px;
+                padding: 15px 30px;
+                font-weight: 700;
+                font-size: 1.05rem;
+                font-family: var(--font-body);
+                cursor: pointer;
+                transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+                outline: none;
+                margin-top: 10px;
+                display: block;
+                text-align: center;
+                box-sizing: border-box;
+            }
+            .insiders-signup-pill:hover {
+                background-color: #0056b3;
+                color: #ffffff;
+                box-shadow: 0 8px 20px rgba(0, 86, 179, 0.2);
+                transform: translateY(-2px);
+            }
+            .insiders-signup-pill:active {
+                transform: translateY(0);
+            }
+            
+            /* Decorative shapes inside card corners */
+            .shape-decor {
+                position: absolute;
+                opacity: 0.85;
+                z-index: 1;
+            }
+            .shape-top-left {
+                top: -15px;
+                left: 10%;
+                width: 80px;
+                height: 40px;
+                background-color: #0080ff; /* Blue trapezoid/brick look */
+                transform: rotate(-15deg) skewX(-20deg);
+                border-radius: 8px;
+            }
+            .shape-top-right {
+                top: -20px;
+                right: 15%;
+                width: 70px;
+                height: 70px;
+                background-color: #2ea650; /* Green block */
+                transform: rotate(20deg);
+                border-radius: 12px;
+            }
+            .shape-bottom-left {
+                bottom: -25px;
+                left: 15%;
+                width: 90px;
+                height: 50px;
+                background-color: #ffd500; /* Yellow Lego Plate */
+                transform: rotate(10deg);
+                border-radius: 10px;
+            }
+            .shape-bottom-left::before {
+                content: '';
+                position: absolute;
+                top: -5px;
+                left: 10px;
+                width: 15px;
+                height: 10px;
+                background-color: #ffd500;
+                border-radius: 3px 3px 0 0;
+                box-shadow: 25px 0 0 #ffd500, 50px 0 0 #ffd500;
+            }
+            .shape-bottom-right {
+                bottom: 20%;
+                right: -25px;
+                width: 60px;
+                height: 60px;
+                background-color: #e59ec6; /* Pink quarter circle */
+                border-radius: 50%;
+            }
+
             /* Media queries for responsiveness */
+            @media (max-width: 767px) {
+                .order-status-layout {
+                    flex-direction: column;
+                    gap: 40px;
+                    align-items: center;
+                }
+                .order-status-left {
+                    width: 100%;
+                    max-width: 100%;
+                }
+                .order-status-right {
+                    width: 100%;
+                    max-width: 100%;
+                }
+                .order-status-form-card, .insiders-benefit-card {
+                    height: auto !important;
+                    border-radius: 30px;
+                    padding: 25px;
+                }
+                body.no-scroll-page main, body, main {
+                    overflow-y: auto !important;
+                    height: auto !important;
+                }
+            }
             @media (max-width: 768px) {
                 .order-status-container {
                     padding: 0 20px;
@@ -169,26 +509,101 @@
                 }
             }
         </style>
-        <div class="order-status-container">
-            <h1 class="order-status-title">주문 현황 확인</h1>
-            
-            <h2 class="order-status-subtitle">레고 계정이 없으신가요?</h2>
-            
-            <p class="order-status-desc">
-                주문번호(주문 확인 이메일에서 확인 가능)와 이메일 주소를 입력하시면 주문 상태를 볼 수 있는 링크를 보내 드립니다.
-            </p>
-            
-            <form class="order-status-form" onsubmit="event.preventDefault(); alert('이메일이 전송되었습니다!');">
-                <div class="order-status-input-group">
-                    <input type="text" placeholder="주문번호 *" class="order-status-input" required>
+        <div class="order-status-container" style="flex: 1; max-width: 1200px;">
+            <!-- Breadcrumbs -->
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #777777; margin-bottom: 18px; font-weight: 500;">
+                <a href="index.html" style="color: #777777; text-decoration: none;">HOME</a>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i>
+                <a href="javascript:void(0)" style="color: #777777; text-decoration: none;">고객 지원</a>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i>
+                <span style="color: #111111; font-weight: 700;">주문 현황 확인</span>
+            </div>
+
+
+            <div class="order-status-layout">
+                <!-- Left Side: Order Status Form Card -->
+                <div class="order-status-left">
+                    <div class="order-status-form-card">
+                        <form class="card-content-inner" onsubmit="event.preventDefault(); alert('이메일이 전송되었습니다!');">
+                            <!-- Welcome Header -->
+                            <div class="order-status-brand-wrapper" style="display: flex; align-items: center; gap: 8px;">
+                                <h2 class="order-status-title-inside" style="font-family: var(--font-heading), 'Outfit', sans-serif; font-weight: 900; font-size: 2.0rem; color: #111111; margin: 0; letter-spacing: -0.5px;">주문 현황 확인</h2>
+                            </div>
+                            
+                            <div style="margin-top: 28px;">
+                                <h3 class="order-status-subtitle" style="font-family: var(--font-heading), 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: #333333; margin-top: 0; margin-bottom: 8px; letter-spacing: -0.3px;">레고 계정이 없으신가요?</h3>
+                                <p class="order-status-desc" style="margin-bottom: 0; font-size: 0.88rem; line-height: 1.45; color: #666666; letter-spacing: -0.2px;">
+                                    주문번호(주문 확인 이메일에서 확인 가능)와 이메일 주소를 입력하시면 주문 상태를 볼 수 있는 링크를 보내 드립니다.
+                                </p>
+                            </div>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 15px; margin-top: auto; margin-bottom: auto; width: 100%;">
+                                <div class="order-status-input-group">
+                                    <input type="text" placeholder="주문번호 *" class="order-status-input" style="padding: 16px 20px; font-size: 1.0rem; border-radius: 10px;" required>
+                                </div>
+                                <div class="order-status-input-group">
+                                    <input type="email" placeholder="이메일 *" class="order-status-input" style="padding: 16px 20px; font-size: 1.0rem; border-radius: 10px;" required>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="order-status-btn hoverable">이메일 보내기</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="order-status-input-group">
-                    <input type="email" placeholder="이메일 *" class="order-status-input" required>
+                
+                <!-- Right Side: Insiders Benefits Card -->
+                <div class="order-status-right">
+                    <!-- Insiders Card -->
+                    <div class="insiders-benefit-card">
+                        <!-- Decorative Shapes -->
+                        <div class="shape-decor shape-top-left"></div>
+                        <div class="shape-decor shape-top-right"></div>
+                        <div class="shape-decor shape-bottom-left"></div>
+                        <div class="shape-decor shape-bottom-right"></div>
+                        
+                        <!-- Card Content -->
+                        <div class="card-content-inner">
+                            <!-- Welcome Header -->
+                            <div class="insiders-brand-wrapper">
+                                <span class="insiders-logo-text" style="font-family: var(--font-heading), 'Outfit', sans-serif; font-weight: 900; font-size: 2.0rem; color: #111111; letter-spacing: -0.5px;">환영합니다</span>
+                            </div>
+                            
+                            <h2 class="insiders-card-title">회원 전용 혜택</h2>
+                            
+                            <!-- Benefits List -->
+                            <div class="insiders-benefit-list">
+                                <div class="insiders-benefit-row">
+                                    <div class="insiders-diamond-badge">
+                                        <span>%</span>
+                                    </div>
+                                    <p class="insiders-benefit-row-desc">구매할 때마다 쌓이는 포인트를 사용해 더 저렴하게 구매할 수 있어요.</p>
+                                </div>
+                                
+                                <div class="insiders-benefit-row">
+                                    <div class="insiders-star-badge">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <p class="insiders-benefit-row-desc">포인트를 사용해 전용 리워드로 교환하세요.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Sign up button -->
+                            <button class="insiders-signup-pill hoverable" onclick="const sm = document.getElementById('signup-modal'); if (sm) { sm.classList.add('active'); document.body.style.overflow = 'hidden'; } else { document.getElementById('promo-open-login').click(); }">회원 가입</button>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="order-status-btn hoverable">이메일 보내기</button>
-            </form>
+            </div>
         </div>
+
+        <!-- Footer inside main for viewport-locked layout -->
+        <footer style="flex-shrink: 0; padding: 18px 0; width: 100%; text-align: center;">
+            <p style="font-family: var(--font-heading), 'Outfit', 'Inter', sans-serif; font-size: 0.9rem; color: #888888; margin: 0; letter-spacing: 0.5px; font-weight: 700;">
+                &copy; 2026 BRICK MATE. ALL RIGHTS RESERVED.
+            </p>
+        </footer>
     </main>
+
+
 
             <div class="modal-overlay" id="login-modal">
         <div class="insiders-modal-content">
@@ -266,7 +681,7 @@
         <div class="mega-menu-container">
             <div class="mega-menu-header">
                 <div class="mega-menu-logo">
-                    <img src="https://www.lego.com/cdn/cs/set-v2/assets/blt167439775079a408/logo-lego-brick.svg" alt="LEGO" class="lego-square-logo">
+                    <span style="font-family: 'Outfit', 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: #ffcc00; letter-spacing: -0.5px;">Brick Mate</span>
                 </div>
                 <nav class="mega-menu-nav">
                     <button class="mega-nav-btn" data-category="brand">브랜드 소개</button>
@@ -279,7 +694,7 @@
                 <div class="mega-category-pane" id="mega-pane-brand">
                     <ul class="mega-links-list">
                         <li><a href="about.html">소개</a></li>
-                        <li><a href="news.html">소식</a></li>
+                        <li><a href="news.html">관련 회사</a></li>
                         <li><a href="partnership.html">다가오는 파트너십</a></li>
                     </ul>
                 </div>
@@ -287,7 +702,6 @@
                     <ul class="mega-links-list">
                         <li><a href="order.html">주문 현황 확인</a></li>
                         <li><a href="shipping.html">배송 및 반품</a></li>
-                        <li><a href="assembly.html">조립 설명서 검색</a></li>
                         <li><a href="faq.html">일반적인 질문</a></li>
                         <li><a href="contact.html">문의하기</a></li>
                         <li><a href="bricks.html">부속품 및 브릭</a></li>
